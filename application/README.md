@@ -1,4 +1,5 @@
 # Frontend for ...
+WIP
 
 ## Pre-Requisites
 
@@ -7,15 +8,30 @@
 
 
 ## Installation
->
 
 ### Open terminal in /application/frontend
+
+Install dependencies
+```
+npm install
+```
 <br>
 
 
 
-<br>
 
 ## Running the Server
 
+For development: start a development server
+```
+npm run dev
+```
+<br>
+
+For deployment: create a production-ready build
+```
+npm run build
+```
+
 ## Folder Structure
+WIP
