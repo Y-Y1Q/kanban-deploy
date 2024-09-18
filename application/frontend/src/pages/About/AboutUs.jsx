@@ -10,13 +10,13 @@ export default function AboutUs(){
             name: "Rishita Meharishi",
             role: "Team Leader",
             path: "/about/rishita",
-            img: "/Headshot_Pic.jpeg"
+            img: "https://api.dicebear.com/9.x/fun-emoji/svg?seed=Christian"
         },
         {
             name: "Luai Almaznai",
             role: "Frontend Lead",
             path: "/about/luai",
-            img: "https://api.dicebear.com/9.x/croodles-neutral/svg?seed=Christian"
+            img: "https://api.dicebear.com/9.x/avataaars-neutral/svg?seed=Alexander"
         },
         {
             name: "L Chow",
