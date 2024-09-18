@@ -1,20 +1,17 @@
 # CSC648-S01-FA24-Team01 Repository
 
-**NO code should be stored in the root of your repository. You may rename the
-`application/` folder to your team's application name if you'd like, but all the
-source code should be stored inside that folder.**
+### Job Kanban
 
-## Application URL (To be updated)
+## Application URL 
 
->**https://example.com**
+>**https://job-kanban.onrender.com/**
 
 ## Team members
 
-| **Student Name**        | **Student Email**     | **GitHub Username** | **Student's role** |
-| :----------:        | :-----------:      | :-------------: | :------------: |
-| Rishita Meharishi   |  @sfsu.edu         |                 |  Team Leader   |
-| Luai Almaznai       |  @sfsu.edu         |                 |  Frontend Lead  |
-| L Chow              |  @sfsu.edu         |                 |  Backend Lead   |
-| Salah Hussain       |  @sfsu.edu         |                 |  Github Master   |
-| Zaw Win Tun         |  @sfsu.edu         |                 |  Scrum Master   |
-| Yee Yang            | yyang31@sfsu.edu   |     Y-Y1Q       |  Support   |
+| **Student Name**    | **Student Email** | **GitHub Username** | **Student's role** |
+| :----------:        | :-----------:     | :-------------: | :------------: |
+| Rishita Meharishi   |  @sfsu.edu        |   Rishita317    |  Team Leader   |
+| Luai Almaznai       |  @sfsu.edu        |   LuaiMaz     |  Frontend Lead  |
+| L Chow              |  @sfsu.edu        |   lchowGH     |  Backend Lead   |
+| Zaw Win Tun         |  @sfsu.edu        |   terrytun    |  Scrum Master   |
+| Yee Yang            | yyang31@sfsu.edu  |   Y-Y1Q       |  Github Master   |
