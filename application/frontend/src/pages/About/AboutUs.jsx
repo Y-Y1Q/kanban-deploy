@@ -22,13 +22,7 @@ export default function AboutUs(){
             name: "L Chow",
             role: "Backend Lead",
             path: "/about/l",
-            img: "https://api.dicebear.com/9.x/croodles-neutral/svg?seed=Christian"
-        },
-        {
-            name: "Salah Hussain",
-            role: "Github Master",
-            path: "/about/salah",
-            img: "https://api.dicebear.com/9.x/croodles-neutral/svg?seed=Christian"
+            img: "https://api.dicebear.com/9.x/icons/svg?seed=Chase"
         },
         {
             name: "Zaw Win Tun",
@@ -38,9 +32,9 @@ export default function AboutUs(){
         },
         {
             name: "Yee Yang",
-            role: "Support",
+            role: "Github Master",
             path: "/about/yee",
-            img: "https://api.dicebear.com/9.x/croodles-neutral/svg?seed=Christian"
+            img: "https://api.dicebear.com/9.x/bottts-neutral/svg?seed=Yee&backgroundColor=ffb300"
         },
     ];
 

@@ -54,7 +54,7 @@ a:hover {
 .card .img-container {
   width: 8em;
   height: 8em;
-  background-color: #a993ff;
+  background-color: transparent;
   padding: 0.5em;
   border-radius: 50%;
   margin: 0 auto 2em auto;
