@@ -3,8 +3,8 @@ import './style.css';
 
 export default function AboutMe() {
     return (
-        <section className="about-us">
-            <div className="about">
+        <section className="labout-us">
+            <div className="labout">
 
 
                 {/* Edit url of your profile image below
@@ -14,12 +14,12 @@ export default function AboutMe() {
                 <img
                     src="https://api.dicebear.com/9.x/icons/svg?seed=Chase"
                     alt="avatar"
-                    className="pic"
+                    className="lpic"
                 />
 
 
                 {/* Edit description below */}
-                <div className="text">
+                <div className="ltext">
                     <h2>L Chow</h2>
 
                     <h3></h3>
@@ -37,8 +37,8 @@ export default function AboutMe() {
                         On my free time, I enjoy watching anime, listening to music and going on hikes/walks.
                     </p>
                 
-                    <div className="data">
-                        <a href="https://github.com/lchowGH" className="link">
+                    <div className="ldata">
+                        <a href="https://github.com/lchowGH" className="llink">
                             GitHub
                         </a>
                     </div>
