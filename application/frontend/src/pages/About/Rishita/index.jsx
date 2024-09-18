@@ -3,12 +3,12 @@ import './style.css';
 
 export default function AboutMe() {
   return (
-    <div className="about-wrapper">
-      <div className="about-left">
-        <div className="about-left-content">
+    <div className="rabout-wrapper">
+      <div className="rabout-left">
+        <div className="rabout-left-content">
           <div>
-            <div className="shadow">
-              <div className="about-img">
+            <div className="rshadow">
+              <div className="rabout-img">
                 <img src="https://api.dicebear.com/9.x/croodles-neutral/svg?seed=Christian" alt="about image" />
                 
               </div>

@@ -36,6 +36,14 @@ body {
   color: #1f003b;
 }
 
+.about-p {
+  width: 100%;
+  text-align: center;
+  font-size: 1.5em;
+  color: #000000;
+
+}
+
 a:hover {
   font-weight: bold;
   transform: scale(1.5);
@@ -54,7 +62,7 @@ a:hover {
 .card .img-container {
   width: 8em;
   height: 8em;
-  background-color: #a993ff;
+  background-color: transparent;
   padding: 0.5em;
   border-radius: 50%;
   margin: 0 auto 2em auto;

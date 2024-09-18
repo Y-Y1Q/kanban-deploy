@@ -3,8 +3,8 @@ import './style.css';
 
 export default function AboutMe() {
     return (
-        <section className="about-us">
-            <div className="about">
+        <section className="zabout-us">
+            <div className="zabout">
 
 
                 {/* Edit url of your profile image below
@@ -14,10 +14,10 @@ export default function AboutMe() {
                 <img
                     src="https://api.dicebear.com/9.x/croodles-neutral/svg?seed=Christian"
                     alt="Profile"
-                    className="pic"
+                    className="zpic"
                 />
 
-                <div className="text">
+                <div className="ztext">
                     <h2>About Me</h2>
                     <h5>hello & <span>welcome</span></h5>
                     <p>
@@ -27,8 +27,8 @@ export default function AboutMe() {
                         
                     </p>
 
-                    <div className="data">
-                        <a href="https://github.com" className="link">
+                    <div className="zdata">
+                        <a href="https://github.com" className="zlink">
                             GitHub
                         </a>
                     </div>
