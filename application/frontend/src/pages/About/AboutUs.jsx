@@ -10,7 +10,7 @@ export default function AboutUs(){
             name: "Rishita Meharishi",
             role: "Team Leader",
             path: "/about/rishita",
-            img: "https://api.dicebear.com/9.x/croodles-neutral/svg?seed=Christian"
+            img: "/Headshot_Pic.jpeg"
         },
         {
             name: "Luai Almaznai",

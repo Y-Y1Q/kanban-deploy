@@ -9,7 +9,7 @@ export default function AboutMe() {
           <div>
             <div className="rshadow">
               <div className="rabout-img">
-                <img src="https://api.dicebear.com/9.x/croodles-neutral/svg?seed=Christian" alt="about image" />
+                <img src="/Headshot_Pic.jpeg" alt="about image" />
                 
               </div>
             </div>
