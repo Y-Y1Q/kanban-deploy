@@ -17,8 +17,8 @@
 }
 
 .pic {
-  height: auto;
-  width: 400px;
+  height: 350px !important;
+  width: 350px !important;
   border-radius: 12px;
 }
 
