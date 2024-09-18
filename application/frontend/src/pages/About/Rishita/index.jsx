@@ -18,7 +18,7 @@ export default function AboutMe() {
             <h3>Hi, I am  Rishita! My passion for improving existing technologies and 
                 contributing to the tech community led me to pursue computer science.
                 I am excited to be in CSC 648 and be a team lead.  In my free time, 
-                I  running, cooking, painting, and longboarding. I’m also a big fan of sunsets, 
+                I enjoy running, cooking, painting, and longboarding. I’m also a big fan of sunsets, 
                 beaches, and ice cream. 
             </h3>
           </div>
