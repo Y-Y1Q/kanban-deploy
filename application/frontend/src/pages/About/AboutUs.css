@@ -36,6 +36,14 @@ body {
   color: #1f003b;
 }
 
+.about-p {
+  width: 100%;
+  text-align: center;
+  font-size: 1.5em;
+  color: #000000;
+
+}
+
 a:hover {
   font-weight: bold;
   transform: scale(1.5);
