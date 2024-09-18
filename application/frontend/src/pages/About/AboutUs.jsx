@@ -10,13 +10,13 @@ export default function AboutUs(){
             name: "Rishita Meharishi",
             role: "Team Leader",
             path: "/about/rishita",
-            img: "https://api.dicebear.com/9.x/croodles-neutral/svg?seed=Christian"
+            img: "https://api.dicebear.com/9.x/fun-emoji/svg?seed=Christian"
         },
         {
             name: "Luai Almaznai",
             role: "Frontend Lead",
             path: "/about/luai",
-            img: "https://api.dicebear.com/9.x/croodles-neutral/svg?seed=Christian"
+            img: "https://api.dicebear.com/9.x/avataaars-neutral/svg?seed=Alexander"
         },
         {
             name: "L Chow",
@@ -28,7 +28,7 @@ export default function AboutUs(){
             name: "Zaw Win Tun",
             role: "Scrum Master",
             path: "/about/zaw",
-            img: "https://api.dicebear.com/9.x/croodles-neutral/svg?seed=Christian"
+            img: "https://api.dicebear.com/9.x/avataaars-neutral/svg?seed=George"
         },
         {
             name: "Yee Yang",
@@ -47,6 +47,9 @@ export default function AboutUs(){
             <div className="row">
                 <h1 className="about-h1">SFSU CSC648 Fall 2024</h1>
                 <h2 className="about-h2">Section 01 Team 01</h2>
+                <p className="about-p">Hi, we are building a job application tracker</p>
+                <p className="about-p">We used text message & Discord for group communicaiton</p>
+                <a className="about-p" href="/study-plan.html">Our study plan for next 4 weeks </a> 
             </div>
             <div className="row">
                 {teamMembers.map((member, index) => (

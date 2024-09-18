@@ -12,7 +12,7 @@ export default function AboutMe() {
                  or upload your own image
                 */}
                 <img
-                    src="https://api.dicebear.com/9.x/croodles-neutral/svg?seed=Christian"
+                    src="https://api.dicebear.com/9.x/avataaars-neutral/svg?seed=George"
                     alt="Profile"
                     className="zpic"
                 />
