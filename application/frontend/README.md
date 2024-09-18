@@ -24,7 +24,7 @@ npm install
 
 For development: start a development server
 ```
-npm run dev
+npm run start
 ```
 <br>
 
