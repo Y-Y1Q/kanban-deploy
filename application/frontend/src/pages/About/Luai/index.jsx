@@ -18,7 +18,7 @@ export default function AboutMe() {
                     <p>
                         Hello my name is Luai ALmaznai, I'm a Computer Science student at SFSU. 
                         I'm looking to be a Product Manager or a Software Developer in the near future. 
-                        Some of my hobbies are playing soccer, hanging out with friends, and practicing leet problems. 
+                        Some of my hobbies are playing soccer, hanging out with friends, and practicing leetcode problems. 
                     </p>
 
                     <div className="data">
