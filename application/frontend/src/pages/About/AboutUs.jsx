@@ -16,7 +16,7 @@ export default function AboutUs(){
             name: "Luai Almaznai",
             role: "Frontend Lead",
             path: "/about/luai",
-            img: "https://api.dicebear.com/9.x/croodles-neutral/svg?seed=Christian"
+            img: "https://api.dicebear.com/9.x/avataaars-neutral/svg?seed=Alexander"
         },
         {
             name: "L Chow",
