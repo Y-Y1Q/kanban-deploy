@@ -47,7 +47,8 @@ export default function AboutUs(){
             <div className="row">
                 <h1 className="about-h1">SFSU CSC648 Fall 2024</h1>
                 <h2 className="about-h2">Section 01 Team 01</h2>
-                <p className="about-p">Hi, we are building a job application tracker</p>
+                <p className="about-p">Team Meeting Shedule: Wed 2 - 3pm</p>
+                <p className="about-p">Hi! We are building a job application tracker web app</p>
                 <p className="about-p">We used text message & Discord for group communicaiton</p>
                 <a className="about-p" href="/study-plan.html">Our study plan for next 4 weeks </a> 
             </div>
