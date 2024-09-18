@@ -6,8 +6,13 @@ export default function AboutMe() {
         <section className="about-us">
             <div className="about">
 
+
+                {/* Edit url of your profile image below
+                 you can use online avatar https://www.dicebear.com/playground/
+                 or upload your own image
+                */}
                 <img
-                    src="https://api.dicebear.com/9.x/lorelei/svg?seed=Christian"
+                    src="https://api.dicebear.com/9.x/croodles-neutral/svg?seed=Christian"
                     alt="Profile"
                     className="pic"
                 />
