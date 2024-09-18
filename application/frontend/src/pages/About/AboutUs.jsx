@@ -10,7 +10,7 @@ export default function AboutUs(){
             name: "Rishita Meharishi",
             role: "Team Leader",
             path: "/about/rishita",
-            img: "/Headshot_Pic.jpeg"
+            img: "https://api.dicebear.com/9.x/fun-emoji/svg?seed=Christian"
         },
         {
             name: "Luai Almaznai",
