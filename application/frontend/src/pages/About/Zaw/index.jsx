@@ -17,18 +17,14 @@ export default function AboutMe() {
                     className="pic"
                 />
 
-
-                {/* Edit description below */}
                 <div className="text">
                     <h2>About Me</h2>
-                    <h5>Lorem ipsum dolor & <span>Lorem ipsum dolor</span></h5>
+                    <h5>hello & <span>welcome</span></h5>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita
-                        natus ad sed harum itaque ullam enim quas, veniam accusantium, quia
-                        animi id eos adipisci iusto molestias asperiores explicabo cum vero
-                        atque amet corporis! Soluta illum facere consequuntur magni. Ullam
-                        dolorem repudiandae cumque voluptate consequatur consectetur, eos
-                        provident necessitatibus reiciendis corrupti!
+                    Hi, My name is Zaw Win Tun. I am studying at SFSU. I work part-time and am studying full-time this semester. 
+                    In my free time, I like to hang out with friends, go hiking, try new restaurants, and play games, and even when 
+                    I have more time, I do go on trips or visit new cities that I have never been to. 
+                        
                     </p>
 
                     <div className="data">
