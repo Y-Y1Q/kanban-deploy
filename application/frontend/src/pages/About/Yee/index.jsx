@@ -9,7 +9,7 @@ export default function AboutMe() {
           <div>
             <div className="yshadow">
               <div className="yabout-img">
-                <img src="https://api.dicebear.com/9.x/bottts-neutral/svg?seed=Yee&backgroundColor=ffb300" alt="about image" />
+                <img src="/doge.jpg" alt="about image" />
               </div>
             </div>
 
