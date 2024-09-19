@@ -10,7 +10,7 @@
 
 | **Student Name**    | **Student Email**   | **GitHub Username** | **Student's role** |
 | :----------:        | :-----------:       | :-------------: | :------------: |
-| Rishita Meharishi   |  @sfsu.edu          |   Rishita317    |  Team Leader   |
+| Rishita Meharishi   |  rmeharishi@sfsu.edu          |   Rishita317    |  Team Leader   |
 | Luai Almaznai       |  lalmaznai@sfsu.edu |   LuaiMaz     |  Frontend Lead  |
 | L Chow              |  lchow4@sfsu.edu    |   lchowGH     |  Backend Lead   |
 | Zaw Tun             |  ztun@sfsu.edu        |   terrytun    |  Scrum Master   |
