@@ -34,7 +34,7 @@ export default function AboutUs(){
             name: "Yee Yang",
             role: "Github Master",
             path: "/about/yee",
-            img: "https://api.dicebear.com/9.x/bottts-neutral/svg?seed=Yee&backgroundColor=ffb300"
+            img: "/doge.jpg"
         },
     ];
 
