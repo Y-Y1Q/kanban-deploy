@@ -1,6 +1,6 @@
 # CSC648-S01-FA24-Team01 Repository
 
-### Job Kanban
+### EzJobs
 
 ## Application URL 
 
