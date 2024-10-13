@@ -1,0 +1,73 @@
+// User info
+ Table users {
+  id int [primary key]
+  username varchar(50) [not null]
+  email varchar(50) [not null, unique]
+  password varchar(200) [not null]
+}
+
+// Job Applications info 
+Enum job_status {
+  interested
+  pending
+  in_progress
+  offer
+  declined
+  ghosted
+  follow_up
+ }
+
+Table jobs {
+  id int [pk]
+  status job_status [not null]
+  company varchar(50) [not null]
+  position varchar(50) [not null]
+  salary varchar(50)
+  type varchar(20)
+  location varchar(50)
+  link varchar(50)
+  description varchar(100)
+  date_applied date
+  date_scheduled timestamp 
+  // timestamptz not supported on dbdiagram.io
+  // after SQL code is generated
+  // we will change it to timestamptz manualy
+}
+
+Table user_jobs {
+  user_id int [not null, ref: > users.id]
+  job_id int [not null, ref: > jobs.id]
+  user_note varchar(200)
+}
+
+// Documents info
+Table docs {
+  id int [pk]
+  user_id int [not null, ref: - users.id]
+  filepath varchar(200) [not null]
+}
+
+Table doc_jobs {
+doc_id int [not null, ref: > docs.id]
+job_id int [not null,ref: > jobs.id]
+}
+
+// Contacts info
+Table contacts {
+  id int [pk]
+  name varchar(50)
+  position varchar(50)
+  company varchar(50)
+  email varchar(50)
+  phone_num varchar(50)  
+}
+
+Table user_contacts {
+  user_id int [not null, ref: > users.id]
+  contact_id int [not null, ref: > contacts.id]
+  job_id int [ref: > jobs.id]
+  user_note varchar(200)
+}
+
+
+// Todo - ai_resume_prompt,  ai_interview_prep
