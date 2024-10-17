@@ -1,5 +1,5 @@
 import dotenv from "dotenv";
-import pgp from "pg-promise";
+import pgp, { IDatabase } from "pg-promise";
 
 dotenv.config();
 
@@ -7,7 +7,7 @@ if (process.env.DATABASE_URL === undefined) {
   process.env.DATABASE_URL = "YOU_FORGOT_TO_SETUP_YOUR_ENVIRONMENT";
 }
 
-let db:any;
+let db: IDatabase<any>;
 
 try {
   db = pgp()(process.env.DATABASE_URL);

@@ -1,3 +1,6 @@
+// diagram link:  
+// https://dbdiagram.io/d/648-EzJobs-670b818b97a66db9a3c99510
+
 // User info
  Table users {
   id int [pk, increment]
