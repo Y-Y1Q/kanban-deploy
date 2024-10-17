@@ -1,13 +1,17 @@
 import * as esbuild from "esbuild";
 import * as fs from "fs";
 import * as path from "path";
+import { fileURLToPath } from 'url';
 
-const ROOT_PATH = import.meta.dirname;
+// Get __dirname equivalent for ESM
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const ROOT_PATH = __dirname;
 const OUT_PATH = path.join(ROOT_PATH, "dist");
-console.log(ROOT_PATH);
-console.log(OUT_PATH);
 
 const isDev = process.env.NODE_ENV === "development";
+const nodePackage = JSON.parse(fs.readFileSync(path.resolve(process.cwd(), 'package.json'), 'utf8'));
 
 if (fs.existsSync(OUT_PATH)) {
     fs.rmSync(OUT_PATH, { recursive: true, force: true });
@@ -24,20 +28,27 @@ const CONFIG = {
 
 const BE_CONFIG = {
     ...CONFIG,
-    entryPoints: [path.join(ROOT_PATH, "src", "server.ts")],
+    entryPoints: [path.join(ROOT_PATH, "src", "server.ts")], // Your backend entry file
     platform: "node",
-    packages: "external",
+    external: [
+        ...Object.keys(nodePackage.dependencies ?? {}),
+        ...Object.keys(nodePackage.peerDependencies ?? {}),
+        ...Object.keys(nodePackage.devDependencies ?? {}),
+    ],
 };
+
+async function build() {
+    await esbuild.build(BE_CONFIG);
+}
 
 if (isDev) {
     async function watch() {
         let ctxBE = await esbuild.context(BE_CONFIG);
-        console.log("Building BE");
+        console.log("Building and Watching BE...");
         await ctxBE.watch();
-
-        console.log("Watching...");
     }
+
     watch();
 } else {
-    await esbuild.build(BE_CONFIG);
+    build();
 }
