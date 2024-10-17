@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 
-export function requestTime(req: Request, res: Response, next: NextFunction){
+export function requestTime(req: Request, _res: Response, next: NextFunction){
     // exclude logging for bundled files requests
     if (!req.url.startsWith("/dist") && req.url !== "/favicon.ico") {
       const timestamp = new Date().toLocaleString();

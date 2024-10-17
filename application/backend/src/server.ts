@@ -36,10 +36,7 @@ app.use(cors(corsOptions));
 app.options("*", cors(corsOptions));
 
 
-//Routes 
-// Todo
-
-// Test express server
+//Backend API Routes 
 app.use(Routes);
 
 const PORT = process.env.PORT || 3333;
