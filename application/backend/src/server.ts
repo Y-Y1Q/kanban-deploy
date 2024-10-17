@@ -5,26 +5,20 @@ import { createServer } from "http";
 import morgan from "morgan";
 import path from "path";
 
-// import * as configure from "./config";
-
 import { requestTime } from "./middleware/request_time";
-// import * as Session from "./config/session";
-// import * as Routes from "./routes";
-import { console } from "inspector";
+import Routes from "./routes"
 
 const app = express();
 const httpServer = createServer(app);
 app.use(requestTime);
 
+// Static path to serve files
 const BACKEND_PATH = path.dirname(path.dirname(import.meta.dirname));
-console.log(BACKEND_PATH);
-
 const STATIC_PATH = path.join(BACKEND_PATH, "public");
-console.log(STATIC_PATH);
+app.use(express.static(STATIC_PATH));
 
 
-
-// Setup Cookie parsing
+// Setup cookie parsing
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -44,10 +38,9 @@ app.options("*", cors(corsOptions));
 
 //Routes 
 // Todo
-import { Request, Response } from "express";
-app.get('/', (req: Request, res: Response) => {
-    res.send('Hello, World!');
-  });
+
+// Test express server
+app.use(Routes);
 
 const PORT = process.env.PORT || 3333;
 httpServer.listen(PORT, () => {
