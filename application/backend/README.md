@@ -16,13 +16,16 @@ Install dependencies
 ```
 npm install
 ```
+
 ### Create a `.env` file in /application/backend/
-Add enviroment variables
+Add your own enviroment variables
 ```
 DATABASE_URL=
 PORT=
 OPEN_AI_KEY=
 ```
+For OPEN_AI_KEY, check https://help.openai.com/en/articles/4936850-where-do-i-find-my-openai-api-key
+
 <br>
 
 
@@ -50,7 +53,6 @@ npm run build
 npm run start
 ```
 <br>
-
 
 ## Folder Structure
 ```plaintext

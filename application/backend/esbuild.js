@@ -28,7 +28,7 @@ const CONFIG = {
 
 const BE_CONFIG = {
     ...CONFIG,
-    entryPoints: [path.join(ROOT_PATH, "src", "server.ts")], // Your backend entry file
+    entryPoints: [path.join(ROOT_PATH, "src", "server.ts")],
     platform: "node",
     external: [
         ...Object.keys(nodePackage.dependencies ?? {}),
