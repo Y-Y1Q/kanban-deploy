@@ -1,4 +1,5 @@
 import { db } from "../db_connection";
+import { testQuery } from "../db_test";
 import { User } from "../db_types";
 
 export async function getUserById(id: number): Promise<User | null> {
@@ -13,5 +14,4 @@ export async function getUserById(id: number): Promise<User | null> {
   }
 }
 
-// import { testQuery } from '../db_test';
-// testQuery(getUserById,1)
+testQuery(getUserById, 1);
