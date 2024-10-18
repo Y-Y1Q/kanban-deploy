@@ -1,3 +1,9 @@
+# share vscode settings for project
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json  
+
+
 # Logs
 logs
 *.log
@@ -13,8 +19,6 @@ dist-ssr
 *.local
 
 # Editor directories and files
-.vscode/*
-!.vscode/extensions.json
 .idea
 .DS_Store
 *.suo

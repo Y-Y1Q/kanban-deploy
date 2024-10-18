@@ -1,3 +1,9 @@
+#vscode setting
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json  
+
+
 # Logs
 logs/
 *.log
@@ -53,7 +59,6 @@ esbuild/
 
 # Editor directories and files
 .idea/
-.vscode/
 *.suo
 *.ntvs*
 *.njsproj
