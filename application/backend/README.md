@@ -1,5 +1,4 @@
 # Backend for EzJobs
-WIP
 
 ## Pre-Requisites
 
@@ -54,4 +53,15 @@ npm run start
 
 
 ## Folder Structure
-WIP
+```plaintext
+application/
+└── backend/
+    ├── public/                     Contains static files that are served directly by the Express server
+    ├── src/                        Main source folder for the backend application, containing all the TypeScript files.
+    │   ├── config/                 Configuration files for setting up environment variables, sessions, or other application-specific settings.
+    │   ├── controllers/            Controller files containing the logic for handling requests and sending responses
+    │   ├── db/                     Contains database-related files such as migrations, database setup, and queries
+    │   ├── middleware/             Custom middleware functions that run before the route handlers
+    │   ├── routes/                 Contains route definitions, linking HTTP methods and paths to controller functions.
+    │   └── server.ts               The entry point for the Express server. 
+```
