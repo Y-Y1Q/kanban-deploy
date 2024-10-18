@@ -1,14 +1,14 @@
 import React from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+
 import AboutUs from "./pages/About/AboutUs";
-import AboutRishita from "./pages/About/Rishita";
-import AboutLuai from "./pages/About/Luai";
 import AboutL from "./pages/About/L";
-import AboutZaw from "./pages/About/Zaw";
+import AboutLuai from "./pages/About/Luai";
+import AboutRishita from "./pages/About/Rishita";
 import AboutYee from "./pages/About/Yee";
+import AboutZaw from "./pages/About/Zaw";
 
 function App() {
-
   return (
     <BrowserRouter>
       <Routes>
@@ -24,9 +24,7 @@ function App() {
         <Route path="/about/yee" element={<AboutYee />} />
       </Routes>
     </BrowserRouter>
-
-
-  )
+  );
 }
 
-export default App
+export default App;
