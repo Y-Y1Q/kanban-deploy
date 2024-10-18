@@ -1,3 +1,3 @@
-export function generateResume(){
-    //todo
+export function generateResume() {
+  //todo
 }

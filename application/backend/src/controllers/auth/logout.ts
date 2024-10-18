@@ -1,3 +1,3 @@
-export function logout(){
-    //todo
+export function logout() {
+  //todo
 }

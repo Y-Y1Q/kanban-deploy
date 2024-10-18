@@ -1,3 +1,3 @@
-export function generateQuestions(){
-    //todo
+export function generateQuestions() {
+  //todo
 }

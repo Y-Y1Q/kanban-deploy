@@ -1,3 +1,3 @@
-export function removeContact(){
-    //todo
+export function removeContact() {
+  //todo
 }

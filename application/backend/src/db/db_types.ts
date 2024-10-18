@@ -1,4 +1,11 @@
-export type JobStatus = 'interested' | 'pending' | 'in_progress' | 'offer' | 'declined' | 'ghosted' | 'follow_up';
+export type JobStatus =
+  | "interested"
+  | "pending"
+  | "in_progress"
+  | "offer"
+  | "declined"
+  | "ghosted"
+  | "follow_up";
 
 export interface User {
   id: number;

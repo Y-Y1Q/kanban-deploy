@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+
 import "./style.css";
 
 export default function AboutMe() {
@@ -28,29 +29,32 @@ export default function AboutMe() {
           <button
             type="button"
             className="ybtn ybtn-pink"
-            onClick={() => window.location.href = 'https://www.youtube.com/watch?v=xvFZjo5PgG0'}
+            onClick={() => (window.location.href = "https://www.youtube.com/watch?v=xvFZjo5PgG0")}
           >
             Resume
           </button>
           <button
             type="button"
             className="ybtn ybtn-white"
-            onClick={() => window.location.href = 'https://www.youtube.com/watch?v=xvFZjo5PgG0'}
+            onClick={() => (window.location.href = "https://www.youtube.com/watch?v=xvFZjo5PgG0")}
           >
             GitHub
           </button>
         </div>
 
         <div className="yabout-para">
-          <p className='yabout-p'>
-          I'm a CS student at San Francisco State University, specializing in backend development with <b>Go</b>, <b>Express.js</b> <b>Java Spring Boot</b>. 
-          I can also handle simple frontend tasks with <b>JavaScript/TypeScript & React</b>. I’m looking for <b>2025</b> summer SDE internship.
+          <p className="yabout-p">
+            I'm a CS student at San Francisco State University, specializing in backend development
+            with <b>Go</b>, <b>Express.js</b> <b>Java Spring Boot</b>. I can also handle simple
+            frontend tasks with <b>JavaScript/TypeScript & React</b>. I’m looking for <b>2025</b>{" "}
+            summer SDE internship.
           </p>
-          <p className='yabout-p'>
-          In my free time, I enjoy skiing and video gaming! Recently playing Elden Ring and Black Myth: Wukong.
+          <p className="yabout-p">
+            In my free time, I enjoy skiing and video gaming! Recently playing Elden Ring and Black
+            Myth: Wukong.
           </p>
         </div>
       </div>
     </div>
   );
-};
+}

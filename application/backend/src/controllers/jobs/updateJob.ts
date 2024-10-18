@@ -1,3 +1,3 @@
-export function updateJob(){
-    //todo
+export function updateJob() {
+  //todo
 }

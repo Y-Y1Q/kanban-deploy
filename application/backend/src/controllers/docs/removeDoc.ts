@@ -1,3 +1,3 @@
-export function removeDoc(){
-    //todo
+export function removeDoc() {
+  //todo
 }

@@ -1,3 +1,3 @@
-export function createColumn(){
-    //todo
+export function createColumn() {
+  //todo
 }

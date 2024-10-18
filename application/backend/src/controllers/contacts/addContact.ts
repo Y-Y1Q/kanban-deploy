@@ -1,3 +1,3 @@
-export function addContact(){
-    //todo
+export function addContact() {
+  //todo
 }

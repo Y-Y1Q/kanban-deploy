@@ -1,3 +1,3 @@
-export function deleteColumn(){
-    //todo
+export function deleteColumn() {
+  //todo
 }

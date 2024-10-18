@@ -6,7 +6,7 @@ import morgan from "morgan";
 import path from "path";
 
 import { requestTime } from "./middleware/request_time";
-import Routes from "./routes"
+import Routes from "./routes";
 
 const app = express();
 const httpServer = createServer(app);
@@ -16,7 +16,6 @@ app.use(requestTime);
 const BACKEND_PATH = path.dirname(path.dirname(import.meta.dirname));
 const STATIC_PATH = path.join(BACKEND_PATH, "public");
 app.use(express.static(STATIC_PATH));
-
 
 // Setup cookie parsing
 app.use(morgan("dev"));
@@ -35,8 +34,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.options("*", cors(corsOptions));
 
-
-//Backend API Routes 
+//Backend API Routes
 app.use(Routes);
 
 const PORT = process.env.PORT || 3333;

@@ -1,4 +1,4 @@
-export function login(){
-    //todo
-    console.log("hello");
+export function login() {
+  //todo
+  console.log("hello");
 }

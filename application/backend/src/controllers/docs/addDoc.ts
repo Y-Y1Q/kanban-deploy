@@ -1,3 +1,3 @@
-export function addDoc(){
-    //todo
+export function addDoc() {
+  //todo
 }

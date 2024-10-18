@@ -11,50 +11,67 @@
 <br>
 
 ## Installation
-### Open terminal in  /application/backend/
+
+### Open terminal in /application/backend/
+
 Install dependencies
+
 ```
 npm install
 ```
 
 ### Create a `.env` file in /application/backend/
+
 Add your own enviroment variables
+
 ```
 DATABASE_URL=
 PORT=
 OPEN_AI_KEY=
 ```
+
 For OPEN_AI_KEY, check https://help.openai.com/en/articles/4936850-where-do-i-find-my-openai-api-key
 
 <br>
 
-
 ## Database Management
+
 reset database, add tables, and insert mock data
+
 ```
 npm run db
 ```
+
 <br>
 
 ## Running the Server
+
 ### Development
+
 start a development server, watching for file changes and rebuild
+
 ```
 npm run dev
 ```
+
 ### Deployment
+
 1.  create a production-ready build
 
 ```
 npm run build
 ```
+
 2. start a production server
+
 ```
 npm run start
 ```
+
 <br>
 
 ## Folder Structure
+
 ```plaintext
 application/
 └── backend/
@@ -65,5 +82,5 @@ application/
     │   ├── db/                     Contains database-related files such as migrations, database setup, and queries
     │   ├── middleware/             Custom middleware functions that run before the route handlers
     │   ├── routes/                 Contains route definitions, linking HTTP methods and paths to controller functions.
-    │   └── server.ts               The entry point for the Express server. 
+    │   └── server.ts               The entry point for the Express server.
 ```

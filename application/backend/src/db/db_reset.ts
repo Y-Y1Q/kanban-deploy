@@ -1,4 +1,3 @@
-
 import { db } from "./db_connection";
 
 async function resetSchema() {

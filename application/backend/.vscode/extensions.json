@@ -1,6 +1,5 @@
 {
-    "recommendations": [
-      "esbenp.prettier-vscode",    // Prettier for formatting
-    ]
+  "recommendations": [
+    "esbenp.prettier-vscode" // Prettier for formatting
+  ]
 }
-  
