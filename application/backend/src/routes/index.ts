@@ -21,8 +21,9 @@ router.get("/api/jobs/search", Controller.Jobs.searchJob);
 router.get("/api/jobs/:id", Controller.Jobs.getJob);
 router.delete("/api/jobs/:id", Controller.Jobs.removeJob);
 router.post("/api/jobs/:id", Controller.Jobs.updateJob);
+router.get("/api/jobs/display-job-cards", Controller.Jobs.displayJobCards);
 
-//Column route
-router.get("/api/columns", Controller.Columns.getColumns);
+//AI resume routes
+router.post("/api/ai-resume/generate", Controller.AiResume.generateResume);
 
 export default router;
