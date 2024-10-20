@@ -5,14 +5,13 @@ import * as UsersDB from "../../db/users";
 import HttpCode from "../http_code";
 
 export async function login(req: Request, res: Response) {
-  const { username, password, email } = {
+  const { username, password } = {
     username: req.body.username?.trim(),
     password: req.body.password?.trim(),
-    email: req.body.email?.trim(),
   };
 
   // Check if all required fields are present
-  if (!username || !password || !email) {
+  if (!username || !password) {
     return res.status(HttpCode.BadRequest).json({ error: "All fields are required" });
   }
 
