@@ -1,12 +1,3 @@
-export type JobStatus =
-  | "interested"
-  | "pending"
-  | "in_progress"
-  | "offer"
-  | "declined"
-  | "ghosted"
-  | "follow_up";
-
 export interface User {
   id: number;
   username: string;
@@ -18,7 +9,7 @@ export interface Job {
   id: number;
   user_id: number;
   column_id: number;
-  doc_id?: number | null;
+  current_status: string;
   company: string;
   position: string;
   salary?: string | null;
@@ -28,12 +19,13 @@ export interface Job {
   description?: string | null;
   user_note?: string | null;
   date_applied?: Date | null;
-  date_scheduled?: Date | null;
+  date_scheduled?: string| null;
 }
 
 export interface Column {
   id: number;
-  name: JobStatus;
+  name: string;
+  color: string;
   position: number;
 }
 
@@ -53,11 +45,6 @@ export interface Contact {
   company?: string | null;
   email?: string | null;
   phone_num?: string | null;
-}
-
-export interface ContactJob {
-  contact_id: number;
-  job_id: number;
 }
 
 export interface AIResumeBuilder {
