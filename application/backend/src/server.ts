@@ -1,5 +1,6 @@
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import dotenv from "dotenv";
 import express from "express";
 import { createServer } from "http";
 import morgan from "morgan";
@@ -27,8 +28,9 @@ app.use(cookieParser());
 // Todo
 
 // handle cross origin request
+dotenv.config();
 const corsOptions = {
-  origin: true,
+  origin: process.env.CORS_ORIGIN === "true" ? true : process.env.CORS_ORIGIN,
   credentials: true,
 };
 app.use(cors(corsOptions));
