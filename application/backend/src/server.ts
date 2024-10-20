@@ -6,6 +6,7 @@ import { createServer } from "http";
 import morgan from "morgan";
 import path from "path";
 
+import * as Session from "./config/session";
 import { requestTime } from "./middleware/request_time";
 import Routes from "./routes";
 
@@ -25,7 +26,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // Setup express session
-// Todo
+app.use(Session.config);
+if (process.env.NODE_ENV === "development") {
+  app.use(Session.logToConsole);
+}
 
 // handle cross origin request
 dotenv.config();

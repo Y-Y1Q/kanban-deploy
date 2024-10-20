@@ -1,10 +1,18 @@
 {
   "arrowParens": "always",
   "bracketSpacing": true,
+  "embeddedSqlTags": ["SQL"],
   "importOrder": ["^[./]"],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true,
-  "plugins": ["prettier-plugin-sort-json", "@trivago/prettier-plugin-sort-imports"],
+  "keywordCase": "upper",
+  "language": "postgresql",
+  "plugins": [
+    "prettier-plugin-sort-json",
+    "@trivago/prettier-plugin-sort-imports",
+    "prettier-plugin-sql",
+    "prettier-plugin-embed"
+  ],
   "printWidth": 100,
   "semi": true,
   "singleQuote": false,
