@@ -1,11 +1,22 @@
-import { db, sql } from "../db_connection";
+import { SQL } from "sql-template-strings";
+
+import { db } from "../db_connection";
 import { User } from "../db_types";
 
 export async function getUserById(id: number): Promise<User | null> {
-  const query = sql("./users/sql/get_user_by_id.sql");
+  const query = SQL`
+    SELECT
+      id,
+      username,
+      email
+    FROM
+      users
+    WHERE
+      id = ${id}
+  `;
 
   try {
-    const user = await db.oneOrNone<User>(query, { id });
+    const user = await db.oneOrNone<User>(query.text, query.values);
     return user;
   } catch (error) {
     console.error(`Error fetching user for ID ${id}:`, error);
@@ -14,10 +25,17 @@ export async function getUserById(id: number): Promise<User | null> {
 }
 
 export async function getUser(username: string): Promise<User | null> {
-  const query = sql("./users/sql/get_user_by_username.sql");
+  const query = SQL`
+    SELECT
+      *
+    FROM
+      users
+    WHERE
+      username = ${username}
+  `;
 
   try {
-    const user = await db.oneOrNone<User>(query, { username });
+    const user = await db.oneOrNone<User>(query.text, query.values);
     return user;
   } catch (error) {
     console.error(`Error fetching user for username ${username}:`, error);
@@ -26,10 +44,23 @@ export async function getUser(username: string): Promise<User | null> {
 }
 
 export async function addUser(username: string, password: string, email: string) {
-  const query = sql("./users/sql/add_user.sql");
+  const query = SQL`
+    INSERT INTO
+      users (username, password, email)
+    VALUES
+      (
+        ${username},
+        ${password},
+        ${email}
+      )
+    RETURNING
+      id,
+      username,
+      email
+  `;
 
   try {
-    const user = await db.oneOrNone<User>(query, { username, password, email });
+    const user = await db.oneOrNone<User>(query.text, query.values);
     return user;
   } catch (error) {
     console.error(`Error adding new user: `, error);
@@ -38,10 +69,17 @@ export async function addUser(username: string, password: string, email: string)
 }
 
 export async function foundUser(username: string): Promise<boolean> {
-  const query = sql("./users/sql/find_user_by_username.sql");
+  const query = SQL`
+    SELECT
+      username
+    FROM
+      users
+    WHERE
+      username = ${username}
+  `;
 
   try {
-    await db.one<User>(query, { username });
+    await db.one<User>(query.text, query.values);
     return true;
   } catch (error) {
     console.error(`Cannot find username ${username}: `, error);
