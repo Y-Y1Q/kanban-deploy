@@ -71,18 +71,41 @@ export async function addUser(username: string, password: string, email: string)
 export async function foundUser(username: string): Promise<boolean> {
   const query = SQL`
     SELECT
-      username
-    FROM
-      users
-    WHERE
-      username = ${username}
+      EXISTS (
+        SELECT
+          1
+        FROM
+          users
+        WHERE
+          username = ${username}
+      )
   `;
 
   try {
-    await db.one<User>(query.text, query.values);
-    return true;
+    const result = await db.one<{ exists: boolean }>(query.text, query.values);
+    return result.exists;
   } catch (error) {
-    console.error(`Cannot find username ${username}: `, error);
+    return false;
+  }
+}
+
+export async function foundEmail(email: string): Promise<boolean> {
+  const query = SQL`
+    SELECT
+      EXISTS (
+        SELECT
+          1
+        FROM
+          users
+        WHERE
+          email = ${email}
+      )
+  `;
+
+  try {
+    const result = await db.one<{ exists: boolean }>(query.text, query.values);
+    return result.exists;
+  } catch (error) {
     return false;
   }
 }

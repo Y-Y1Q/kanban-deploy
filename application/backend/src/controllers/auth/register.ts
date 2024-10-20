@@ -22,9 +22,10 @@ export async function register(req: Request, res: Response) {
 
   try {
     const userExists = await UsersDB.foundUser(username);
+    const emailExists = await UsersDB.foundEmail(email);
 
-    if (userExists) {
-      return res.status(HttpCode.BadRequest).json({ error: `Invalid credentials` });
+    if (userExists || emailExists) {
+      return res.status(HttpCode.BadRequest).json({ error: `Invalid username/email` });
     }
 
     const salt = await bcrypt.genSalt(SALT_ROUNDS);
@@ -39,6 +40,7 @@ export async function register(req: Request, res: Response) {
   }
 }
 
+// Helper function to validate request body
 function validateRegistration(req: Request) {
   const { username, password, email } = {
     username: req.body.username?.trim(),
@@ -82,6 +84,7 @@ function validateRegistration(req: Request) {
   return { valid: true };
 }
 
+// Helper function to check username in request body
 function checkName(str: string): boolean {
   return str.toUpperCase() === "ADMIN";
 }
