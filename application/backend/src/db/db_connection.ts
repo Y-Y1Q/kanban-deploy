@@ -14,9 +14,11 @@ let db: IDatabase<any>;
 try {
   db = pgp()(process.env.DATABASE_URL);
 
-  console.log("Connected to DB with URL:  " + `\x1b[32m\x1b[1m${process.env.DATABASE_URL} \x1b[0m`);
+  console.log(
+    "Connecting to DB with URL:  " + `\x1b[32m\x1b[1m${process.env.DATABASE_URL} \x1b[0m`
+  );
 } catch (error) {
-  console.log("Unable to connect to database");
+  console.log("Unable connect to database: " + error);
 }
 
 // Helper function to load SQL files
