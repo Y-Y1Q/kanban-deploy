@@ -1,5 +1,5 @@
 // General test function to test query
-// use tsx to run the query file you want to test
+// use `npx tsx` to run the query file you want to test
 /*
 Usage:
 
