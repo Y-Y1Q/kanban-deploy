@@ -84,7 +84,7 @@ Ref: contact_jobs.job_id > jobs.id [delete: cascade]
 Table ai_resume {
   id int [pk, increment]
   user_id int [not null]
-  doc_id int 
+  doc_id int [unique]
   personal_information varchar(200)
   relevant_skills varchar(200)
   education varchar(200)
@@ -93,7 +93,7 @@ Table ai_resume {
 }
 
 Ref: ai_resume.user_id > users.id [delete: cascade]
-Ref: ai_resume.doc_id - docs.id [delete: set null]
+Ref: docs.id - ai_resume.doc_id [delete: set null]
 
 
 // Prompts info for AI_interview_prep
