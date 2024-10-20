@@ -4,7 +4,7 @@ import { Request, Response } from "express";
 import * as UsersDB from "../../db/users";
 import HttpCode from "../http_code";
 
-export async function logIn(req: Request, res: Response) {
+export async function login(req: Request, res: Response) {
   const { username, password, email } = {
     username: req.body.username?.trim(),
     password: req.body.password?.trim(),
