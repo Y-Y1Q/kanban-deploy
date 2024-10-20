@@ -3,7 +3,7 @@ import { db, sql } from "../db_connection";
 import { User } from "../db_types";
 
 export async function getUserById(id: number): Promise<User | null> {
-  const query = sql("./users/get_user_by_id.sql");
+  const query = sql("./users/sql/get_user_by_id.sql");
 
   try {
     const user = await db.oneOrNone<User>(query, { id });

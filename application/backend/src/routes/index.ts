@@ -25,5 +25,6 @@ router.get("/api/jobs/display-job-cards", Controller.Jobs.displayJobCards);
 
 //AI resume routes
 router.post("/api/ai-resume/generate", Controller.AiResume.generateResume);
+router.get("/api/ai-resume/:id", Controller.AiResume.getResumePrompts);
 
 export default router;
