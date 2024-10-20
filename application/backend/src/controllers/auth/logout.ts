@@ -1,3 +1,14 @@
-export function logout() {
-  //todo
+import { Request, Response } from "express";
+
+import HttpCode from "../http_code";
+
+export function logout(req: Request, res: Response) {
+  req.session.destroy((err) => {
+    if (err) {
+      console.log(err);
+      return res.status(HttpCode.InternalServerError).json({ error: "Logout failed: " + err });
+    }
+
+    return res.status(HttpCode.OK).json({ message: "You have successfully logged out." });
+  });
 }
