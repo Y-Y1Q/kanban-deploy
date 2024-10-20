@@ -1,4 +1,5 @@
 import dotenv from "dotenv";
+import * as path from "path";
 import pgp, { IDatabase } from "pg-promise";
 
 dotenv.config();
@@ -9,6 +10,7 @@ if (process.env.DATABASE_URL === undefined) {
 
 let db: IDatabase<any>;
 
+// Connect to database
 try {
   db = pgp()(process.env.DATABASE_URL);
 
@@ -17,4 +19,10 @@ try {
   console.log("Unable to connect to database");
 }
 
-export { db };
+// Helper function to load SQL files
+function sql(file: string) {
+  const fullPath = path.join(import.meta.dirname, file); // Generates full path to the file
+  return new pgp.QueryFile(fullPath, { minify: true }); // Load and cache the SQL
+}
+
+export { db, sql };

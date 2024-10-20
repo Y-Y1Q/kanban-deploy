@@ -1,9 +1,9 @@
-import { db } from "../db_connection";
-import { testQuery } from "../db_test";
+import { db, sql } from "../db_connection";
+// import { testQuery } from "../db_test";
 import { User } from "../db_types";
 
 export async function getUserById(id: number): Promise<User | null> {
-  const query = "SELECT id, username, email FROM users WHERE id = ${id}";
+  const query = sql("./users/get_user_by_id.sql");
 
   try {
     const user = await db.oneOrNone<User>(query, { id });
@@ -14,4 +14,4 @@ export async function getUserById(id: number): Promise<User | null> {
   }
 }
 
-testQuery(getUserById, 1);
+// testQuery(getUserById, 1);
