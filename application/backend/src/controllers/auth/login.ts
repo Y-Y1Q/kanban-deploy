@@ -40,7 +40,7 @@ export async function login(req: Request, res: Response) {
 
       return res.status(HttpCode.OK).json({ message: "Login successful" });
     } else {
-      return res.status(HttpCode.BadRequest).json({ error: "Invalid username/password" });
+      return res.status(HttpCode.BadRequest).json({ error: "Invalid credentials" });
     }
   } catch (error) {
     console.error("Login error:", error);
