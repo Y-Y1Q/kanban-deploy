@@ -30,6 +30,7 @@ export const config = expressSession({
   resave: false,
   saveUninitialized: false,
   cookie: {
+    httpOnly: false,
     secure: process.env.NODE_ENV === "production", // Set to true if in production for HTTPS
     maxAge: 1 * 24 * 60 * 60 * 1000, // 1 day
   },
