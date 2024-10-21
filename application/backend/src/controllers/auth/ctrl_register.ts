@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 import validator from "validator";
 
 import * as UsersDB from "../../db/users";
-import HttpCode from "../http_code";
+import HttpCode from "../../constants/http_code";
 
 const SALT_ROUNDS = 12;
 
