@@ -1,48 +1,26 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import AboutUs from "./pages/About/AboutUs";
-import AboutL from "./pages/About/L";
-import AboutLuai from "./pages/About/Luai";
-import AboutRishita from "./pages/About/Rishita";
-import AboutYee from "./pages/About/Yee";
-import AboutZaw from "./pages/About/Zaw";
-import AiResumePage from "./pages/AiResume/AiResumePage";
-import ContactsPage from "./pages/Contacts/ContacsPage";
-import DocsPage from "./pages/Docs/DocsPage";
-import InterviewPrepPage from "./pages/InterviewPrep/InterviewPrepPage";
-import JobsPage from "./pages/Jobs/JobsPage";
-import NotFoundPage from "./pages/NotFound/NotFoundPage";
-import SignIn from "./pages/SignIn/SignInPage";
-import SignUp from "./pages/SignUp/SignUpPage";
+import LayoutRoutes from "./pages/LayoutRoutes";
+import NoLayoutRoutes from "./pages/NoLayoutRoutes";
+import { useMode } from "./theme";
 
-export default function App() {
+// interface LayoutProps {
+//   colorMode: ColorModeContextType; // Color mode type from theme context
+// }
+const App = () => {
+  const [theme, colorMode] = useMode();
+
   return (
     <BrowserRouter>
       <Routes>
-        {/* Routes for auth forms */}
-        <Route path="/" element={<SignIn />} />
-        <Route path="/sign-up" element={<SignUp />} />
+        {/* Render routes without layout */}
+        <Route path="/*" element={<NoLayoutRoutes />} />
 
-        {/* Routes for EZJobs services*/}
-        <Route path="/jobs" element={<JobsPage />} />
-        <Route path="/contacts" element={<ContactsPage />} />
-        <Route path="/docs" element={<DocsPage />} />
-        <Route path="/ai-resume" element={<AiResumePage />} />
-        <Route path="/ai-interview" element={<InterviewPrepPage />} />
-
-        {/* Route for the team section */}
-        <Route path="/about-us" element={<AboutUs />} />
-
-        {/* Routes for each team member's profile */}
-        <Route path="/about/rishita" element={<AboutRishita />} />
-        <Route path="/about/luai" element={<AboutLuai />} />
-        <Route path="/about/l" element={<AboutL />} />
-        <Route path="/about/zaw" element={<AboutZaw />} />
-        <Route path="/about/yee" element={<AboutYee />} />
-
-        {/* Catch-all route for undefined paths */}
-        <Route path="*" element={<NotFoundPage />} />
+        {/* Render routes with layout (typically prefixed by specific paths) */}
+        <Route path="/app/*" element={<LayoutRoutes theme={theme} colorMode={colorMode} />} />
       </Routes>
     </BrowserRouter>
   );
-}
+};
+
+export default App;
