@@ -50,7 +50,7 @@ export default function SignIn() {
           M2 Test account<br></br>
           <span>
             {" "}
-            Username: <b>testuser</b>
+            Username: <b>test</b>
           </span>
           <span>
             {" "}
