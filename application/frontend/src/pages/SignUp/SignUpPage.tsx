@@ -22,6 +22,7 @@ export default function SignUp() {
 
       // Check if the response is in the 2xx range
       if (response.status === 200) {
+        alert("Account created! Redirecting to login page...");
         navigate("/"); // Redirect on success
       }
     } catch (err: any) {
