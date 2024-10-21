@@ -35,7 +35,7 @@ if (process.env.NODE_ENV === "development") {
 // handle cross origin request
 dotenv.config();
 const corsOptions = {
-  origin: process.env.CORS_ORIGIN === "true" ? true : process.env.CORS_ORIGIN,
+  origin: "https://ezjobs.onrender.com",
   credentials: true,
 };
 app.use(cors(corsOptions));
