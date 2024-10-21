@@ -30,6 +30,7 @@ export const config = expressSession({
   resave: false,
   saveUninitialized: false,
   cookie: {
+    domain: ".onrender.com",
     httpOnly: false,
     sameSite: "none",
     secure: process.env.NODE_ENV === "production", // Set to true if in production for HTTPS
