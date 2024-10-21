@@ -9,6 +9,9 @@ import DocsPage from "./Docs/DocsPage";
 import InterviewPrepPage from "./InterviewPrep/InterviewPrepPage";
 import JobStatsPage from "./JobStats/JobStatsPage";
 import JobsPage from "./Jobs/JobsPage";
+import TestJobsData from "./TestM2/TestJobsData";
+import TestSearchCompany from "./TestM2/TestSearchCompany";
+import TestSearchType from "./TestM2/TestSearchType";
 
 interface LayoutProps {
   theme: Theme; // MUI theme type
@@ -19,6 +22,11 @@ const LayoutRoutes: React.FC<LayoutProps> = ({ theme, colorMode }) => {
   return (
     <Layout theme={theme} colorMode={colorMode}>
       <Routes>
+        {/* M2 Test page routes */}
+        <Route path="/" element={<TestJobsData />} />
+        <Route path="/search-company" element={<TestSearchCompany />} />
+        <Route path="/search-type" element={<TestSearchType />} />
+
         <Route path="/jobs" element={<JobsPage />} />
         <Route path="/stats" element={<JobStatsPage />} />
         <Route path="/contacts" element={<ContactsPage />} />

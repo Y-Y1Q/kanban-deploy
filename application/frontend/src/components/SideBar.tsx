@@ -1,7 +1,9 @@
 import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
 import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
 import ContactPageOutlinedIcon from "@mui/icons-material/ContactPageOutlined";
-// import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
+// M2 icon
+import LooksTwoOutlinedIcon from "@mui/icons-material/LooksTwoOutlined";
+// M2 icon
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import PictureAsPdfOutlinedIcon from "@mui/icons-material/PictureAsPdfOutlined";
 import SmartToyOutlinedIcon from "@mui/icons-material/SmartToyOutlined";
@@ -58,7 +60,7 @@ export default function SideBar() {
           backgroundColor: "transparent !important",
         },
         "& .pro-inner-item": {
-          padding: "5px 35px 5px 20px !important",
+          padding: "5px 20px 5px 20px !important",
         },
         "& .pro-inner-item:hover": {
           color: "#868dfb !important",
@@ -103,7 +105,39 @@ export default function SideBar() {
 
           {!isCollapsed && <Box mb="25px"></Box>}
 
-          <Box paddingLeft={isCollapsed ? undefined : "10%"}>
+          <Box paddingLeft={isCollapsed ? undefined : "10%"} paddingRight="0%">
+            <Typography variant="h5" color={colors.grey[300]} sx={{ m: "15px 0 5px 20px" }}>
+              M2 Test
+            </Typography>
+
+            <Item
+              title="Test Jobs Data"
+              to="/app"
+              icon={<LooksTwoOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+
+            <Item
+              title="Test Search by Company"
+              to="/app/search-company"
+              icon={<LooksTwoOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+
+            <Item
+              title="Test Search by Type"
+              to="/app/search-type"
+              icon={<LooksTwoOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+
+            <Typography variant="h5" color={colors.grey[300]} sx={{ m: "15px 0 5px 20px" }}>
+              Data
+            </Typography>
+
             <Item
               title="Jobs Board"
               to="/app/jobs"
@@ -112,9 +146,6 @@ export default function SideBar() {
               setSelected={setSelected}
             />
 
-            <Typography variant="h5" color={colors.grey[300]} sx={{ m: "15px 0 5px 20px" }}>
-              Data
-            </Typography>
             <Item
               title="Jobs Statistics"
               to="/app/stats"
