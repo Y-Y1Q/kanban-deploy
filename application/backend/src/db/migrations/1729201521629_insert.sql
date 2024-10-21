@@ -1,9 +1,9 @@
 -- Up Migration
 
 -- Mock data for testing
--- Insert into users table
+-- Insert into users table, pwd: SFSUcsc648
 INSERT INTO users (username, email, password) 
-VALUES ('testuser', 'testuser@example.com', 'hashedpassword123');
+VALUES ('test', 'test@example.com', '$2a$12$rIm35EX/UiFlj72.IIG7b.l7.czeUdFpmfIehsdBhhCRY8o/ZdJ2e');
 
 -- Insert into columns table
 INSERT INTO columns (name, position, color) 

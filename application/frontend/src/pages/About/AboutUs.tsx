@@ -34,7 +34,7 @@ export default function AboutUs() {
       name: "Yee Yang",
       role: "Github Master",
       path: "/about/yee",
-      img: "/doge.jpg",
+      img: "/img/doge.jpg",
     },
   ];
 

@@ -1,14 +1,15 @@
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { Avatar, Box, Button, Container, Grid, Link, TextField, Typography } from "@mui/material";
+import { Avatar, Box, Button, Container, Link, TextField, Typography } from "@mui/material";
+import Grid from "@mui/material/Grid";
+import React from "react";
 import { Link as RouterLink } from "react-router-dom";
 
-export default function SignUp() {
+export default function SignIn() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
       username: data.get("username"),
-      email: data.get("email"),
       password: data.get("password"),
     });
   };
@@ -33,7 +34,7 @@ export default function SignUp() {
           <img src="/img/home.svg" alt="Sign in page" />
         </Grid>
 
-        {/* Right Side - Sign Up Form with Text Above */}
+        {/* Right Side - Sign in Form  */}
         <Grid
           item
           xs={12}
@@ -46,10 +47,17 @@ export default function SignUp() {
             padding: 4,
           }}
         >
-          {/* Text Above the Sign-up Form */}
-          <Box sx={{ textAlign: "center", mb: 4 }}>
+          M2 Test account<br></br>
+          <span>
             {" "}
-            {/* mb adds margin below */}
+            Username: <b>test</b>
+          </span>
+          <span>
+            {" "}
+            Password: <b>SFSUcsc648</b>
+          </span>
+          {/* Text Above the Sign-in Form */}
+          <Box sx={{ textAlign: "center", mb: 4 }}>
             <Typography variant="h4" component="h2" sx={{ mt: 4, color: "black" }}>
               Welcome to EZJobs
             </Typography>
@@ -57,8 +65,7 @@ export default function SignUp() {
               AI Powered Job Application Tracker
             </Typography>
           </Box>
-
-          {/* Sign-up Form */}
+          {/* Sign-in Form */}
           <Box
             sx={{
               display: "flex",
@@ -71,8 +78,9 @@ export default function SignUp() {
             <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
               <LockOutlinedIcon />
             </Avatar>
+
             <Typography component="h1" variant="h5">
-              Sign up for EZJobs
+              Sign in to use
             </Typography>
             <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
               <TextField
@@ -89,28 +97,24 @@ export default function SignUp() {
                 margin="normal"
                 required
                 fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
                 name="password"
                 label="Password"
                 type="password"
                 id="password"
               />
               <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-                Sign Up
+                Sign In
               </Button>
               <Grid container>
+                <Grid item xs>
+                  <Link href="#" variant="body2">
+                    Forgot password?
+                  </Link>
+                </Grid>
                 <Grid item>
-                  {/* Redirect to Sign In */}
-                  <Link component={RouterLink} to="/" variant="body2">
-                    {"Already have an account? Sign In"}
+                  {/* Redirect to Sign Up */}
+                  <Link component={RouterLink} to="/sign-up" variant="body2">
+                    {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>
               </Grid>

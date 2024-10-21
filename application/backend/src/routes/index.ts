@@ -13,9 +13,9 @@ router.get("/", (_req: Request, res: Response) => {
 
 // Auth routes
 router.get("/api/auth", Controller.Auth.isAuthenticated);
-router.post("/api/auth/register", Controller.Auth.register);
-router.post("/api/auth/login", Controller.Auth.login);
-router.post("/api/auth/logout", Controller.Auth.logout);
+router.post("/api/auth/sign-up", Controller.Auth.signUp);
+router.post("/api/auth/sign-in", Controller.Auth.signIn);
+router.post("/api/auth/sign-out", Controller.Auth.signOut);
 
 /* All API routes below are for authenticated user */
 //Jobs routes

@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 
 import HttpCode from "../../constants/http_code";
 
-export function logout(req: Request, res: Response) {
+export function signOut(req: Request, res: Response) {
   req.session.destroy((err) => {
     if (err) {
       console.log(err);
