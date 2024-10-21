@@ -26,6 +26,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // Setup express session
+app.set("trust proxy", true);
 app.use(Session.config);
 if (process.env.NODE_ENV === "development") {
   app.use(Session.logToConsole);
