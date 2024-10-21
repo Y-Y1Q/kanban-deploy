@@ -19,9 +19,11 @@ export async function getJobs(req: Request, res: Response) {
 
 export async function getJobsByCompany(req: Request, res: Response) {
   const { id: userId } = req.session.user!;
-  const { company } = {
-    company: req.body.company?.trim(),
-  };
+  const { company } = req.query;
+
+  if (typeof company !== "string") {
+    return res.status(HttpCode.BadRequest).json({ error: "Invalid company name" });
+  }
 
   try {
     const jobs = await JobsDB.getJobsByCompany(userId, company);
@@ -36,9 +38,11 @@ export async function getJobsByCompany(req: Request, res: Response) {
 
 export async function getJobsByType(req: Request, res: Response) {
   const { id: userId } = req.session.user!;
-  const { type } = {
-    type: req.body.type?.trim(),
-  };
+  const { type } = req.query;
+
+  if (typeof type !== "string") {
+    return res.status(HttpCode.BadRequest).json({ error: "Invalid type name" });
+  }
 
   try {
     const jobs = await JobsDB.getJobsByType(userId, type);
