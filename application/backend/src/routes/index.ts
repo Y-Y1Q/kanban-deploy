@@ -18,16 +18,21 @@ router.post("/api/auth/sign-in", Controller.Auth.signIn);
 router.post("/api/auth/sign-out", Controller.Auth.signOut);
 
 /* All API routes below are for authenticated user */
-//Jobs routes
-router.post("/api/jobs/add", checkAuth, Controller.Jobs.addJob);
-router.get("/api/jobs/search", checkAuth, Controller.Jobs.searchJob);
-router.get("/api/jobs/:id", checkAuth, Controller.Jobs.getJob);
-router.delete("/api/jobs/:id", checkAuth, Controller.Jobs.removeJob);
-router.post("/api/jobs/:id", checkAuth, Controller.Jobs.updateJob);
-router.get("/api/jobs/display-job-cards", checkAuth, Controller.Jobs.displayJobCards);
+// M2 Job routes ( will update to use query param later)
+router.get("/api/jobs", checkAuth, Controller.Jobs.getJobs);
+router.get("/api/jobs/company", checkAuth, Controller.Jobs.getJobsByCompany);
+router.get("/api/jobs/type", checkAuth, Controller.Jobs.getJobsByType);
 
-//AI resume routes
-router.post("/api/ai-resume/generate", checkAuth, Controller.AiResume.generateResume);
-router.get("/api/ai-resume/:id", checkAuth, Controller.AiResume.getResumePrompts);
+// //Jobs routes
+// router.post("/api/jobs/add", checkAuth, Controller.Jobs.addJob);
+// router.get("/api/jobs/search", checkAuth, Controller.Jobs.searchJob);
+// router.get("/api/jobs/:id", checkAuth, Controller.Jobs.getJob);
+// router.delete("/api/jobs/:id", checkAuth, Controller.Jobs.removeJob);
+// router.post("/api/jobs/:id", checkAuth, Controller.Jobs.updateJob);
+// router.get("/api/jobs/display-job-cards", checkAuth, Controller.Jobs.displayJobCards);
+
+// //AI resume routes
+// router.post("/api/ai-resume/generate", checkAuth, Controller.AiResume.generateResume);
+// router.get("/api/ai-resume/:id", checkAuth, Controller.AiResume.getResumePrompts);
 
 export default router;
