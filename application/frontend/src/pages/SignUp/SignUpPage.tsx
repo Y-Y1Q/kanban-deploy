@@ -1,16 +1,41 @@
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { Avatar, Box, Button, Container, Grid, Link, TextField, Typography } from "@mui/material";
-import { Link as RouterLink } from "react-router-dom";
+import axios from "axios";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 
 export default function SignUp() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
+    const userData = {
       username: data.get("username"),
       email: data.get("email"),
       password: data.get("password"),
-    });
+    };
+
+    try {
+      const response = await axios.post("/api/auth/sign-up", userData, {
+        withCredentials: true,
+      });
+
+      // Check if the response is in the 2xx range
+      if (response.status === 200) {
+        navigate("/"); // Redirect on success
+      }
+    } catch (err: any) {
+      if (err.response) {
+        // Server responded with a status other than 2xx
+        alert(err.response.data?.error || "Sign up failed. Please try again.");
+      } else if (err.request) {
+        // No response was received from the server
+        alert("No response from the server. Please try again.");
+      } else {
+        // Other errors (such as setting up the request)
+        alert("Sign up failed. Please try again.");
+      }
+    }
   };
 
   return (
@@ -30,7 +55,7 @@ export default function SignUp() {
             padding: 4,
           }}
         >
-          <img src="/img/home.svg" alt="Sign in page" />
+          <img src="/img/home.svg" alt="home page" />
         </Grid>
 
         {/* Right Side - Sign Up Form with Text Above */}
@@ -48,8 +73,6 @@ export default function SignUp() {
         >
           {/* Text Above the Sign-up Form */}
           <Box sx={{ textAlign: "center", mb: 4 }}>
-            {" "}
-            {/* mb adds margin below */}
             <Typography variant="h4" component="h2" sx={{ mt: 4, color: "black" }}>
               Welcome to EZJobs
             </Typography>
@@ -74,6 +97,7 @@ export default function SignUp() {
             <Typography component="h1" variant="h5">
               Sign up for EZJobs
             </Typography>
+
             <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
               <TextField
                 margin="normal"
