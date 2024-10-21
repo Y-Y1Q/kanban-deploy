@@ -17,6 +17,7 @@ router.post("/api/auth/register", Controller.Auth.register);
 router.post("/api/auth/login", Controller.Auth.login);
 router.post("/api/auth/logout", Controller.Auth.logout);
 
+/* All API routes below are for authenticated user */
 //Jobs routes
 router.post("/api/jobs/add", checkAuth, Controller.Jobs.addJob);
 router.get("/api/jobs/search", checkAuth, Controller.Jobs.searchJob);
