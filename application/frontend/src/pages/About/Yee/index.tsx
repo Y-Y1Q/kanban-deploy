@@ -1,5 +1,3 @@
-import React from "react";
-
 import "./style.css";
 
 export default function AboutMe() {
@@ -10,7 +8,7 @@ export default function AboutMe() {
           <div>
             <div className="yshadow">
               <div className="yabout-img">
-                <img src="/doge.jpg" alt="about image" />
+                <img src="/img/doge.jpg" alt="about image" />
               </div>
             </div>
 
