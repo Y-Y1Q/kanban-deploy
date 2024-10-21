@@ -22,11 +22,12 @@ const LayoutRoutes: React.FC<LayoutProps> = ({ theme, colorMode }) => {
   return (
     <Layout theme={theme} colorMode={colorMode}>
       <Routes>
-        {/* M2 Test page routes */}
+        {/* M2 Test page browser routes */}
         <Route path="/" element={<TestJobsData />} />
         <Route path="/search-company" element={<TestSearchCompany />} />
         <Route path="/search-type" element={<TestSearchType />} />
 
+        {/* EZJobs service browser routes */}
         <Route path="/jobs" element={<JobsPage />} />
         <Route path="/stats" element={<JobStatsPage />} />
         <Route path="/contacts" element={<ContactsPage />} />
