@@ -19,6 +19,7 @@
     "dayjs": "^1.11.13",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-pro-sidebar": "^0.7.1",
     "react-router-dom": "^6.26.2",
     "validator": "^13.12.0",
     "vitest": "^2.1.2"
