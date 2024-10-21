@@ -2,7 +2,7 @@ import bcrypt from "bcryptjs";
 import { Request, Response } from "express";
 
 import * as UsersDB from "../../db/users";
-import HttpCode from "../http_code";
+import HttpCode from "../../constants/http_code";
 
 export async function login(req: Request, res: Response) {
   const { username, password } = {

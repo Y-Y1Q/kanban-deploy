@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 
-import HttpCode from "../http_code";
+import HttpCode from "../../constants/http_code";
 
 export function logout(req: Request, res: Response) {
   req.session.destroy((err) => {
