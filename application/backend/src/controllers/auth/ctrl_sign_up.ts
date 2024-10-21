@@ -8,7 +8,7 @@ import HttpCode from "../../constants/http_code";
 const SALT_ROUNDS = 12;
 
 // Validate request body and perform register logic
-export async function register(req: Request, res: Response) {
+export async function signUp(req: Request, res: Response) {
   const { username, password, email } = {
     username: req.body.username?.trim(),
     password: req.body.password?.trim(),
