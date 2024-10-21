@@ -2,6 +2,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { Avatar, Box, Button, Container, Link, TextField, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import React from "react";
+import { Link as RouterLink } from "react-router-dom";
 
 export default function SignIn() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -46,6 +47,15 @@ export default function SignIn() {
             padding: 4,
           }}
         >
+          M2 Test account<br></br>
+          <span>
+            {" "}
+            Username: <b>testuser</b>
+          </span>
+          <span>
+            {" "}
+            Password: <b>SFSUcsc648</b>
+          </span>
           {/* Text Above the Sign-in Form */}
           <Box sx={{ textAlign: "center", mb: 4 }}>
             <Typography variant="h4" component="h2" sx={{ mt: 4, color: "black" }}>
@@ -55,7 +65,6 @@ export default function SignIn() {
               AI Powered Job Application Tracker
             </Typography>
           </Box>
-
           {/* Sign-in Form */}
           <Box
             sx={{
@@ -103,7 +112,8 @@ export default function SignIn() {
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link href="#" variant="body2">
+                  {/* Redirect to Sign Up */}
+                  <Link component={RouterLink} to="/sign-up" variant="body2">
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>

@@ -8,12 +8,14 @@ import AboutYee from "./pages/About/Yee";
 import AboutZaw from "./pages/About/Zaw";
 import NotFoundPage from "./pages/NotFound/NotFoundPage";
 import SignIn from "./pages/SignIn/SignIn";
+import SignUp from "./pages/SignUp/SignUp";
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<SignIn />} />
+        <Route path="/sign-up" element={<SignUp />} />
 
         {/* Route for the team section */}
         <Route path="/about-us" element={<AboutUs />} />
