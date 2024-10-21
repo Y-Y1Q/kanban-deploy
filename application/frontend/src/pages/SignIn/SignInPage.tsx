@@ -1,17 +1,41 @@
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { Avatar, Box, Button, Container, Link, TextField, Typography } from "@mui/material";
-import Grid from "@mui/material/Grid";
+import {
+  Alert,
+  Avatar,
+  Box,
+  Button,
+  Container,
+  Grid,
+  Link,
+  TextField,
+  Typography,
+} from "@mui/material";
+import axios from "axios";
 import React from "react";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 
 export default function SignIn() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      username: data.get("username"),
-      password: data.get("password"),
-    });
+    const username = data.get("username");
+    const password = data.get("password");
+
+    try {
+      const response = await axios.post("/api/auth/sign-in", { username, password });
+      if (response.status === 200) {
+        navigate("/app"); // Redirect to /app on successful login
+      }
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response) {
+        // Display the error message in an alert instead of rendering it
+        alert(error.response.data.error || "An error occurred while signing in.");
+      } else {
+        alert("An unexpected error occurred.");
+      }
+    }
   };
 
   return (
@@ -31,7 +55,7 @@ export default function SignIn() {
             padding: 4,
           }}
         >
-          <img src="/img/home.svg" alt="Sign in page" />
+          <img src="/img/home.svg" alt="home page" />
         </Grid>
 
         {/* Right Side - Sign in Form  */}
@@ -47,15 +71,13 @@ export default function SignIn() {
             padding: 4,
           }}
         >
-          M2 Test account<br></br>
           <span>
-            {" "}
             Username: <b>test</b>
           </span>
           <span>
-            {" "}
             Password: <b>SFSUcsc648</b>
           </span>
+
           {/* Text Above the Sign-in Form */}
           <Box sx={{ textAlign: "center", mb: 4 }}>
             <Typography variant="h4" component="h2" sx={{ mt: 4, color: "black" }}>
@@ -65,6 +87,7 @@ export default function SignIn() {
               AI Powered Job Application Tracker
             </Typography>
           </Box>
+
           {/* Sign-in Form */}
           <Box
             sx={{
@@ -105,13 +128,8 @@ export default function SignIn() {
               <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
                 Sign In
               </Button>
-              <Grid container>
-                {/* <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid> */}
 
+              <Grid container>
                 <Grid item>
                   {/* Redirect to Sign Up */}
                   <Link component={RouterLink} to="/sign-up" variant="body2">
