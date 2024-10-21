@@ -1,16 +1,13 @@
+import axios from "axios";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import * as dotenv from "dotenv"
-import axios from "axios";
 
 import App from "./App.js";
 
-dotenv.config();
-axios.defaults.baseURL= process.env.BASE_URL;
+axios.defaults.baseURL = import.meta.env.BASE_URL;
 axios.defaults.withCredentials = true;
 
-
-ReactDOM.createRoot(document.getElementById("root")!).render(
+ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <App />
   </React.StrictMode>
