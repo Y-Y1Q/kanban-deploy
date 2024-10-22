@@ -4,7 +4,7 @@
 
 ## Application URL 
 
->**https://job-kanban.onrender.com/**
+>**https://ezjobs.onrender.com**
 
 ## Team members
 

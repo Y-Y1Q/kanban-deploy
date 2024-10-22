@@ -9,6 +9,7 @@ import DocsPage from "./Docs/DocsPage";
 import InterviewPrepPage from "./InterviewPrep/InterviewPrepPage";
 import JobStatsPage from "./JobStats/JobStatsPage";
 import JobsPage from "./Jobs/JobsPage";
+import NotFoundPage from "./NotFound/NotFoundPage";
 import TestJobsData from "./TestM2/TestJobsData";
 import TestSearchCompany from "./TestM2/TestSearchCompany";
 import TestSearchType from "./TestM2/TestSearchType";
@@ -34,6 +35,8 @@ const LayoutRoutes: React.FC<LayoutProps> = ({ theme, colorMode }) => {
         <Route path="/docs" element={<DocsPage />} />
         <Route path="/ai-resume" element={<AiResumePage />} />
         <Route path="/ai-interview" element={<InterviewPrepPage />} />
+
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Layout>
   );

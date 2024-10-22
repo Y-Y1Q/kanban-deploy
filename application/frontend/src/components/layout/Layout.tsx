@@ -3,8 +3,8 @@ import { Theme } from "@mui/material/styles";
 import { ReactNode } from "react";
 
 import { ColorModeContext, ColorModeContextType } from "../../theme";
-import SideBar from "../SideBar";
-import TopBar from "../TopBar";
+import SideBar from "./SideBar";
+import TopBar from "./TopBar";
 
 interface LayoutProps {
   theme: Theme; // MUI theme type

@@ -5,6 +5,8 @@ import * as UsersDB from "../../db/users";
 import HttpCode from "../../constants/http_code";
 
 export async function signIn(req: Request, res: Response) {
+  // console.log("\n===SIGN IN START===\n", req.session);
+
   const { username, password } = {
     username: req.body.username?.trim(),
     password: req.body.password?.trim(),
@@ -16,7 +18,8 @@ export async function signIn(req: Request, res: Response) {
   }
 
   // Case: user is already logged in, FE should redirect to kanban page
-  if (req.session.user !== undefined) {
+  if (req.session?.user) {
+    // console.log("\n===SIGN IN END: ALREADY SIGNED IN===\n", req.session);
     return res.status(HttpCode.OK).json({ message: "User already logged in" });
   }
 
@@ -36,6 +39,8 @@ export async function signIn(req: Request, res: Response) {
         username: user!.username,
         email: user!.email,
       };
+
+      // console.log("\n===SIGN IN END===\n", req.session);
 
       return res.status(HttpCode.OK).json({ message: "Login successful" });
     } else {

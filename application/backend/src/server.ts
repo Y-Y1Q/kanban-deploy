@@ -8,15 +8,26 @@ import path from "path";
 
 import * as Session from "./config/session";
 import { requestTime } from "./middleware/request_time";
-import Routes from "./routes";
+import ApiRoutes from "./routes";
+
+dotenv.config();
+// Log the current environment variables
+console.log(
+  `Current environment variables:\n
+  NODE_ENV: \x1b[32m\x1b[1m${process.env.NODE_ENV}\x1b[0m
+  OPEN_AI_KEY: \x1b[32m\x1b[1m${process.env.OPEN_AI_KEY}\x1b[0m
+  CORS_ORIGIN: \x1b[32m\x1b[1m${process.env.CORS_ORIGIN}\x1b[0m \n`
+);
 
 const app = express();
 const httpServer = createServer(app);
 app.use(requestTime);
 
 // Static path to serve files
-const BACKEND_PATH = path.dirname(path.dirname(import.meta.dirname));
+const BACKEND_PATH = path.dirname(import.meta.dirname);
 const STATIC_PATH = path.join(BACKEND_PATH, "public");
+console.log(`\nBE path: \x1b[32m\x1b[1m${BACKEND_PATH} \x1b[0m`);
+console.log(`BE Static files path: \x1b[32m\x1b[1m${STATIC_PATH}\x1b[0m \n`);
 app.use(express.static(STATIC_PATH));
 
 // Setup cookie parsing
@@ -26,22 +37,24 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // Setup express session
+app.set("trust proxy", true);
 app.use(Session.config);
+// app.use(Session.logToConsole);
 if (process.env.NODE_ENV === "development") {
   app.use(Session.logToConsole);
 }
 
 // handle cross origin request
-dotenv.config();
 const corsOptions = {
   origin: process.env.CORS_ORIGIN === "true" ? true : process.env.CORS_ORIGIN,
   credentials: true,
 };
 app.use(cors(corsOptions));
 app.options("*", cors(corsOptions));
+console.log(`Cross origin allowed: \x1b[32m\x1b[1m${corsOptions.origin}\x1b[0m`);
 
 //Backend API Routes
-app.use(Routes);
+app.use(ApiRoutes);
 
 const PORT = process.env.PORT || 3333;
 httpServer.listen(PORT, () => {
