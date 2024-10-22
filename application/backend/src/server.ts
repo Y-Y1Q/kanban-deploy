@@ -39,10 +39,10 @@ app.use(cookieParser());
 // Setup express session
 app.set("trust proxy", true);
 app.use(Session.config);
-app.use(Session.logToConsole);
-// if (process.env.NODE_ENV === "development") {
-//   app.use(Session.logToConsole);
-// }
+// app.use(Session.logToConsole);
+if (process.env.NODE_ENV === "development") {
+  app.use(Session.logToConsole);
+}
 
 // handle cross origin request
 const corsOptions = {

@@ -18,7 +18,7 @@ const ProtectedRoute = ({ element }: ProtectedRouteProps) => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await axios.get("/api/auth");
+        const response = await axios.post("/api/auth/check");
         if (response.data.authenticated) {
           setIsAuthenticated(true);
         } else {
