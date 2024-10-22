@@ -40,7 +40,7 @@ export const config = expressSession({
 // Middleware to log session data to the console
 export function logToConsole(req: Request, _res: Response, next: NextFunction) {
   if (req.session?.user) {
-    console.log("Session data: " + JSON.stringify(req.session));
+    console.log("\nSession data: " + JSON.stringify(req.session) + "\n");
   }
   next();
 }
