@@ -28,7 +28,7 @@ export default function NotFoundPage() {
         Page Not Found
       </Typography>
       <Button variant="contained" color="primary" onClick={handleGoHome}>
-        Go to Home
+        Go Back
       </Button>
     </Box>
   );
