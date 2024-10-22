@@ -1,6 +1,6 @@
 import { SQL } from "sql-template-strings";
 
-import { db } from "../db_connection";
+import db from "../db_connection";
 import { Job } from "../db_types";
 
 export async function getJobsByCompany(user_id: number, company: string): Promise<Job[] | null> {

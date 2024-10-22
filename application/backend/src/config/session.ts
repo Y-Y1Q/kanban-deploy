@@ -2,8 +2,7 @@ import pgSession from "connect-pg-simple";
 import dotenv from "dotenv";
 import { NextFunction, Request, Response } from "express";
 import expressSession from "express-session";
-
-import { db } from "../db/db_connection";
+import db from "../db/db_connection";
 
 dotenv.config();
 
@@ -30,18 +29,17 @@ export const config = expressSession({
   resave: false,
   saveUninitialized: false,
   cookie: {
-    domain: ".onrender.com",
-    httpOnly: false,
-    sameSite: "none",
-    secure: process.env.NODE_ENV === "production", // Set to true if in production for HTTPS
+    httpOnly: true, // Prevents client-side JS from reading the cookie
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+    secure: process.env.NODE_ENV === "production", // Set secure to true in production (for HTTPS)
     maxAge: 1 * 24 * 60 * 60 * 1000, // 1 day
   },
 });
 
 // Middleware to log session data to the console
 export function logToConsole(req: Request, _res: Response, next: NextFunction) {
-  if (req.session.user !== undefined) {
-    console.log("Session data: " + JSON.stringify(req.session));
+  if (req.session?.user) {
+    console.log("\nSession data: " + JSON.stringify(req.session) + "\n");
   }
   next();
 }

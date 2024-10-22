@@ -2,35 +2,44 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 
+import Loading from "./components/ui/Loading";
 import LayoutRoutes from "./pages/LayoutRoutes";
 import NoLayoutRoutes from "./pages/NoLayoutRoutes";
 import { useMode } from "./theme";
 
-const ProtectedRoute = ({ element }: any) => {
+interface ProtectedRouteProps {
+  element: JSX.Element;
+}
+
+const ProtectedRoute = ({ element }: ProtectedRouteProps) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Call the authentication API to check if the user is authenticated
-    axios
-      .get("/api/auth")
-      .then((response) => {
+    const checkAuth = async () => {
+      try {
+        const response = await axios.post("/api/auth/check");
         if (response.data.authenticated) {
           setIsAuthenticated(true);
         } else {
-          throw new Error("Not authenticated");
+          setIsAuthenticated(false);
+          alert("You are not authenticated. Redirecting to login page...");
+          navigate("/");
         }
-      })
-      .catch(() => {
+      } catch (error) {
+        // console.log("Authentication error:", error);
         setIsAuthenticated(false);
-        alert("You are not authenticated. Redirecting to login page.");
+        alert("Authentication error occurred. Redirecting to login page...");
         navigate("/");
-      });
+      }
+    };
+
+    checkAuth();
   }, [navigate]);
 
   if (isAuthenticated === null) {
-    // Show a loading state or spinner while authentication status is being checked
-    return <div>Loading...</div>;
+    // Display the loading spinner while authentication is being checked
+    return <Loading />;
   }
 
   return isAuthenticated ? element : null;
@@ -42,18 +51,14 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Render routes without layout */}
+        {/* Routes without layout */}
         <Route path="/*" element={<NoLayoutRoutes />} />
 
-        {/* Protect /app/* routes */}
+        {/* Protect /app/* routes, only authenticated users can access */}
         <Route
           path="/app/*"
           element={
-            <ProtectedRoute
-              element={<LayoutRoutes theme={theme} colorMode={colorMode} />}
-              theme={theme}
-              colorMode={colorMode}
-            />
+            <ProtectedRoute element={<LayoutRoutes theme={theme} colorMode={colorMode} />} />
           }
         />
       </Routes>

@@ -1,18 +1,12 @@
 import express from "express";
-import { Request, Response } from "express";
 
 import { Controller } from "../controllers";
 import { checkAuth } from "../middleware/check_auth";
 
 const router = express.Router();
 
-// Test
-router.get("/", (_req: Request, res: Response) => {
-  res.send("CSC 648 EzJobs Backend Server");
-});
-
 // Auth routes
-router.get("/api/auth", Controller.Auth.isAuthenticated);
+router.post("/api/auth/check", Controller.Auth.isAuthenticated);
 router.post("/api/auth/sign-up", Controller.Auth.signUp);
 router.post("/api/auth/sign-in", Controller.Auth.signIn);
 router.post("/api/auth/sign-out", Controller.Auth.signOut);

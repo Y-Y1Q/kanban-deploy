@@ -2,7 +2,10 @@ import { Request, Response } from "express";
 import HttpCode from "../../constants/http_code";
 
 export function isAuthenticated(req: Request, res: Response) {
-  if (req.session.user !== undefined && req.session.user.id !== undefined) {
+  // Log session details for debugging
+  // console.log("Session:", req.session);
+
+  if (req.session?.user && req.session.user.id) {
     // CASE: user session exists
     return res.status(HttpCode.OK).json({ authenticated: true });
   }

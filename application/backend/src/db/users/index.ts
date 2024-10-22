@@ -1,6 +1,6 @@
 import { SQL } from "sql-template-strings";
 
-import { db } from "../db_connection";
+import db from "../db_connection";
 import { User } from "../db_types";
 
 export async function getUserById(id: number): Promise<User | null> {
