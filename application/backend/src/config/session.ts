@@ -2,8 +2,7 @@ import pgSession from "connect-pg-simple";
 import dotenv from "dotenv";
 import { NextFunction, Request, Response } from "express";
 import expressSession from "express-session";
-
-import { db } from "../db/db_connection";
+import db from "../db/db_connection";
 
 dotenv.config();
 
@@ -31,7 +30,7 @@ export const config = expressSession({
   saveUninitialized: false,
   cookie: {
     httpOnly: true, // Prevents client-side JS from reading the cookie
-    sameSite: "none",
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
     secure: process.env.NODE_ENV === "production", // Set secure to true in production (for HTTPS)
     maxAge: 1 * 24 * 60 * 60 * 1000, // 1 day
   },

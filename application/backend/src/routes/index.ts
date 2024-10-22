@@ -6,7 +6,7 @@ import { checkAuth } from "../middleware/check_auth";
 const router = express.Router();
 
 // Auth routes
-router.get("/api/auth", Controller.Auth.isAuthenticated);
+router.post("/api/auth/check", Controller.Auth.isAuthenticated);
 router.post("/api/auth/sign-up", Controller.Auth.signUp);
 router.post("/api/auth/sign-in", Controller.Auth.signIn);
 router.post("/api/auth/sign-out", Controller.Auth.signOut);
