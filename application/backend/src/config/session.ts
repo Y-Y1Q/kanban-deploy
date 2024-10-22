@@ -30,17 +30,16 @@ export const config = expressSession({
   resave: false,
   saveUninitialized: false,
   cookie: {
-    domain: ".onrender.com",
-    httpOnly: false,
+    httpOnly: true, // Prevents client-side JS from reading the cookie
     sameSite: "none",
-    secure: process.env.NODE_ENV === "production", // Set to true if in production for HTTPS
+    secure: process.env.NODE_ENV === "production", // Set secure to true in production (for HTTPS)
     maxAge: 1 * 24 * 60 * 60 * 1000, // 1 day
   },
 });
 
 // Middleware to log session data to the console
 export function logToConsole(req: Request, _res: Response, next: NextFunction) {
-  if (req.session.user !== undefined) {
+  if (req.session?.user) {
     console.log("Session data: " + JSON.stringify(req.session));
   }
   next();
