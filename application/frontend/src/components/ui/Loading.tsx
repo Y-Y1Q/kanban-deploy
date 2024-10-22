@@ -11,7 +11,7 @@ export default function Loading() {
         height: "100vh", // Full viewport height
       }}
     >
-      <CircularProgress size="10rem" />
+      <CircularProgress size="30rem" />
     </Box>
   );
 }

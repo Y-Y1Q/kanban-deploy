@@ -27,7 +27,7 @@ const ProtectedRoute = ({ element }: ProtectedRouteProps) => {
           navigate("/");
         }
       } catch (error) {
-        console.error("Authentication error:", error);
+        // console.log("Authentication error:", error);
         setIsAuthenticated(false);
         alert("Authentication error occurred. Redirecting to login page...");
         navigate("/");

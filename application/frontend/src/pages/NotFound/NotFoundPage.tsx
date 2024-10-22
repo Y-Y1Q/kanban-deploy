@@ -1,11 +1,16 @@
 import { Box, Button, Typography } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function NotFoundPage() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleGoHome = () => {
-    navigate("/");
+    if (location.pathname.startsWith("/app")) {
+      navigate("/app");
+    } else {
+      navigate("/");
+    }
   };
 
   return (
