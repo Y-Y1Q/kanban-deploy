@@ -3,16 +3,16 @@ import { Route, Routes } from "react-router-dom";
 
 import Layout from "../components/layout/Layout";
 import { ColorModeContextType } from "../theme";
-import AiResumePage from "./AiResume/AiResumePage";
-import ContactsPage from "./Contacts/ContactsPage";
-import DocsPage from "./Docs/DocsPage";
-import InterviewPrepPage from "./InterviewPrep/InterviewPrepPage";
-import JobStatsPage from "./JobStats/JobStatsPage";
-import JobsPage from "./Jobs/JobsPage";
-import NotFoundPage from "./NotFound/NotFoundPage";
-import TestJobsData from "./TestM2/TestJobsData";
-import TestSearchCompany from "./TestM2/TestSearchCompany";
-import TestSearchType from "./TestM2/TestSearchType";
+import AiResumePage from "./ai_resume/AiResumePage";
+import ContactsPage from "./contacts/ContactsPage";
+import DocsPage from "./docs/DocsPage";
+import InterviewPrepPage from "./interview_prep/InterviewPrepPage";
+import JobStatsPage from "./job_stats/JobStatsPage";
+import JobsPage from "./jobs/JobsPage";
+import TestJobsData from "./m2_test/TestJobsData";
+import TestSearchCompany from "./m2_test/TestSearchCompany";
+import TestSearchType from "./m2_test/TestSearchType";
+import NotFoundPage from "./not_found/NotFoundPage";
 
 interface LayoutProps {
   theme: Theme; // MUI theme type
