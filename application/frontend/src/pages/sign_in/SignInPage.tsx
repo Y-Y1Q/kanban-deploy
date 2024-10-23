@@ -1,31 +1,86 @@
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { Avatar, Box, Button, Container, Grid, Link, TextField, Typography } from "@mui/material";
+import {
+  Avatar,
+  Box,
+  Button,
+  Container,
+  Grid,
+  IconButton,
+  InputAdornment,
+  Link,
+  TextField,
+  Typography,
+} from "@mui/material";
 import axios from "axios";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 
 export default function SignIn() {
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+  const [usernameError, setUsernameError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
+  // Check if user is already authenticated
+  useEffect(() => {
+    const checkAuth = async () => {
+      const response = await axios.post("/api/auth/user-info");
+      if (response.data.authenticated) {
+        alert("You already signed in. Redirecting...");
+        navigate("/app");
+      }
+    };
+    checkAuth();
+  }, [navigate]);
+
+  // Input validation
+  const validateUsername = (username: string) => {
+    const isValid = /^[a-zA-Z0-9]{3,20}$/.test(username);
+    setUsernameError(isValid ? "" : "Username must be 3-20 characters and alphanumeric.");
+    return isValid;
+  };
+
+  const validatePassword = (password: string) => {
+    const isValid = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(password);
+    setPasswordError(
+      isValid
+        ? ""
+        : "Password must be at least 8 characters, with 1 lowercase, 1 uppercase, and 1 number."
+    );
+    return isValid;
+  };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const username = data.get("username");
-    const password = data.get("password");
+    const username = data.get("username") as string;
+    const password = data.get("password") as string;
+
+    if (!validateUsername(username) || !validatePassword(password)) {
+      return; // Stop if any validation fails
+    }
+
+    const userData = { username, password };
 
     try {
-      const response = await axios.post("/api/auth/sign-in", { username, password });
+      const response = await axios.post("/api/auth/sign-in", userData, { withCredentials: true });
       if (response.status === 200) {
-        navigate("/app"); // Redirect to /app on successful login
+        navigate("/app"); // Redirect on success
       }
-    } catch (error) {
-      if (axios.isAxiosError(error) && error.response) {
-        // Display the error message in an alert instead of rendering it
-        alert(error.response.data.error || "An error occurred while signing in.");
+    } catch (err: any) {
+      if (err.response) {
+        alert(err.response.data?.error || "Sign in failed. Please try again.");
+      } else if (err.request) {
+        alert("No response from the server. Please try again.");
       } else {
-        alert("An unexpected error occurred.");
+        alert("Sign in failed. Please try again.");
       }
     }
+  };
+
+  const handleShowPasswordToggle = () => {
+    setShowPassword((prev) => !prev);
   };
 
   return (
@@ -48,7 +103,7 @@ export default function SignIn() {
           <img src="/img/home.svg" alt="home page" />
         </Grid>
 
-        {/* Right Side - Sign in Form  */}
+        {/* Right Side - Sign in Form */}
         <Grid
           item
           xs={12}
@@ -61,6 +116,7 @@ export default function SignIn() {
             padding: 4,
           }}
         >
+          <span>Test Account</span>
           <span>
             Username: <b>test</b>
           </span>
@@ -68,7 +124,6 @@ export default function SignIn() {
             Password: <b>SFSUcsc648</b>
           </span>
 
-          {/* Text Above the Sign-in Form */}
           <Box sx={{ textAlign: "center", mb: 4 }}>
             <Typography variant="h4" component="h2" sx={{ mt: 4, color: "black" }}>
               Welcome to EZJobs
@@ -95,6 +150,7 @@ export default function SignIn() {
             <Typography component="h1" variant="h5">
               Sign in to use
             </Typography>
+
             <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
               <TextField
                 margin="normal"
@@ -103,6 +159,9 @@ export default function SignIn() {
                 id="username"
                 label="Username"
                 name="username"
+                onChange={(e) => validateUsername(e.target.value)}
+                error={!!usernameError}
+                helperText={usernameError}
                 autoComplete="username"
                 autoFocus
               />
@@ -112,8 +171,20 @@ export default function SignIn() {
                 fullWidth
                 name="password"
                 label="Password"
-                type="password"
+                type={showPassword ? "text" : "password"}
                 id="password"
+                onChange={(e) => validatePassword(e.target.value)}
+                error={!!passwordError}
+                helperText={passwordError}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton onClick={handleShowPasswordToggle}>
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
               />
               <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
                 Sign In
@@ -121,7 +192,6 @@ export default function SignIn() {
 
               <Grid container>
                 <Grid item>
-                  {/* Redirect to Sign Up */}
                   <Link component={RouterLink} to="/sign-up" variant="body2">
                     {"Don't have an account? Sign Up"}
                   </Link>
@@ -134,3 +204,14 @@ export default function SignIn() {
     </Container>
   );
 }
+
+/**
+ <span>Test Account<span>
+ <span>
+            Username: <b>test</b>
+          </span>
+          <span>
+            Password: <b>SFSUcsc648</b>
+          </span>
+
+ */
