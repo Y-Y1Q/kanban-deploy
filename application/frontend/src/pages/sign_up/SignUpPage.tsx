@@ -1,43 +1,93 @@
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { Avatar, Box, Button, Container, Grid, Link, TextField, Typography } from "@mui/material";
+import {
+  Avatar,
+  Box,
+  Button,
+  Container,
+  Grid,
+  IconButton,
+  InputAdornment,
+  Link,
+  TextField,
+  Typography,
+} from "@mui/material";
 import axios from "axios";
+import { useEffect, useState } from "react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 
 export default function SignUp() {
   const navigate = useNavigate();
+  const [usernameError, setUsernameError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
+  // Check if the user is already authenticated
+  useEffect(() => {
+    const checkAuth = async () => {
+      const response = await axios.post("/api/auth/user-info");
+      if (response.data.authenticated) {
+        alert("You already signed in. Redirecting...");
+        navigate("/app");
+      }
+    };
+    checkAuth();
+  }, [navigate]);
+
+  const validateUsername = (username: string) => {
+    const isValid = /^[a-zA-Z0-9]{3,20}$/.test(username);
+    setUsernameError(isValid ? "" : "Username must be 3-20 characters and alphanumeric.");
+    return isValid;
+  };
+
+  const validateEmail = (email: string) => {
+    const isValid = /\S+@\S+\.\S+/.test(email);
+    setEmailError(isValid ? "" : "Please enter a valid email address.");
+    return isValid;
+  };
+
+  const validatePassword = (password: string) => {
+    const isValid = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(password);
+    setPasswordError(
+      isValid
+        ? ""
+        : "Password must be at least 8 characters, with 1 lowercase, 1 uppercase, and 1 number."
+    );
+    return isValid;
+  };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const userData = {
-      username: data.get("username"),
-      email: data.get("email"),
-      password: data.get("password"),
-    };
+    const username = data.get("username") as string;
+    const email = data.get("email") as string;
+    const password = data.get("password") as string;
+
+    if (!validateUsername(username) || !validateEmail(email) || !validatePassword(password)) {
+      return; // Stop if any validation fails
+    }
+
+    const userData = { username, email, password };
 
     try {
-      const response = await axios.post("/api/auth/sign-up", userData, {
-        withCredentials: true,
-      });
-
-      // Check if the response is in the 2xx range
+      const response = await axios.post("/api/auth/sign-up", userData, { withCredentials: true });
       if (response.status === 200) {
         alert("Account created! Redirecting to login page...");
         navigate("/"); // Redirect on success
       }
     } catch (err: any) {
       if (err.response) {
-        // Server responded with a status other than 2xx
         alert(err.response.data?.error || "Sign up failed. Please try again.");
       } else if (err.request) {
-        // No response was received from the server
         alert("No response from the server. Please try again.");
       } else {
-        // Other errors (such as setting up the request)
         alert("Sign up failed. Please try again.");
       }
     }
   };
+
+  const togglePasswordVisibility = () => setShowPassword((prev) => !prev);
 
   return (
     <Container maxWidth="lg" sx={{ height: "100vh", display: "flex", alignItems: "center" }}>
@@ -59,7 +109,7 @@ export default function SignUp() {
           <img src="/img/home.svg" alt="home page" />
         </Grid>
 
-        {/* Right Side - Sign Up Form with Text Above */}
+        {/* Right Side - Sign Up Form */}
         <Grid
           item
           xs={12}
@@ -109,6 +159,9 @@ export default function SignUp() {
                 name="username"
                 autoComplete="username"
                 autoFocus
+                error={!!usernameError}
+                helperText={usernameError}
+                onChange={(e) => validateUsername(e.target.value)}
               />
               <TextField
                 margin="normal"
@@ -118,6 +171,9 @@ export default function SignUp() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                error={!!emailError}
+                helperText={emailError}
+                onChange={(e) => validateEmail(e.target.value)}
               />
               <TextField
                 margin="normal"
@@ -125,15 +181,26 @@ export default function SignUp() {
                 fullWidth
                 name="password"
                 label="Password"
-                type="password"
+                type={showPassword ? "text" : "password"}
                 id="password"
+                error={!!passwordError}
+                helperText={passwordError}
+                onChange={(e) => validatePassword(e.target.value)}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton onClick={togglePasswordVisibility}>
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
               />
               <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
                 Sign Up
               </Button>
               <Grid container>
                 <Grid item>
-                  {/* Redirect to Sign In */}
                   <Link component={RouterLink} to="/" variant="body2">
                     {"Already have an account? Sign In"}
                   </Link>

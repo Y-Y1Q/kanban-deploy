@@ -21,17 +21,22 @@ export async function signUp(req: Request, res: Response) {
   }
 
   try {
-    const userExists = await UsersDB.foundUser(username);
-    const emailExists = await UsersDB.foundEmail(email);
+    let usernameStr: string = username!;
+    let emailStr: string = email!;
+    usernameStr = usernameStr.toLowerCase();
+    emailStr = emailStr.toLowerCase();
+
+    const userExists = await UsersDB.foundUser(usernameStr);
+    const emailExists = await UsersDB.foundEmail(emailStr);
 
     if (userExists || emailExists) {
-      return res.status(HttpCode.BadRequest).json({ error: `Invalid username/email` });
+      return res.status(HttpCode.BadRequest).json({ error: "Invalid username or email" });
     }
 
     const salt = await bcrypt.genSalt(SALT_ROUNDS);
     const hash = await bcrypt.hash(password, salt);
 
-    await UsersDB.addUser(username, hash, email);
+    await UsersDB.addUser(usernameStr, hash, emailStr);
 
     return res.status(HttpCode.OK).json({ message: "Register successful" });
   } catch (error) {
@@ -42,6 +47,10 @@ export async function signUp(req: Request, res: Response) {
 
 // Helper function to validate request body
 function validateRegistration(req: Request) {
+  if (req.session.user !== undefined) {
+    return { valid: false, message: "User already logged in", statusCode: HttpCode.OK };
+  }
+
   const { username, password, email } = {
     username: req.body.username?.trim(),
     password: req.body.password?.trim(),
@@ -52,12 +61,12 @@ function validateRegistration(req: Request) {
     return { valid: false, message: "All fields are required", statusCode: HttpCode.BadRequest };
   }
 
-  if (req.session.user !== undefined) {
-    return { valid: false, message: "User already logged in", statusCode: HttpCode.OK };
-  }
-
-  if (checkName(username)) {
-    return { valid: false, message: "Invalid username to use", statusCode: HttpCode.BadRequest };
+  if (!validator.isAlphanumeric(username) || !validator.isLength(username, { min: 3, max: 20 })) {
+    return {
+      valid: false,
+      message: "Invalid username. It must be 3-20 characters and alphanumeric.",
+      statusCode: HttpCode.BadRequest,
+    };
   }
 
   if (!validator.isEmail(email)) {
@@ -82,9 +91,4 @@ function validateRegistration(req: Request) {
   }
 
   return { valid: true };
-}
-
-// Helper function to check username in request body
-function checkName(str: string): boolean {
-  return str.toUpperCase() === "ADMIN";
 }
