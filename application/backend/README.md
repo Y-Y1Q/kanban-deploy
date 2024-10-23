@@ -2,7 +2,7 @@
 
 ## Pre-Requisites
 
-> Node.js 20.17.0
+> Node.js 20.18.0 (LTS) Updated on 10/23/2024
 > https://nodejs.org/en/download/prebuilt-installer
 
 > Postgres 16.4
