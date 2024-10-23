@@ -2,6 +2,8 @@
 ## Application URL 
 >**https://ezjobs.onrender.com**
 
+<br>
+
 ## Team members
 | **Student Name**    | **Student Email**   | **GitHub Username** | **Student's role** |
 | :----------:        | :-----------:       | :-------------: | :------------: |
@@ -10,6 +12,8 @@
 | L Chow              |  lchow4@sfsu.edu    |   lchowGH     |  Backend Lead   |
 | Zaw Tun             |  ztun@sfsu.edu        |   terrytun    |  Scrum Master   |
 | Yee Yang            |  yyang31@sfsu.edu    |   Y-Y1Q       |  Github Master   |
+
+<br>
 
 ## Getting Started
 ```
