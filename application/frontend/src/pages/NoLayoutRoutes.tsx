@@ -1,14 +1,14 @@
 import { Route, Routes } from "react-router-dom";
 
-import AboutUs from "./About/AboutUs";
-import AboutL from "./About/L";
-import AboutLuai from "./About/Luai";
-import AboutRishita from "./About/Rishita";
-import AboutYee from "./About/Yee";
-import AboutZaw from "./About/Zaw";
-import NotFoundPage from "./NotFound/NotFoundPage";
-import SignIn from "./SignIn/SignInPage";
-import SignUp from "./SignUp/SignUpPage";
+import AboutUs from "./about/AboutUs";
+import AboutL from "./about/L";
+import AboutLuai from "./about/Luai";
+import AboutRishita from "./about/Rishita";
+import AboutYee from "./about/Yee";
+import AboutZaw from "./about/Zaw";
+import NotFoundPage from "./not_found/NotFoundPage";
+import SignIn from "./sign_in/SignInPage";
+import SignUp from "./sign_up/SignUpPage";
 
 const NoLayoutRoutes = () => {
   return (
