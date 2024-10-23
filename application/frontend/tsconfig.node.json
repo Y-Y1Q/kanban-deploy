@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "ES2022",
-    "lib": ["ES2023"],
+    "target": "ESNext",
+    "lib": ["ESNext"],
     "module": "ESNext",
     "skipLibCheck": true,
 
@@ -15,6 +15,7 @@
     "composite": true,
 
     /* Linting */
+    "forceConsistentCasingInFileNames": true, 
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
