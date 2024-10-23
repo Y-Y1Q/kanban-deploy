@@ -29,11 +29,12 @@ export default function TopBar() {
     <Box display="flex" justifyContent="space-between" p={2}>
       {/* User info */}
       <Box display="flex">
-        <Typography variant="h5">
-          Welcome,{" "}
-          <Typography variant="h5" component="span" sx={{ fontWeight: "bold" }}>
-            username placeholder
-          </Typography>
+        <Typography variant="h3" sx={{ fontWeight: "bold" }}>
+          Welcome! &nbsp;
+        </Typography>
+
+        <Typography variant="h3" component="span" sx={{ fontWeight: "bold", color: "#4070f4" }}>
+          username placeholder
         </Typography>
       </Box>
 

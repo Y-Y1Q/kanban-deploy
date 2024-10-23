@@ -1,13 +1,13 @@
 import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
 import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
 import ContactPageOutlinedIcon from "@mui/icons-material/ContactPageOutlined";
+import DashboardIcon from "@mui/icons-material/Dashboard";
 // M2 icon
 import LooksTwoOutlinedIcon from "@mui/icons-material/LooksTwoOutlined";
 // M2 icon
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import PictureAsPdfOutlinedIcon from "@mui/icons-material/PictureAsPdfOutlined";
 import SmartToyOutlinedIcon from "@mui/icons-material/SmartToyOutlined";
-import ViewKanbanOutlinedIcon from "@mui/icons-material/ViewKanbanOutlined";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { useState } from "react";
 import { FC } from "react";
@@ -141,7 +141,7 @@ export default function SideBar() {
             <Item
               title="Jobs Board"
               to="/app/jobs"
-              icon={<ViewKanbanOutlinedIcon />}
+              icon={<DashboardIcon />}
               selected={selected}
               setSelected={setSelected}
             />
@@ -192,23 +192,3 @@ export default function SideBar() {
     </Box>
   );
 }
-
-/* 
-    
-          <Box
-            borderTop="1px solid"
-            borderColor={colors.grey[100]}
-            mt="60%"
-            paddingLeft={isCollapsed ? undefined : "10%"}
-          >
-            <Item
-              title="Logout"
-              to="/logout"
-              icon={<LogoutOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-          </Box>
-
-
-*/
