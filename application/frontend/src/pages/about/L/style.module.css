@@ -7,7 +7,7 @@
   font-family: "Poppins", sans-serif;
 }
 
-.labout-us {
+.laboutUs {
   display: flex;
   align-items: center;
   height: 100vh;
@@ -17,8 +17,8 @@
 }
 
 .lpic {
-  height: 350px !important;
-  width: 350px !important;
+  height: 350px;
+  width: 350px;
   border-radius: 12px;
 }
 
@@ -47,10 +47,6 @@
   font-size: 22px;
   font-weight: 500;
   margin-bottom: 20px;
-}
-
-span {
-  color: #4070f4;
 }
 
 .ltext p {

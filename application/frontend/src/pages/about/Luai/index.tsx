@@ -1,16 +1,16 @@
-import "./style.css";
+import styles from "./style.module.css";
 
 export default function AboutMe() {
   return (
-    <section className="about-us">
-      <div className="about">
+    <section className={styles.aboutUs}>
+      <div className={styles.about}>
         <img
           src="https://api.dicebear.com/9.x/avataaars-neutral/svg?seed=Alexander"
           alt="Profile"
-          className="pic"
+          className={styles.pic}
         />
 
-        <div className="text">
+        <div className={styles.text}>
           <h2>About Me</h2>
 
           <p>
@@ -19,8 +19,8 @@ export default function AboutMe() {
             playing soccer, hanging out with friends, and practicing leetcode problems.
           </p>
 
-          <div className="data">
-            <a href="https://github.com" className="link">
+          <div className={styles.data}>
+            <a href="https://github.com" className={styles.link}>
               GitHub
             </a>
           </div>

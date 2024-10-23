@@ -1,21 +1,16 @@
-import "./style.css";
+import styles from "./style.module.css";
 
 export default function AboutMe() {
   return (
-    <section className="labout-us">
-      <div className="labout">
-        {/* Edit url of your profile image below
-                 you can use online avatar https://www.dicebear.com/playground/
-                 or upload your own image
-                */}
+    <section className={styles.laboutUs}>
+      <div className={styles.labout}>
         <img
           src="https://api.dicebear.com/9.x/icons/svg?seed=Chase"
           alt="avatar"
-          className="lpic"
+          className={styles.lpic}
         />
 
-        {/* Edit description below */}
-        <div className="ltext">
+        <div className={styles.ltext}>
           <h2>L Chow</h2>
 
           <h3></h3>
@@ -31,8 +26,8 @@ export default function AboutMe() {
             On my free time, I enjoy watching anime, listening to music and going on hikes/walks.
           </p>
 
-          <div className="ldata">
-            <a href="https://github.com/lchowGH" className="llink">
+          <div className={styles.ldata}>
+            <a href="https://github.com/lchowGH" className={styles.llink}>
               GitHub
             </a>
           </div>

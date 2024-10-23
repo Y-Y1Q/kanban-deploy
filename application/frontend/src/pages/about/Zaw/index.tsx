@@ -1,9 +1,9 @@
-import "./style.css";
+import styles from "./style.module.css";
 
 export default function AboutMe() {
   return (
-    <section className="zabout-us">
-      <div className="zabout">
+    <section className={styles.zaboutUs}>
+      <div className={styles.zabout}>
         {/* Edit url of your profile image below
                  you can use online avatar https://www.dicebear.com/playground/
                  or upload your own image
@@ -11,10 +11,10 @@ export default function AboutMe() {
         <img
           src="https://api.dicebear.com/9.x/avataaars-neutral/svg?seed=George"
           alt="Profile"
-          className="zpic"
+          className={styles.zpic}
         />
 
-        <div className="ztext">
+        <div className={styles.ztext}>
           <h2>About Me</h2>
           <h5>
             hello & <span>welcome</span>
@@ -26,8 +26,8 @@ export default function AboutMe() {
             visit new cities that I have never been to.
           </p>
 
-          <div className="zdata">
-            <a href="https://github.com" className="zlink">
+          <div className={styles.zdata}>
+            <a href="https://github.com" className={styles.zlink}>
               GitHub
             </a>
           </div>

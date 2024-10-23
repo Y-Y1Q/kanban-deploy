@@ -1,13 +1,13 @@
-import "./style.css";
+import styles from "./style.module.css";
 
 export default function AboutMe() {
   return (
-    <div className="rabout-wrapper">
-      <div className="rabout-left">
-        <div className="rabout-left-content">
+    <div className={styles.raboutWrapper}>
+      <div className={styles.raboutLeft}>
+        <div className={styles.raboutLeftContent}>
           <div>
-            <div className="rshadow">
-              <div className="rabout-img">
+            <div className={styles.rshadow}>
+              <div className={styles.raboutImg}>
                 <img src="https://api.dicebear.com/9.x/fun-emoji/svg?seed=Christian" />
               </div>
             </div>

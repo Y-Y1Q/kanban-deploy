@@ -7,7 +7,7 @@
   font-family: "Poppins", sans-serif;
 }
 
-.zabout-us {
+.aboutUs {
   display: flex;
   align-items: center;
   height: 100vh;
@@ -16,13 +16,13 @@
   background: #fff;
 }
 
-.zpic {
+.pic {
   height: auto;
   width: 400px;
   border-radius: 12px;
 }
 
-.zabout {
+.about {
   width: 1130px;
   max-width: 85%;
   margin: 0 auto;
@@ -31,40 +31,36 @@
   justify-content: space-around;
 }
 
-.ztext {
+.text {
   width: 540px;
 }
 
-.ztext h2 {
+.text h2 {
   color: #333;
   font-size: 90px;
   font-weight: 600;
   margin-bottom: 10px;
 }
 
-.ztext h5 {
+.text h5 {
   color: #333;
   font-size: 22px;
   font-weight: 500;
   margin-bottom: 20px;
 }
 
-span {
-  color: #4070f4;
-}
-
-.ztext p {
+.text p {
   color: #333;
   font-size: 18px;
   line-height: 25px;
   letter-spacing: 1px;
 }
 
-.zdata {
+.data {
   margin-top: 30px;
 }
 
-.zlink {
+.link {
   font-size: 18px;
   background: #4070f4;
   color: #fff;
@@ -75,6 +71,6 @@ span {
   transition: 0.5s;
 }
 
-.zlink:hover {
+.link:hover {
   background: #000;
 }
