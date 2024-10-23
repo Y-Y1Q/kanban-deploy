@@ -28,7 +28,7 @@ export default function TopBar() {
   return (
     <Box display="flex" justifyContent="space-between" p={2}>
       {/* User info */}
-      <Box display="flex">
+      <Box display="flex" sx={{ mt: 2 }}>
         <Typography variant="h3" sx={{ fontWeight: "bold" }}>
           Welcome! &nbsp;
         </Typography>
