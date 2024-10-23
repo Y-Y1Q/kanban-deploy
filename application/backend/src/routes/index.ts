@@ -10,6 +10,7 @@ router.post("/api/auth/check", Controller.Auth.isAuthenticated);
 router.post("/api/auth/sign-up", Controller.Auth.signUp);
 router.post("/api/auth/sign-in", Controller.Auth.signIn);
 router.post("/api/auth/sign-out", Controller.Auth.signOut);
+router.post("/api/auth/user-info", Controller.Auth.getUserInfo);
 
 /* All API routes below are for authenticated user */
 // M2 Job routes ( will update to use query param later)

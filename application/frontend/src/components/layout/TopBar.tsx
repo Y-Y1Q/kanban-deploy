@@ -3,7 +3,7 @@ import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import axios from "axios";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { ColorModeContext } from "../../theme";
@@ -12,16 +12,27 @@ export default function TopBar() {
   const theme = useTheme();
   const colorMode = useContext(ColorModeContext);
   const navigate = useNavigate(); // For navigation after sign out
+  const [username, setUsername] = useState<string | null>(null); // State to hold the username
+
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const response = await axios.post("/api/auth/user-info");
+        setUsername(response.data.username); // Set the username from the response
+      } catch (error) {
+        console.error("Error fetching user info", error);
+      }
+    };
+
+    fetchUserInfo();
+  }, []);
 
   const handleSignOut = async () => {
     try {
       await axios.post("/api/auth/sign-out");
-      // Perform any necessary cleanup, e.g., clearing session storage, etc.
-      // Redirect to login page "/"
-      navigate("/");
+      navigate("/"); // Redirect to login page
     } catch (error) {
       console.error("Error signing out", error);
-      // Handle error, e.g., show a notification
     }
   };
 
@@ -34,7 +45,7 @@ export default function TopBar() {
         </Typography>
 
         <Typography variant="h3" component="span" sx={{ fontWeight: "bold", color: "#4070f4" }}>
-          username placeholder
+          {username ? username : "Loading..."} {/* Replace with username or show loading */}
         </Typography>
       </Box>
 
