@@ -7,7 +7,7 @@ if (process.env.DATABASE_URL === undefined) {
   process.env.DATABASE_URL = "YOU_FORGOT_TO_SETUP_YOUR_ENVIRONMENT";
 } else {
   console.log(
-    "Connecting to DB with URL:  " + `\x1b[32m\x1b[1m${process.env.DATABASE_URL} \x1b[0m`
+    "\nConnecting to DB with URL:  " + `\x1b[32m\x1b[1m${process.env.DATABASE_URL} \x1b[0m\n`
   );
 }
 
