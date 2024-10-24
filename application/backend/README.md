@@ -2,8 +2,12 @@
 
 ## Pre-Requisites
 
-> Node.js 20.18.0 (LTS) Updated on 10/23/2024
+> Node.js 20.18.0 (LTS)
 > https://nodejs.org/en/download/prebuilt-installer
+
+Node version for this project is updated on 10/23/2024
+
+ <br>
 
 > Postgres 16.4
 > https://www.enterprisedb.com/downloads/postgres-postgresql-downloads

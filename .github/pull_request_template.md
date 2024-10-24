@@ -6,13 +6,12 @@
 
 ## Related Issue
 
-<!--- Please add link to the issue below -->
-<!-- Go to our GitHub Project, and copy & paste the link of related issue -->
+<!-- Go to our GitHub Project or Issues, and copy & paste the link of related issue -->
 
 ## Pull Request Checklist
 
-<!-- use the [x] syntax for checked checkboxes and [ ] for unchecked checkboxes. -->
-<!-- You can also check boxes manualy via clicking, after pull request is created -->
+<!-- use the [x] syntax for checked boxes and [ ] for unchecked boxes. -->
+<!-- You can also check boxes manually via clicking it after this pull request is created -->
 
 Please review the following checklist before submitting your pull request:
 
