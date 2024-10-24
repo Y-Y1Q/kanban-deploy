@@ -106,6 +106,15 @@ export default function SignUp() {
             padding: 4,
           }}
         >
+          <Box sx={{ textAlign: "center", mb: 4 }}>
+            <Typography variant="h3" sx={{ mt: 4, color: "black" }}>
+              Welcome to <b>EZJobs</b>
+            </Typography>
+            <Typography variant="h5" sx={{ mt: 2, color: "black" }}>
+              AI Powered Job Application Tracker
+            </Typography>
+          </Box>
+
           <img src="/img/home.svg" alt="home page" />
         </Grid>
 
@@ -122,16 +131,6 @@ export default function SignUp() {
             padding: 4,
           }}
         >
-          {/* Text Above the Sign-up Form */}
-          <Box sx={{ textAlign: "center", mb: 4 }}>
-            <Typography variant="h4" component="h2" sx={{ mt: 4, color: "black" }}>
-              Welcome to EZJobs
-            </Typography>
-            <Typography variant="subtitle1" sx={{ mt: 2, color: "black" }}>
-              AI Powered Job Application Tracker
-            </Typography>
-          </Box>
-
           {/* Sign-up Form */}
           <Box
             sx={{

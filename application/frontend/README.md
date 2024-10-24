@@ -4,8 +4,12 @@ WIP
 
 ## Pre-Requisites
 
-> Node.js 20.18.0 (LTS)  Updated on 10/23/2024
+> Node.js 20.18.0 (LTS)
 > https://nodejs.org/en/download/prebuilt-installer
+
+Node version for this project is updated on 10/23/2024
+
+ <br>
 
 ## Installation
 
