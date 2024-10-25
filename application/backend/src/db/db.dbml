@@ -2,7 +2,7 @@
 // https://dbdiagram.io/d/648-EzJobs-670b818b97a66db9a3c99510
 
 // Users info
- Table users {
+Table users {
   id int [pk, increment]
   username varchar(50) [not null, unique]
   email varchar(50) [not null, unique]
@@ -40,22 +40,24 @@ Table columns {
 }
 
 
-// Documents info
-Table docs {
+// Job Statistics
+// Update by DB automatically
+Table job_stats {
   id int [pk, increment]
-  user_id int [not null]
-  title varchar(50) [not null]
-  filepath varchar(200) [not null]
+  user_id int [not null, unique]
+  interested int [note:"columns.id=1"]
+  pending int [note:"columns.id=2"]
+  in_progress int [note:"columns.id=3"]
+  offer int [note:"columns.id=4"]
+  declined int [note:"columns.id=5"]
+  ghosted int [note:"columns.id=6"]
+  follow_up int [note:"columns.id=7"]
+  applied int
+  total int
 }
 
-Table doc_jobs {
-  doc_id int [not null]
-  job_id int [not null]
-}
+Ref: users.id - job_stats.user_id [delete: cascade]
 
-Ref: doc_jobs.doc_id > docs.id [delete: cascade]
-Ref: doc_jobs.job_id > jobs.id [delete: cascade]
-Ref: docs.user_id > users.id [delete: cascade]
 
 
 // Contacts info
@@ -84,17 +86,21 @@ Ref: contact_jobs.job_id > jobs.id [delete: cascade]
 Table ai_resume {
   id int [pk, increment]
   user_id int [not null]
-  doc_id int [unique]
+  user_token varchar(200) [unique]
   personal_information varchar(200)
   relevant_skills varchar(200)
   education varchar(200)
   experience varchar(200)
   projects varchar(200)
+  ai_info varchar(200)
+  ai_skills varchar(200)
+  ai_edu varchar(200)
+  ai_exp varchar(200)
+  ai_proj varchar(200)
 }
 
-Ref: ai_resume.user_id > users.id [delete: cascade]
-Ref: docs.id - ai_resume.doc_id [delete: set null]
 
+Ref: ai_resume.user_id > users.id [delete: cascade]
 
 // Prompts info for AI_interview_prep
 Table ai_interview_prep {
