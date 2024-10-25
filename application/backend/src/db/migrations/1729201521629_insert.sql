@@ -30,26 +30,6 @@ VALUES
 (1, 2, 'Pending', 'Company I', 'Cloud Architect', '120k', 'Contract', 'Seattle', 'https://example.com/job9', 'Job description 9', 'Pending feedback', '2024-09-01', '2024-09-20 13:00:00'),
 (1, 3, 'In Progress', 'Company J', 'Fullstack Developer', '125k', 'Full-Time', 'Boston', 'https://example.com/job10', 'Job description 10', 'Second round of interviews', '2024-10-01', '2024-10-15 11:30:00');
 
--- Insert into docs table
-INSERT INTO docs (user_id, title, filepath)
-VALUES 
-(1, 'Resume', '/files/testuser_resume.pdf'),
-(1, 'Cover Letter', '/files/testuser_cover_letter.pdf'),
-(1, 'Portfolio', '/files/testuser_portfolio.pdf'),
-(1, 'Reference Letter', '/files/testuser_reference_letter.pdf'),
-(1, 'Recommendation Letter', '/files/testuser_recommendation_letter.pdf'),
-(1, 'Technical Assessment', '/files/testuser_assessment.pdf'),
-(1, 'Certification', '/files/testuser_certification.pdf'),
-(1, 'Diploma', '/files/testuser_diploma.pdf'),
-(1, 'Job Offer', '/files/testuser_job_offer.pdf'),
-(1, 'Contract', '/files/testuser_contract.pdf');
-
--- Insert into doc_jobs table
-INSERT INTO doc_jobs (doc_id, job_id)
-VALUES 
-(1, 1), (2, 1), (3, 2), (4, 3), (5, 4), 
-(6, 5), (7, 6), (8, 7), (9, 8), (10, 9);
-
 -- Insert into contacts table
 INSERT INTO contacts (user_id, name, position, company, email, phone_num, user_note)
 VALUES 
@@ -71,18 +51,18 @@ VALUES
 (6, 6), (7, 7), (8, 8), (9, 9), (10, 10);
 
 -- Insert into ai_resume table
-INSERT INTO ai_resume (user_id, doc_id, personal_information, relevant_skills, education, experience, projects)
+INSERT INTO ai_resume (user_id, personal_information, relevant_skills, education, experience, projects)
 VALUES 
-(1, 1, 'Test User - San Jose, CA', 'JavaScript, React, Node.js', 'B.S. Computer Science', 'Software Engineer at XYZ', 'Built Kanban board app'),
-(1, 2, 'Test User - San Jose, CA', 'Python, Data Science', 'M.S. Data Science', 'Data Analyst at ABC Corp', 'Developed data analysis tool'),
-(1, 3, 'Test User - San Jose, CA', 'DevOps, AWS, Docker', 'B.S. Information Technology', 'DevOps Engineer at DEF Ltd.', 'Automated deployment pipelines'),
-(1, 4, 'Test User - San Jose, CA', 'Fullstack, HTML, CSS', 'B.S. Software Engineering', 'Frontend Developer at GHI Inc.', 'Redesigned frontend UI'),
-(1, 5, 'Test User - San Jose, CA', 'Cloud Computing, Kubernetes', 'M.S. Cloud Computing', 'Cloud Engineer at JKL Tech', 'Managed cloud infrastructure'),
-(1, 6, 'Test User - San Jose, CA', 'Project Management, Agile', 'MBA', 'Product Manager at MNO Inc.', 'Led cross-functional team'),
-(1, 7, 'Test User - San Jose, CA', 'Mobile Development, Swift', 'B.S. Mobile Computing', 'iOS Developer at PQR Mobile', 'Built mobile application'),
-(1, 8, 'Test User - San Jose, CA', 'Cybersecurity, Penetration Testing', 'M.S. Cybersecurity', 'Security Engineer at STU Security', 'Secured enterprise systems'),
-(1, 9, 'Test User - San Jose, CA', 'AI, Machine Learning', 'Ph.D. in AI', 'ML Engineer at VWX AI', 'Developed AI models'),
-(1, 10, 'Test User - San Jose, CA', 'Blockchain, Cryptography', 'B.S. Cryptography', 'Blockchain Developer at YZ Crypto', 'Created blockchain solutions');
+(1, 'Test User - San Jose, CA', 'JavaScript, React, Node.js', 'B.S. Computer Science', 'Software Engineer at XYZ', 'Built Kanban board app'),
+(1, 'Test User - San Jose, CA', 'Python, Data Science', 'M.S. Data Science', 'Data Analyst at ABC Corp', 'Developed data analysis tool'),
+(1, 'Test User - San Jose, CA', 'DevOps, AWS, Docker', 'B.S. Information Technology', 'DevOps Engineer at DEF Ltd.', 'Automated deployment pipelines'),
+(1, 'Test User - San Jose, CA', 'Fullstack, HTML, CSS', 'B.S. Software Engineering', 'Frontend Developer at GHI Inc.', 'Redesigned frontend UI'),
+(1, 'Test User - San Jose, CA', 'Cloud Computing, Kubernetes', 'M.S. Cloud Computing', 'Cloud Engineer at JKL Tech', 'Managed cloud infrastructure'),
+(1, 'Test User - San Jose, CA', 'Project Management, Agile', 'MBA', 'Product Manager at MNO Inc.', 'Led cross-functional team'),
+(1, 'Test User - San Jose, CA', 'Mobile Development, Swift', 'B.S. Mobile Computing', 'iOS Developer at PQR Mobile', 'Built mobile application'),
+(1, 'Test User - San Jose, CA', 'Cybersecurity, Penetration Testing', 'M.S. Cybersecurity', 'Security Engineer at STU Security', 'Secured enterprise systems'),
+(1, 'Test User - San Jose, CA', 'AI, Machine Learning', 'Ph.D. in AI', 'ML Engineer at VWX AI', 'Developed AI models'),
+(1, 'Test User - San Jose, CA', 'Blockchain, Cryptography', 'B.S. Cryptography', 'Blockchain Developer at YZ Crypto', 'Created blockchain solutions');
 
 -- Insert into ai_interview_prep table
 INSERT INTO ai_interview_prep (user_id, company, job_position, job_description, ai_response)
