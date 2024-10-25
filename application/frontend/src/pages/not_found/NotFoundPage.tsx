@@ -6,11 +6,9 @@ export default function NotFoundPage() {
   const location = useLocation();
 
   const handleGoHome = () => {
-    if (location.pathname.startsWith("/app")) {
-      navigate("/app");
-    } else {
-      navigate("/");
-    }
+      // go back to previous page
+      navigate(-1);
+      
   };
 
   return (
