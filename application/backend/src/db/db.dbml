@@ -40,20 +40,20 @@ Table columns {
 }
 
 
-// Job Statistics
+// Job Statistics Number
 // Update by DB automatically
 Table job_stats {
   id int [pk, increment]
   user_id int [not null, unique]
-  interested int [note:"columns.id=1"]
-  pending int [note:"columns.id=2"]
-  in_progress int [note:"columns.id=3"]
-  offer int [note:"columns.id=4"]
-  declined int [note:"columns.id=5"]
-  ghosted int [note:"columns.id=6"]
-  follow_up int [note:"columns.id=7"]
-  applied int
-  total int
+  interested int [default: 0, note:"columns.id=1"]
+  pending int [default: 0, note:"columns.id=2"]
+  in_progress int [default: 0, note:"columns.id=3"]
+  offer int [default: 0, note:"columns.id=4"]
+  declined int [default: 0, note:"columns.id=5"]
+  ghosted int [default: 0, note:"columns.id=6"]
+  follow_up int [default: 0, note:"columns.id=7"]
+  applied int [default: 0]
+  total int [default: 0]
 }
 
 Ref: users.id - job_stats.user_id [delete: cascade]
