@@ -122,7 +122,7 @@ CREATE INDEX "idx_ai_interview_user_id" ON "ai_interview_prep" ("user_id");
 
 COMMENT ON COLUMN "columns"."position" IS 'the order of this column in the Kanban board';
 
-COMMENT ON COLUMN "column_cards"."index_num" IS 'position of cards in the column, lexorank';
+COMMENT ON COLUMN "column_cards"."position" IS 'position of cards in the column, lexorank';
 
 COMMENT ON COLUMN "job_stats"."interested" IS 'columns.id=1';
 
