@@ -134,6 +134,17 @@ ALTER TABLE "ai_resume" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id") ON
 
 ALTER TABLE "ai_interview_prep" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id") ON DELETE CASCADE;
 
+-- Create indexes on non-unique foreign keys
+CREATE INDEX idx_jobs_user_id ON jobs(user_id);
+CREATE INDEX idx_jobs_column_id ON jobs(column_id);
+CREATE INDEX idx_contacts_user_id ON contacts(user_id);
+CREATE INDEX idx_ai_resume_user_id ON ai_resume(user_id);
+CREATE INDEX idx_ai_interview_prep_user_id ON ai_interview_prep(user_id);
+
+-- Ensure unique combination of contact_id and job_id in contact_jobs table
+ALTER TABLE contact_jobs
+ADD CONSTRAINT unique_contact_job_pair UNIQUE (contact_id, job_id);
+
 -- Trigger to update job_stats table after new user is created
 CREATE OR REPLACE FUNCTION insert_job_stats()
 RETURNS TRIGGER AS $$
