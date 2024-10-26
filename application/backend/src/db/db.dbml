@@ -50,12 +50,12 @@ Table column_cards {
   user_id int [not null]
   job_id int [not null]
   column_id int [not null]
-  index_num int [not null, note:"position of cards in the column"]
+  position varchar(50) [not null, note:"position of cards in the column, lexorank"]
 
 
 // ensures position uniqueness within each user’s board
 // add in sql file
-// UNIQUE ("user_id", "column_id", "index_num")
+// UNIQUE ("user_id", "column_id", "position")
 }
 
 Ref: column_cards.column_id > columns.id 

@@ -50,8 +50,8 @@ CREATE TABLE "column_cards" (
   "user_id" int NOT NULL,
   "job_id" int NOT NULL,
   "column_id" int NOT NULL,
-  "index_num" int NOT NULL,
-  UNIQUE ("user_id", "column_id", "index_num")
+  "position" varchar(50) NOT NULL,
+  UNIQUE ("user_id", "column_id", "position")
 );
 
 CREATE TABLE "job_stats" (
@@ -122,7 +122,7 @@ CREATE INDEX "idx_ai_interview_user_id" ON "ai_interview_prep" ("user_id");
 
 COMMENT ON COLUMN "columns"."position" IS 'the order of this column in the Kanban board';
 
-COMMENT ON COLUMN "column_cards"."index_num" IS 'position of cards in the column';
+COMMENT ON COLUMN "column_cards"."index_num" IS 'position of cards in the column, lexorank';
 
 COMMENT ON COLUMN "job_stats"."interested" IS 'columns.id=1';
 
