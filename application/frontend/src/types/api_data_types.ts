@@ -52,6 +52,11 @@ export interface JobStats {
   total?: number;
 }
 
+export interface DateStats {
+  date_applied?: Date | null;
+  count?: number | null;
+}
+
 export interface Contact {
   id: number;
   user_id: number;
