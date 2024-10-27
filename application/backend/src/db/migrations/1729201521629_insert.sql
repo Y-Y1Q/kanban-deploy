@@ -19,14 +19,14 @@ VALUES
 -- Insert into jobs table
 INSERT INTO jobs (user_id, column_id, current_status, company, position, salary, type, location, link, description, user_note, date_applied, date_scheduled)
 VALUES 
-(1, 1, 'Interested', 'Company A', 'Software Engineer', '80k', 'Full-Time', 'San Jose', 'https://example.com/job1', 'Job description 1', 'Excited about this role', '2024-01-01', '2024-01-15 10:00:00'),
+(1, 1, 'Interested', 'Company A', 'Software Engineer', '80k', 'Full-Time', 'San Jose', 'https://example.com/job1', 'Job description 1', 'Excited about this role', NULL, NULL),
 (1, 2, 'Pending', 'Company B', 'Data Scientist', '85k', 'Contract', 'New York', 'https://example.com/job2', 'Job description 2', 'Awaiting response', '2024-02-01', '2024-02-20 15:00:00'),
 (1, 3, 'In Progress', 'Company C', 'Backend Developer', '90k', 'Full-Time', 'Chicago', 'https://example.com/job3', 'Job description 3', 'Scheduled interview', '2024-03-01', '2024-03-10 11:00:00'),
 (1, 4, 'Offer', 'Company D', 'Frontend Developer', '100k', 'Part-Time', 'Los Angeles', 'https://example.com/job4', 'Job description 4', 'Offer accepted', '2024-04-01', '2024-04-15 14:00:00'),
 (1, 5, 'Declined', 'Company E', 'Product Manager', '110k', 'Full-Time', 'Houston', 'https://example.com/job5', 'Job description 5', 'Declined offer', '2024-05-01', '2024-05-25 12:00:00'),
 (1, 6, 'Ghosted', 'Company F', 'UI/UX Designer', '95k', 'Full-Time', 'Austin', 'https://example.com/job6', 'Job description 6', 'No response from recruiter', '2024-06-01', '2024-06-20 16:00:00'),
 (1, 7, 'Follow Up', 'Company G', 'Mobile Developer', '105k', 'Remote', 'Remote', 'https://example.com/job7', 'Job description 7', 'Following up', '2024-07-01', '2024-07-30 09:00:00'),
-(1, 1, 'Interested', 'Company H', 'DevOps Engineer', '115k', 'Full-Time', 'San Francisco', 'https://example.com/job8', 'Job description 8', 'Initial interest', '2024-08-01', '2024-08-10 10:30:00'),
+(1, 1, 'Interested', 'Company H', 'DevOps Engineer', '115k', 'Full-Time', 'San Francisco', 'https://example.com/job8', 'Job description 8', 'Initial interest', NULL, NULL),
 (1, 2, 'Pending', 'Company I', 'Cloud Architect', '120k', 'Contract', 'Seattle', 'https://example.com/job9', 'Job description 9', 'Pending feedback', '2024-09-01', '2024-09-20 13:00:00'),
 (1, 3, 'In Progress', 'Company J', 'Fullstack Developer', '125k', 'Full-Time', 'Boston', 'https://example.com/job10', 'Job description 10', 'Second round of interviews', '2024-10-01', '2024-10-15 11:30:00');
 
