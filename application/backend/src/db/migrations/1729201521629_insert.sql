@@ -30,6 +30,20 @@ VALUES
 (1, 2, 'Pending', 'Company I', 'Cloud Architect', '120k', 'Contract', 'Seattle', 'https://example.com/job9', 'Job description 9', 'Pending feedback', '2024-09-01', '2024-09-20 13:00:00'),
 (1, 3, 'In Progress', 'Company J', 'Fullstack Developer', '125k', 'Full-Time', 'Boston', 'https://example.com/job10', 'Job description 10', 'Second round of interviews', '2024-10-01', '2024-10-15 11:30:00');
 
+-- Insert into column_cards table with LexoRank values for position
+INSERT INTO column_cards (user_id, job_id, column_id, position)
+VALUES
+(1, 1, 1, '0|hzzzzz:'),   -- Company A in "Interested" column
+(1, 2, 2, '0|hzzzzz:'),   -- Company B in "Pending" column
+(1, 3, 3, '0|hzzzzz:'),   -- Company C in "In Progress" column
+(1, 4, 4, '0|hzzzzz:'),   -- Company D in "Offer" column
+(1, 5, 5, '0|hzzzzz:'),   -- Company E in "Declined" column
+(1, 6, 6, '0|hzzzzz:'),   -- Company F in "Ghosted" column
+(1, 7, 7, '0|hzzzzz:'),   -- Company G in "Follow Up" column
+(1, 8, 1, '0|0i0000:'),   -- Company H in "Interested" column (second position)
+(1, 9, 2, '0|0i0000:'),   -- Company I in "Pending" column (second position)
+(1, 10, 3, '0|0i0000:');  -- Company J in "In Progress" column (second position)
+
 -- Insert into contacts table
 INSERT INTO contacts (user_id, name, position, company, email, phone_num, user_note)
 VALUES 

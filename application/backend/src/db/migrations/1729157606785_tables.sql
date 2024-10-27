@@ -50,7 +50,7 @@ CREATE TABLE "column_cards" (
   "user_id" int NOT NULL,
   "job_id" int NOT NULL,
   "column_id" int NOT NULL,
-  "position" varchar(50) NOT NULL,
+  "position" varchar(20) NOT NULL,
   UNIQUE ("user_id", "column_id", "position")
 );
 

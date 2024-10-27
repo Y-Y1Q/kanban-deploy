@@ -50,7 +50,7 @@ Table column_cards {
   user_id int [not null]
   job_id int [not null]
   column_id int [not null]
-  position varchar(50) [not null, note:"position of cards in the column, lexorank"]
+  position varchar(20) [not null, note:"position of cards in the column, lexorank"]
 
 
 // ensures position uniqueness within each user’s board
