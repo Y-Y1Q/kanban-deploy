@@ -74,10 +74,6 @@ export default function SideBar() {
     >
       <ProSidebar collapsed={isCollapsed}>
         <Menu>
-          {/* <Typography variant="h1" color={colors.grey[100]}>
-            TEST
-          </Typography> */}
-
           {/* LOGO AND MENU ICON */}
           <MenuItem
             onClick={() => setIsCollapsed(!isCollapsed)}
@@ -92,7 +88,7 @@ export default function SideBar() {
                 display="flex"
                 justifyContent="space-between"
                 alignItems="center"
-                paddingLeft="12%"
+                paddingLeft="11%"
                 mr="45px"
               >
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
@@ -179,6 +175,7 @@ export default function SideBar() {
               setSelected={setSelected}
             />
 
+            {/* M2 Test sidebar, delete later */}
             <Typography variant="h5" color={colors.grey[300]} sx={{ m: "15px 0 5px 20px" }}>
               M2 Test
             </Typography>
