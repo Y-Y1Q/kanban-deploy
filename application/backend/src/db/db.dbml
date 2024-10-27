@@ -39,10 +39,18 @@ Ref: jobs.user_id > users.id [delete: cascade]
 // Kanban board column to track job status
 Table columns {
   id int [pk, increment]
+  user_id int [not null]
   name varchar(20) [not null]
   color varchar(20) [not null]
   position varchar(20) [not null, note:"the order of this column in the Kanban board"]
+
+  
+// ensures column position uniqueness within each user’s board
+// add in sql file
+// UNIQUE ("user_id", "position")
 }
+
+Ref: columns.user_id > users.id [delete: cascade]
 
 // Job cards in each column
 Table column_cards {
@@ -53,12 +61,12 @@ Table column_cards {
   position varchar(20) [not null, note:"position of cards in the column, lexorank"]
 
 
-// ensures position uniqueness within each user’s board
+// ensures card position uniqueness within each user’s board
 // add in sql file
 // UNIQUE ("user_id", "column_id", "position")
 }
 
-Ref: column_cards.column_id > columns.id 
+Ref: column_cards.column_id > columns.id [delete: cascade]
 Ref: column_cards.job_id > jobs.id [delete: cascade]
 Ref: column_cards.user_id > users.id [delete: cascade]
 
