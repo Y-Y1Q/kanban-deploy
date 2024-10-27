@@ -1,6 +1,6 @@
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { Theme } from "@mui/material/styles";
-import { ReactNode } from "react";
+import { Outlet } from "react-router-dom";
 
 import { ColorModeContext, ColorModeContextType } from "../../utils/theme";
 import SideBar from "./SideBar";
@@ -9,10 +9,9 @@ import TopBar from "./TopBar";
 interface LayoutProps {
   theme: Theme; // MUI theme type
   colorMode: ColorModeContextType; // Color mode type from theme context
-  children: ReactNode; // Type for children
 }
 
-const Layout: React.FC<LayoutProps> = ({ theme, colorMode, children }) => {
+const Layout: React.FC<LayoutProps> = ({ theme, colorMode }) => {
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
@@ -21,7 +20,7 @@ const Layout: React.FC<LayoutProps> = ({ theme, colorMode, children }) => {
           <SideBar />
           <main className="content">
             <TopBar />
-            {children}
+            <Outlet /> {/* This renders nested routes */}
           </main>
         </div>
       </ThemeProvider>

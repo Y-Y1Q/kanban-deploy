@@ -20,14 +20,12 @@ interface LayoutProps {
 
 const LayoutRoutes: React.FC<LayoutProps> = ({ theme, colorMode }) => {
   return (
-    <Layout theme={theme} colorMode={colorMode}>
-      <Routes>
-        {/* M2 Test page browser routes */}
+    <Routes>
+      {/* Wrap only the valid routes with Layout */}
+      <Route element={<Layout theme={theme} colorMode={colorMode} />}>
         <Route path="/test" element={<TestJobsData />} />
         <Route path="/search-company" element={<TestSearchCompany />} />
         <Route path="/search-type" element={<TestSearchType />} />
-
-        {/* EZJobs service browser routes */}
         <Route path="/" element={<JobsPage />} />
         <Route path="/stats-heatmap" element={<JobStatsPage.HeatMap />} />
         <Route path="/stats-bar" element={<JobStatsPage.Bar />} />
@@ -36,10 +34,11 @@ const LayoutRoutes: React.FC<LayoutProps> = ({ theme, colorMode }) => {
         <Route path="/contacts" element={<ContactsPage />} />
         <Route path="/ai-resume" element={<AiResumePage />} />
         <Route path="/ai-interview" element={<InterviewPrepPage />} />
+      </Route>
 
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-    </Layout>
+      {/* Catch-all for invalid paths without Layout styling */}
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
   );
 };
 

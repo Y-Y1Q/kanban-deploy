@@ -50,7 +50,7 @@ export default function SideBar() {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [selected, setSelected] = useState("Jobs Board");
+  const [selected, setSelected] = useState("Kanban Board");
 
   return (
     <Box
@@ -105,7 +105,7 @@ export default function SideBar() {
 
           <Box paddingLeft={isCollapsed ? undefined : "10%"} paddingRight="0%">
             <Item
-              title="Jobs Board"
+              title="Kanban Board"
               to="/app/"
               icon={<DashboardIcon />}
               selected={selected}
