@@ -9,12 +9,12 @@ VALUES ('test', 'test@example.com', '$2a$12$rIm35EX/UiFlj72.IIG7b.l7.czeUdFpmfIe
 INSERT INTO columns (name, position, color) 
 VALUES 
 ('Interested', 1, '#0693E3'),
-('Pending', 2, '#9900ef'),
+('Pending', 2, '#FFC107'),
 ('In Progress', 3, '#008B02'),
 ('Offer', 4, '#37D67A'),
 ('Declined', 5, '#f47373'),
 ('Ghosted', 6, '#abb8c3'),
-('Follow Up', 7, '#ff6900');
+('Follow Up', 7, '#FD7E14');
 
 -- Insert into jobs table
 INSERT INTO jobs (user_id, column_id, current_status, company, position, salary, type, location, link, description, user_note, date_applied, date_scheduled)

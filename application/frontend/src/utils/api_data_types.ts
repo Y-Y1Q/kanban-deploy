@@ -26,7 +26,7 @@ export interface Column {
   id: number;
   name: string;
   color: string;
-  position: string;
+  position: number;
 }
 
 export interface ColumnCards {
