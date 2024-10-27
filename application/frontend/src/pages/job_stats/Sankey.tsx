@@ -1,12 +1,14 @@
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
+import { Box } from "@mui/material";
 
-export default function Sankey() {
+import PageIntro from "../../components/ui/PageIntro";
+
+// import BarChart from "./components/BarChart";
+
+export default function HeatMap() {
   return (
-    <Box sx={{ width: "100%", maxWidth: 500, margin: "auto" }}>
-      <Typography variant="h1" gutterBottom>
-        Sankey Chart Work In Progess
-      </Typography>
+    <Box m="20px">
+      <PageIntro title="Sankey Chart" />
+      <Box height="75vh"></Box>
     </Box>
   );
 }

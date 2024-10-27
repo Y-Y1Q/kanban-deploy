@@ -1,12 +1,14 @@
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
+import { Box } from "@mui/material";
+
+import PageIntro from "../../components/ui/PageIntro";
+
+// import BarChart from "./components/BarChart";
 
 export default function Donut() {
   return (
-    <Box sx={{ width: "100%", maxWidth: 500, margin: "auto" }}>
-      <Typography variant="h1" gutterBottom>
-        Donut Chart Work In Progess
-      </Typography>
+    <Box m="20px">
+      <PageIntro title="Donut Chart" />
+      <Box height="75vh"></Box>
     </Box>
   );
 }

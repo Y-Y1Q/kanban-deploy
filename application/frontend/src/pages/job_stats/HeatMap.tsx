@@ -1,12 +1,14 @@
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
+import { Box } from "@mui/material";
+
+import PageIntro from "../../components/ui/PageIntro";
+
+// import BarChart from "./components/BarChart";
 
 export default function HeatMap() {
   return (
-    <Box sx={{ width: "100%", maxWidth: 500, margin: "auto" }}>
-      <Typography variant="h1" gutterBottom>
-        Heatmap Work In Progess
-      </Typography>
+    <Box m="20px">
+      <PageIntro title="Calendar Heat Map" />
+      <Box height="75vh"></Box>
     </Box>
   );
 }
