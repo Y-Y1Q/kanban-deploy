@@ -76,6 +76,7 @@ Table job_stats {
   ghosted int [default: 0, note:"columns.id=6"]
   follow_up int [default: 0, note:"columns.id=7"]
   applied int [default: 0]
+  interview int [default: 0]
   total int [default: 0]
 }
 

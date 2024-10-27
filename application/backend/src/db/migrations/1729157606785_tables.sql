@@ -65,6 +65,7 @@ CREATE TABLE "job_stats" (
   "ghosted" int DEFAULT 0,
   "follow_up" int DEFAULT 0,
   "applied" int DEFAULT 0,
+  "interview" int DEFAULT 0,
   "total" int DEFAULT 0
 );
 
@@ -188,6 +189,7 @@ DECLARE
     declined_count INT;
     ghosted_count INT;
     follow_up_count INT;
+    interview_count INT;
     total_count INT;
 BEGIN
     -- Count records for each column_id and assign all values at once
@@ -207,6 +209,7 @@ BEGIN
 
     -- Calculate total and applied counts
     total_count := interested_count + pending_count + in_progress_count + offer_count + declined_count + ghosted_count + follow_up_count;
+    interview_count := in_progress_count + offer_count + follow_up_count;
     
     -- Update the job_stats table
     UPDATE job_stats
@@ -219,6 +222,7 @@ BEGIN
         ghosted = ghosted_count,
         follow_up = follow_up_count,
         total = total_count,
+        interview = interview_count,
         applied = total_count - interested_count
     WHERE user_id = COALESCE(NEW.user_id, OLD.user_id);
 
