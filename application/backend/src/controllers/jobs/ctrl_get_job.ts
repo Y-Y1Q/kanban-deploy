@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 
-import * as JobsDB from "../../db/jobs";
+import * as JobsDB from "../../db/jobs/get_jobs";
 import HttpCode from "../../constants/http_code";
 
 export async function getJobs(req: Request, res: Response) {
