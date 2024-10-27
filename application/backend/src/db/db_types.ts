@@ -19,21 +19,37 @@ export interface Job {
   description?: string | null;
   user_note?: string | null;
   date_applied?: Date | null;
-  date_scheduled?: string| null;
+  date_scheduled?: string | null;
 }
 
 export interface Column {
   id: number;
   name: string;
   color: string;
-  position: number;
+  position: string;
 }
 
-export interface Doc {
+export interface ColumnCards {
   id: number;
   user_id: number;
-  title?: string | null;
-  filepath: string;
+  job_id: number;
+  column_id: number;
+  position: string;
+}
+
+export interface JobStats {
+  id: number;
+  user_id: number;
+  interested?: number;
+  pending?: number;
+  in_progress?: number;
+  offer?: number;
+  declined?: number;
+  ghosted?: number;
+  follow_up?: number;
+  applied?: number;
+  interview?: number;
+  total?: number;
 }
 
 export interface Contact {
@@ -47,18 +63,23 @@ export interface Contact {
   phone_num?: string | null;
 }
 
-export interface AIResumeBuilder {
+export interface AiResume {
   id: number;
   user_id: number;
-  doc_id?: number | null;
+  user_token?: string | null;
   personal_information?: string | null;
   relevant_skills?: string | null;
   education?: string | null;
   experience?: string | null;
   projects?: string | null;
+  ai_info?: string | null;
+  ai_skills?: string | null;
+  ai_edu?: string | null;
+  ai_exp?: string | null;
+  ai_proj?: string | null;
 }
 
-export interface AIInterviewPrep {
+export interface AiInterviewPrep {
   id: number;
   user_id: number;
   company?: string | null;
