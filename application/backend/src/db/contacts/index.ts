@@ -2,58 +2,47 @@ import db from "../db_connection";
 import { testQuery } from "../db_test";
 import { Contact } from "../db_types";
 
-export async function addContact(name: string, email: string): Promise<void> {
-  const query = "INSERT INTO users (name, email) VALUES ($1, $2)";
+export async function addContact(
+  user_id: number,
+  name: string,
+  email: string,
+  company: string,
+  position: string,
+  phone_num: string,
+  user_note: string
+): Promise<Contact | null> {
+  const query = `
+    INSERT INTO contacts (user_id, name, email, company, position, phone_num, user_note)
+    VALUES ($1, $2, $3, $4, $5, $6, $7)
+    RETURNING id, user_id, name, email, company, position, phone_num, user_note
+  `;
 
   try {
-    await db.none(query, [name, email]);
-    console.log(`Contact with name ${name} added successfully.`);
+    const contact = await db.oneOrNone<Contact>(query, [
+      user_id,
+      name,
+      email,
+      company,
+      position,
+      phone_num,
+      user_note,
+    ]);
+    return contact;
   } catch (error) {
-    console.error(`Error adding contact with name ${name}:`, error);
+    console.error(`Error adding new contact: `, error);
+    return null;
   }
 }
 
-testQuery(addContact, "John Doe", "something@email.com");
-
-// export async function getContactById(id: number): Promise<Contact | null> {
-//   const query = "SELECT id, username, email FROM users WHERE id = $1";
-
-//   try {
-//     const contact = await db.oneOrNone<Contact>(query, [id]);
-//     return contact;
-//   } catch (error) {
-//     console.error(`Error fetching contact for ID ${id}:`, error);
-//     return null;
-//   }
-// }
-
-// export async function updateContactEmailById(id: number, email: string): Promise<void> {
-//   const query = "UPDATE users SET email = $1 WHERE id = $2";
-
-//   try {
-//     await db.none(query, [email, id]);
-//     console.log(`Contact with ID ${id} updated successfully.`);
-//   } catch (error) {
-//     console.error(`Error updating contact for ID ${id}:`, error);
-//   }
-// }
-
-// export async function deleteContactById(id: number): Promise<void> {
-//   const query = "DELETE FROM users WHERE id = $1";
-
-//   try {
-//     await db.none(query, [id]);
-//     console.log(`Contact with ID ${id} deleted successfully.`);
-//   } catch (error) {
-//     console.error(`Error deleting contact for ID ${id}:`, error);
-//   }
-// }
-
 // run npx tsx .\src\db\contacts\index.ts to test
-// Adds user
-
-//testQuery(getContactById, 1);
-//testQuery(updateContactEmailById, 1, "newemail@example.com");
-
-// Deletes user
-//testQuery(deleteContactById, 1);
+// Adds contact
+testQuery(
+  addContact,
+  1,
+  "John Doe",
+  "something@email.com",
+  "Company1",
+  "Position1",
+  "1234567890",
+  "blah"
+);
