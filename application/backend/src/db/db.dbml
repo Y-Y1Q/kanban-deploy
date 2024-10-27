@@ -41,7 +41,7 @@ Table columns {
   id int [pk, increment]
   name varchar(20) [not null]
   color varchar(20) [not null]
-  position int [not null, note:"the order of this column in the Kanban board"]
+  position varchar(20) [not null, note:"the order of this column in the Kanban board"]
 }
 
 // Job cards in each column
