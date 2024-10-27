@@ -17,7 +17,7 @@ import { Menu, MenuItem, ProSidebar } from "react-pro-sidebar";
 import "react-pro-sidebar/dist/css/styles.css";
 import { Link } from "react-router-dom";
 
-import { tokens } from "../../utils/theme";
+import { tokens } from "../../theme";
 
 interface ItemProps {
   title: string;

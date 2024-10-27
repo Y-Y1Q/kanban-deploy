@@ -1,6 +1,6 @@
 import { Box, Typography, useTheme } from "@mui/material";
 
-import { tokens } from "../../utils/theme";
+import { tokens } from "../../theme";
 
 interface PageIntroProps {
   title: string;

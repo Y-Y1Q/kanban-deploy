@@ -2,7 +2,7 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import { Theme } from "@mui/material/styles";
 import { Outlet } from "react-router-dom";
 
-import { ColorModeContext, ColorModeContextType } from "../../utils/theme";
+import { ColorModeContext, ColorModeContextType } from "../../theme";
 import SideBar from "./SideBar";
 import TopBar from "./TopBar";
 

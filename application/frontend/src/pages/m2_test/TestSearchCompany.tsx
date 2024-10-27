@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import axios from "axios";
 import { useState } from "react";
 
-import { Job } from "../../utils/api_data_types";
+import { Job } from "../../types/api_data_types";
 
 export default function TestSearchCompany() {
   const [company, setCompany] = useState("");

@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import Loading from "./components/ui/Loading";
 import LayoutRoutes from "./pages/LayoutRoutes";
 import NoLayoutRoutes from "./pages/NoLayoutRoutes";
-import { useMode } from "./utils/theme";
+import { useMode } from "./theme";
 
 interface ProtectedRouteProps {
   element: JSX.Element;
