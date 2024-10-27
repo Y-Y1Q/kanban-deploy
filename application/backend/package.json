@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./dist/server.js",
     "build": "node esbuild.js",
-    "dev": "concurrently --names \"BUILD,SERVER\" -c \"blue,green\" \"npm:dev:build\"  \"npm:dev:server\"",
+    "dev": "npm i && concurrently --names \"BUILD,SERVER\" -c \"blue,green\" \"npm:dev:build\"  \"npm:dev:server\"",
     "dev:build": "NODE_ENV=development node esbuild.js --watch",
     "dev:server": "NODE_ENV=development nodemon ./dist/server.js",
     "test": "jest",
