@@ -2,7 +2,7 @@ import { Theme } from "@mui/material/styles";
 import { Route, Routes } from "react-router-dom";
 
 import Layout from "../components/layout/Layout";
-import { ColorModeContextType } from "../theme";
+import { ColorModeContextType } from "../utils/theme";
 import AiResumePage from "./ai_resume/AiResumePage";
 import ContactsPage from "./contacts/ContactsPage";
 import DocsPage from "./docs/DocsPage";

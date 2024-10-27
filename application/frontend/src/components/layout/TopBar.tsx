@@ -6,7 +6,7 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { ColorModeContext } from "../../theme";
+import { ColorModeContext } from "../../utils/theme";
 
 export default function TopBar() {
   const theme = useTheme();

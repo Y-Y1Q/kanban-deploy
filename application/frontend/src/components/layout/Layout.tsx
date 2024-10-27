@@ -2,7 +2,7 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import { Theme } from "@mui/material/styles";
 import { ReactNode } from "react";
 
-import { ColorModeContext, ColorModeContextType } from "../../theme";
+import { ColorModeContext, ColorModeContextType } from "../../utils/theme";
 import SideBar from "./SideBar";
 import TopBar from "./TopBar";
 
