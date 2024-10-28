@@ -60,51 +60,49 @@ export const JobStatsBarChart: React.FC = () => {
   ];
 
   return (
-    <Box height="500px">
-      <ResponsiveBar
-        data={chartData}
-        keys={["count"]}
-        indexBy="status"
-        margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
-        padding={0.3}
-        colors={({ data }) => data.color as string}
-        labelSkipWidth={12}
-        labelSkipHeight={12}
-        axisBottom={{
-          tickSize: 5,
-          tickPadding: 5,
-          tickRotation: 0,
-          legend: "Job Status",
-          legendPosition: "middle",
-          legendOffset: 40,
-        }}
-        axisLeft={{
-          tickSize: 5,
-          tickPadding: 10,
-          tickRotation: 0,
-          legend: "Count",
-          legendPosition: "middle",
-          legendOffset: -50,
-          format: ">-.0f", // Ensures whole numbers on y-axis
-        }}
-        theme={{
-          axis: {
-            ticks: {
-              text: { fontSize: 16 },
-            },
-            legend: {
-              text: { fontSize: 20, fontWeight: "bold" },
-            },
+    <ResponsiveBar
+      data={chartData}
+      keys={["count"]}
+      indexBy="status"
+      margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
+      padding={0.3}
+      colors={({ data }) => data.color as string}
+      labelSkipWidth={12}
+      labelSkipHeight={12}
+      axisBottom={{
+        tickSize: 5,
+        tickPadding: 5,
+        tickRotation: 0,
+        legend: "Job Status",
+        legendPosition: "middle",
+        legendOffset: 40,
+      }}
+      axisLeft={{
+        tickSize: 5,
+        tickPadding: 10,
+        tickRotation: 0,
+        legend: "Count",
+        legendPosition: "middle",
+        legendOffset: -50,
+        format: ">-.0f", // Ensures whole numbers on y-axis
+      }}
+      theme={{
+        axis: {
+          ticks: {
+            text: { fontSize: 16 },
           },
-          legends: {
-            text: { fontSize: 20 },
+          legend: {
+            text: { fontSize: 20, fontWeight: "bold" },
           },
-          labels: {
-            text: { fontSize: 20 },
-          },
-        }}
-      />
-    </Box>
+        },
+        legends: {
+          text: { fontSize: 20 },
+        },
+        labels: {
+          text: { fontSize: 20 },
+        },
+      }}
+    />
   );
 };
 
