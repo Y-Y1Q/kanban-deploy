@@ -1,19 +1,34 @@
-// Define the structure for each status
-type StatusType = {
-  id: number;
-  name: string;
-  color: string;
-};
+class JobStatus {
+  private id: number;
+  private name: string;
+  private color: string;
 
-// Define an object to hold all status entries
-const JobStatusValue: Record<string, StatusType> = {
-  Interested: { id: 1, name: "Interested", color: "#0693E3" },
-  Pending: { id: 2, name: "Pending", color: "#FFC107" },
-  InProgress: { id: 3, name: "In Progress", color: "#008B02" },
-  Offer: { id: 4, name: "Offer", color: "#37D67A" },
-  Declined: { id: 5, name: "Declined", color: "#f47373" },
-  Ghosted: { id: 6, name: "Ghosted", color: "#abb8c3" },
-  FollowUp: { id: 7, name: "Follow Up", color: "#FD7E14" },
-};
+  private constructor(id: number, name: string, color: string) {
+    this.id = id;
+    this.name = name;
+    this.color = color;
+  }
 
-export default JobStatusValue;
+  getId(): number {
+    return this.id;
+  }
+
+  getName(): string {
+    return this.name;
+  }
+
+  getColor(): string {
+    return this.color;
+  }
+
+  // Define static instances for each status
+  static Interested = new JobStatus(1, "Interested", "#0693E3");
+  static Pending = new JobStatus(2, "Pending", "#FFC107");
+  static InProgress = new JobStatus(3, "In Progress", "#008B02");
+  static Offer = new JobStatus(4, "Offer", "#37D67A");
+  static Declined = new JobStatus(5, "Declined", "#f47373");
+  static Ghosted = new JobStatus(6, "Ghosted", "#abb8c3");
+  static FollowUp = new JobStatus(7, "Follow Up", "#FD7E14");
+}
+
+export default JobStatus;
