@@ -24,7 +24,7 @@ export async function getJobStats(user_id: number): Promise<JobStats[] | null> {
 export async function getDateStats(user_id: number): Promise<DateStats[] | null> {
   const query = SQL`
     SELECT
-      TO_CHAR(date_applied, 'YYYY/MM/DD') AS date_applied,
+      TO_CHAR(date_applied, 'YYYY-MM-DD') AS date_applied,
       COUNT(*) AS COUNT
     FROM
       jobs
@@ -47,5 +47,5 @@ export async function getDateStats(user_id: number): Promise<DateStats[] | null>
 
 // import { testQuery } from "../db_test";
 
-// // testQuery(getDateStats, 1);
+// testQuery(getDateStats, 1);
 // npx tsx .\src\db\jobs\get_job_stats.ts
