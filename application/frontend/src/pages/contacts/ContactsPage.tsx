@@ -5,7 +5,7 @@ export default function ContactsPage() {
   return (
     <Box sx={{ width: "100%", maxWidth: 500, margin: "auto" }}>
       <Typography variant="h1" gutterBottom>
-        Work In Progess
+        Yurrr a working progress
       </Typography>
     </Box>
   );
