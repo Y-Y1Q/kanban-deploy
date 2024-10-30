@@ -53,8 +53,8 @@ export interface JobStats {
 }
 
 export interface DateStats {
-  date_applied?: Date | null;
-  count?: number | null;
+  date_applied: Date;
+  count: number;
 }
 
 export interface Contact {

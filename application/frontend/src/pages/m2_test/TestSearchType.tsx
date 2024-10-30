@@ -11,9 +11,11 @@ import {
 import axios from "axios";
 import { useState } from "react";
 
+import { Job } from "../../types/api_data_types";
+
 export default function TestSearchType() {
   const [type, setType] = useState("");
-  const [jobs, setJobs] = useState<any[]>([]);
+  const [jobs, setJobs] = useState<Job[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   const fetchJobs = async () => {
@@ -23,11 +25,18 @@ export default function TestSearchType() {
       });
       setJobs(response.data.jobs);
       setError(null);
-    } catch (error: any) {
-      setJobs([]);
-      const errorMessage = error.response?.data?.error || "Error fetching jobs data";
-      setError(errorMessage);
-      alert(errorMessage); // Display error in an alert
+    } catch (err: unknown) {
+      if (axios.isAxiosError(err)) {
+        console.log(err.status);
+        console.error(err.response);
+        setJobs([]);
+        const errorMessage = err.response?.data?.error;
+        setError(errorMessage);
+        alert(errorMessage); // Display error in an alert
+      } else {
+        console.error(err);
+        alert("Error fetching jobs data.");
+      }
     }
   };
 

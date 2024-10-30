@@ -1,13 +1,15 @@
-import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
 import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import ContactPageOutlinedIcon from "@mui/icons-material/ContactPageOutlined";
 import DashboardIcon from "@mui/icons-material/Dashboard";
+import DataUsageIcon from "@mui/icons-material/DataUsage";
 // M2 icon
 import LooksTwoOutlinedIcon from "@mui/icons-material/LooksTwoOutlined";
 // M2 icon
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import PictureAsPdfOutlinedIcon from "@mui/icons-material/PictureAsPdfOutlined";
 import SmartToyOutlinedIcon from "@mui/icons-material/SmartToyOutlined";
+import SsidChartIcon from "@mui/icons-material/SsidChart";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { useState } from "react";
 import { FC } from "react";
@@ -48,7 +50,7 @@ export default function SideBar() {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [selected, setSelected] = useState("Jobs Board");
+  const [selected, setSelected] = useState("Kanban Board");
 
   return (
     <Box
@@ -72,10 +74,6 @@ export default function SideBar() {
     >
       <ProSidebar collapsed={isCollapsed}>
         <Menu>
-          {/* <Typography variant="h1" color={colors.grey[100]}>
-            TEST
-          </Typography> */}
-
           {/* LOGO AND MENU ICON */}
           <MenuItem
             onClick={() => setIsCollapsed(!isCollapsed)}
@@ -90,7 +88,7 @@ export default function SideBar() {
                 display="flex"
                 justifyContent="space-between"
                 alignItems="center"
-                paddingLeft="12%"
+                paddingLeft="11%"
                 mr="45px"
               >
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
@@ -106,64 +104,54 @@ export default function SideBar() {
           {!isCollapsed && <Box mb="25px"></Box>}
 
           <Box paddingLeft={isCollapsed ? undefined : "10%"} paddingRight="0%">
-            <Typography variant="h5" color={colors.grey[300]} sx={{ m: "15px 0 5px 20px" }}>
-              M2 Test
-            </Typography>
-
             <Item
-              title="Test Jobs Data"
-              to="/app"
-              icon={<LooksTwoOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-
-            <Item
-              title="Test Search by Company"
-              to="/app/search-company"
-              icon={<LooksTwoOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-
-            <Item
-              title="Test Search by Type"
-              to="/app/search-type"
-              icon={<LooksTwoOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-
-            <Typography variant="h5" color={colors.grey[300]} sx={{ m: "15px 0 5px 20px" }}>
-              Data
-            </Typography>
-
-            <Item
-              title="Jobs Board"
-              to="/app/jobs"
+              title="Kanban Board"
+              to="/app/"
               icon={<DashboardIcon />}
               selected={selected}
               setSelected={setSelected}
             />
 
             <Item
-              title="Jobs Statistics"
-              to="/app/stats"
+              title="Contacts"
+              to="/app/contacts"
+              icon={<ContactPageOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+
+            <Typography variant="h5" color={colors.grey[300]} sx={{ m: "15px 0 5px 20px" }}>
+              Job Stats
+            </Typography>
+
+            <Item
+              title="Heat Map"
+              to="/app/stats-heatmap"
+              icon={<CalendarMonthIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+
+            <Item
+              title="Bar Chart"
+              to="/app/stats-bar"
               icon={<BarChartOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
+
             <Item
-              title="Documents"
-              to="/app/docs"
-              icon={<ArticleOutlinedIcon />}
+              title="Donut Chart"
+              to="/app/stats-donut"
+              icon={<DataUsageIcon />}
               selected={selected}
               setSelected={setSelected}
             />
+
             <Item
-              title="Contacts"
-              to="/app/contacts"
-              icon={<ContactPageOutlinedIcon />}
+              title="Sankey Chart"
+              to="/app/stats-sankey"
+              icon={<SsidChartIcon />}
               selected={selected}
               setSelected={setSelected}
             />
@@ -183,6 +171,35 @@ export default function SideBar() {
               title="Interview Prep"
               to="/app/ai-interview"
               icon={<SmartToyOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+
+            {/* M2 Test sidebar, delete later */}
+            <Typography variant="h5" color={colors.grey[300]} sx={{ m: "15px 0 5px 20px" }}>
+              M2 Test
+            </Typography>
+
+            <Item
+              title="Test Jobs Data"
+              to="/app/test"
+              icon={<LooksTwoOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+
+            <Item
+              title="Test Search by Company"
+              to="/app/search-company"
+              icon={<LooksTwoOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+
+            <Item
+              title="Test Search by Type"
+              to="/app/search-type"
+              icon={<LooksTwoOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />

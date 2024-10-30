@@ -6,9 +6,11 @@ import Typography from "@mui/material/Typography";
 import axios from "axios";
 import { useState } from "react";
 
+import { Job } from "../../types/api_data_types";
+
 export default function TestSearchCompany() {
   const [company, setCompany] = useState("");
-  const [jobs, setJobs] = useState<any[]>([]);
+  const [jobs, setJobs] = useState<Job[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   const fetchJobs = async () => {
@@ -18,11 +20,15 @@ export default function TestSearchCompany() {
       });
       setJobs(response.data.jobs);
       setError(null);
-    } catch (error: any) {
-      setJobs([]);
-      const errorMessage = error.response?.data?.error || "Error fetching jobs data";
-      setError(errorMessage);
-      alert(errorMessage); // Display error in an alert
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        setJobs([]);
+        const errorMessage = error.response?.data?.error || "Error fetching jobs data";
+        setError(errorMessage);
+        alert(errorMessage); // Display error in an alert
+      } else {
+        console.log(error);
+      }
     }
   };
 

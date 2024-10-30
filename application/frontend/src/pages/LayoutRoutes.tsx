@@ -5,9 +5,8 @@ import Layout from "../components/layout/Layout";
 import { ColorModeContextType } from "../theme";
 import AiResumePage from "./ai_resume/AiResumePage";
 import ContactsPage from "./contacts/ContactsPage";
-import DocsPage from "./docs/DocsPage";
 import InterviewPrepPage from "./interview_prep/InterviewPrepPage";
-import JobStatsPage from "./job_stats/JobStatsPage";
+import * as JobStatsPage from "./job_stats";
 import JobsPage from "./jobs/JobsPage";
 import TestJobsData from "./m2_test/TestJobsData";
 import TestSearchCompany from "./m2_test/TestSearchCompany";
@@ -21,24 +20,25 @@ interface LayoutProps {
 
 const LayoutRoutes: React.FC<LayoutProps> = ({ theme, colorMode }) => {
   return (
-    <Layout theme={theme} colorMode={colorMode}>
-      <Routes>
-        {/* M2 Test page browser routes */}
-        <Route path="/" element={<TestJobsData />} />
+    <Routes>
+      {/* Wrap only the valid routes with Layout */}
+      <Route element={<Layout theme={theme} colorMode={colorMode} />}>
+        <Route path="/test" element={<TestJobsData />} />
         <Route path="/search-company" element={<TestSearchCompany />} />
         <Route path="/search-type" element={<TestSearchType />} />
-
-        {/* EZJobs service browser routes */}
-        <Route path="/jobs" element={<JobsPage />} />
-        <Route path="/stats" element={<JobStatsPage />} />
+        <Route path="/" element={<JobsPage />} />
+        <Route path="/stats-heatmap" element={<JobStatsPage.HeatMap />} />
+        <Route path="/stats-bar" element={<JobStatsPage.Bar />} />
+        <Route path="/stats-donut" element={<JobStatsPage.Donut />} />
+        <Route path="/stats-sankey" element={<JobStatsPage.Sankey />} />
         <Route path="/contacts" element={<ContactsPage />} />
-        <Route path="/docs" element={<DocsPage />} />
         <Route path="/ai-resume" element={<AiResumePage />} />
         <Route path="/ai-interview" element={<InterviewPrepPage />} />
+      </Route>
 
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-    </Layout>
+      {/* Catch-all for invalid paths without Layout styling */}
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
   );
 };
 

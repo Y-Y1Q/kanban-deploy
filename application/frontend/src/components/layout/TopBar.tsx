@@ -1,16 +1,16 @@
-import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
-import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
+// import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
+// import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
-import { Box, IconButton, Typography, useTheme } from "@mui/material";
+import { Box, IconButton, Typography } from "@mui/material";
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { ColorModeContext } from "../../theme";
+// import { ColorModeContext } from "../../theme";
 
 export default function TopBar() {
-  const theme = useTheme();
-  const colorMode = useContext(ColorModeContext);
+  // const theme = useTheme();
+  // const colorMode = useContext(ColorModeContext);
   const navigate = useNavigate(); // For navigation after sign out
   const [username, setUsername] = useState<string | null>(null); // State to hold the username
 
@@ -51,14 +51,14 @@ export default function TopBar() {
 
       {/* Icons */}
       <Box display="flex">
-        <IconButton onClick={colorMode.toggleColorMode}>
+        {/* <IconButton onClick={colorMode.toggleColorMode}>
           {theme.palette.mode === "dark" ? <DarkModeOutlinedIcon /> : <LightModeOutlinedIcon />}
-        </IconButton>
+        </IconButton> */}
         <Box display="flex" alignItems="center">
-          <IconButton onClick={handleSignOut}>
-            <LogoutOutlinedIcon />
+          <IconButton onClick={handleSignOut} size="large">
+            <LogoutOutlinedIcon fontSize="large" />
           </IconButton>
-          <Typography>Sign Out</Typography>
+          <Typography fontSize={20}>Sign Out</Typography>
         </Box>
       </Box>
     </Box>

@@ -38,7 +38,7 @@ export default function AboutUs() {
     },
   ];
 
-  const handleCardClick = (path: String) => {
+  const handleCardClick = (path: string) => {
     navigate(`${path}`);
   };
 

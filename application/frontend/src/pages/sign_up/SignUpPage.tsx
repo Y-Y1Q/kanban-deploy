@@ -76,12 +76,13 @@ export default function SignUp() {
         alert("Account created! Redirecting to login page...");
         navigate("/"); // Redirect on success
       }
-    } catch (err: any) {
-      if (err.response) {
-        alert(err.response.data?.error || "Sign up failed. Please try again.");
-      } else if (err.request) {
-        alert("No response from the server. Please try again.");
+    } catch (err: unknown) {
+      if (axios.isAxiosError(err)) {
+        console.log(err.status);
+        console.error(err.response);
+        alert(err.response?.data?.error || "Sign up failed. Please try again.");
       } else {
+        console.error(err);
         alert("Sign up failed. Please try again.");
       }
     }
