@@ -34,15 +34,36 @@ export async function addContact(
   }
 }
 
+// TODO: get (individual searches and if empty, return all), search (name, company, position, and email), delete contacts (user id)
+
+export async function deleteContactById(id: number): Promise<boolean> {
+  const query = `
+    DELETE FROM contacts
+    WHERE id = $1
+  `;
+
+  try {
+    await db.none(query, [id]);
+    return true;
+  } catch (error) {
+    console.error(`Error deleting contact for user_id ${id}:`, error);
+    return false;
+  }
+}
+
+
 // run npx tsx .\src\db\contacts\index.ts to test
 // Adds contact
-testQuery(
-  addContact,
-  1,
-  "John Doe",
-  "something@email.com",
-  "Company1",
-  "Position1",
-  "1234567890",
-  "blah"
-);
+// testQuery(
+//   addContact,
+//   1,
+//   "John Doe",
+//   "something@email.com",
+//   "Company1",
+//   "Position1",
+//   "1234567890",
+//   "blah"
+// );
+
+// Deletes contact
+testQuery(deleteContactById, 12);
