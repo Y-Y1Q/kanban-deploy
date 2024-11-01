@@ -3,7 +3,7 @@ import { testQuery } from "../db_test";
 import { Contact } from "../db_types";
 import { SQL } from "sql-template-strings";
 
-export async function addContact(
+export async function createContact(
   user_id: number,
   name: string,
   email: string,
@@ -35,9 +35,6 @@ export async function addContact(
   }
 }
 
-// TODO: get (individual searches and if empty, return all), search (name, company, position, and email)
-
-
 export async function deleteContactById(id: number): Promise<boolean> {
   const query = `
     DELETE FROM contacts
@@ -58,24 +55,23 @@ export async function deleteContactById(id: number): Promise<boolean> {
 export async function getContacts(searchParam: string): Promise<Contact[] | null> {
   let query;
   if (searchParam) {
-   query = SQL`
-    SELECT
-      *
-    FROM
-      contacts
-    WHERE
+    query = SQL`
+      SELECT
+        *
+      FROM
+        contacts
+      WHERE
         name ILIKE '%' || ${searchParam} || '%'
         OR company ILIKE '%' || ${searchParam} || '%'
-        OR position ILIKE '%' || ${searchParam} || '%'
+        OR POSITION ILIKE '%' || ${searchParam} || '%'
         OR email ILIKE '%' || ${searchParam} || '%'
-  `;
-  } 
-  else{
-    query= SQL`
-    SELECT
-      *
-    FROM
-      contacts
+    `;
+  } else {
+    query = SQL`
+      SELECT
+        *
+      FROM
+        contacts
     `;
   }
 
@@ -91,7 +87,7 @@ export async function getContacts(searchParam: string): Promise<Contact[] | null
 // run npx tsx .\src\db\contacts\index.ts to test
 // Adds contact //
 // testQuery(
-//   addContact,
+//   createContact,
 //   1,
 //   "John Doe",
 //   "something@email.com",
@@ -101,27 +97,24 @@ export async function getContacts(searchParam: string): Promise<Contact[] | null
 //   "blah"
 // );
 
-
-// Deletes contact //
-//testQuery(deleteContactById, 12);
-
+// Deletes contact // 2nd parameter is the id of the contact //
+// testQuery(deleteContactById, 12);
 
 // Gets Contacts //
-// If query doesn't have any parameter from the database, 
+// If query doesn't have any parameter from the database,
 // then it will return just empty array.
 
+// Empty string will return all contacts
+//testQuery(getContacts, "");
+
 // By name
- //testQuery(getContacts, "Jane Smith"); 
+//testQuery(getContacts, "Jane Smith");
 
- // Empty string will return all contacts
-  //testQuery(getContacts, "");
-
- // By company
-  //testQuery(getContacts, "CompanyA");
-
+// By company
+//testQuery(getContacts, "CompanyA");
 
 // By position
- //testQuery(getContacts, "CEO");
+//testQuery(getContacts, "CEO");
 
 // By email
- // testQuery(getContacts, "companya.com");
+//testQuery(getContacts, "emily");
