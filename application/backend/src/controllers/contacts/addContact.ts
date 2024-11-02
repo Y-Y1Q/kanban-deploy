@@ -7,6 +7,7 @@ export const addContact = async (req: Request, res: Response): Promise<void> => 
   // Validate input data
   if (!user_id || !name || !email || !phone_num) {
     res.status(400).json({ error: "user_id, name, email, and phone_num are required fields." });
+    return; // Add return to prevent further execution
   }
 
   try {
