@@ -64,19 +64,6 @@ VALUES
 (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), 
 (6, 6), (7, 7), (8, 8), (9, 9), (10, 10);
 
--- Insert into ai_resume table
-INSERT INTO ai_resume (user_id, fullname ,personal_information, relevant_skills, education, experience, projects)
-VALUES 
-(1, 'Test Name', 'Test User - San Jose, CA', 'JavaScript, React, Node.js', 'B.S. Computer Science', 'Software Engineer at XYZ', 'Built Kanban board app'),
-(1, 'Test Name', 'Test User - San Jose, CA', 'Python, Data Science', 'M.S. Data Science', 'Data Analyst at ABC Corp', 'Developed data analysis tool'),
-(1, 'Test Name', 'Test User - San Jose, CA', 'DevOps, AWS, Docker', 'B.S. Information Technology', 'DevOps Engineer at DEF Ltd.', 'Automated deployment pipelines'),
-(1, 'Test Name', 'Test User - San Jose, CA', 'Fullstack, HTML, CSS', 'B.S. Software Engineering', 'Frontend Developer at GHI Inc.', 'Redesigned frontend UI'),
-(1, 'Test Name', 'Test User - San Jose, CA', 'Cloud Computing, Kubernetes', 'M.S. Cloud Computing', 'Cloud Engineer at JKL Tech', 'Managed cloud infrastructure'),
-(1, 'Test Name', 'Test User - San Jose, CA', 'Project Management, Agile', 'MBA', 'Product Manager at MNO Inc.', 'Led cross-functional team'),
-(1, 'Test Name', 'Test User - San Jose, CA', 'Mobile Development, Swift', 'B.S. Mobile Computing', 'iOS Developer at PQR Mobile', 'Built mobile application'),
-(1, 'Test Name', 'Test User - San Jose, CA', 'Cybersecurity, Penetration Testing', 'M.S. Cybersecurity', 'Security Engineer at STU Security', 'Secured enterprise systems'),
-(1, 'Test Name', 'Test User - San Jose, CA', 'AI, Machine Learning', 'Ph.D. in AI', 'ML Engineer at VWX AI', 'Developed AI models'),
-(1, 'Test Name', 'Test User - San Jose, CA', 'Blockchain, Cryptography', 'B.S. Cryptography', 'Blockchain Developer at YZ Crypto', 'Created blockchain solutions');
 
 -- Insert into ai_interview_prep table
 INSERT INTO ai_interview_prep (user_id, company, job_position, job_description, ai_response)
