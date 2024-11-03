@@ -3,6 +3,8 @@ import express from "express";
 import { Controller } from "../controllers";
 import { checkAuth } from "../middleware/check_auth";
 
+import { getChatbotResponse } from "../controllers/ai_interview_prep/generateQuestions";
+
 const router = express.Router();
 
 // Auth routes
@@ -30,10 +32,12 @@ router.get("/api/jobs/stats-date", checkAuth, Controller.Jobs.getDateStats);
 // router.post("/api/ai-resume/generate", checkAuth, Controller.AiResume.generateResume);
 // router.get("/api/ai-resume/:id", checkAuth, Controller.AiResume.getResumePrompts);
 
-
 // Contacts routes
 router.post("/api/contacts/add", checkAuth, Controller.Contacts.addContact);
 router.get("/api/contacts/search", checkAuth, Controller.Contacts.getContact);
 router.delete("/api/contacts/:id", checkAuth, Controller.Contacts.removeContact);
+
+// OpenAI route for AI Interview Prep
+router.post("/api/chatbot", getChatbotResponse);
 
 export default router;
