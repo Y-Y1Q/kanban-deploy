@@ -73,7 +73,27 @@ export async function foundUserResume(user_id: number): Promise<boolean> {
   }
 }
 
+export async function getUserResumeToken(user_id: number): Promise<string | null> {
+  const query = SQL`
+    SELECT
+      user_token
+    FROM
+      ai_resume
+    WHERE
+      user_id = ${user_id}
+  `;
+
+  try {
+    const result = await db.oneOrNone<{ user_token: string | null }>(query.text, query.values);
+    return result ? result.user_token : null;
+  } catch (error) {
+    console.error(`Error retrieving user token for user_id ${user_id}:`, error);
+    return null;
+  }
+}
+
 // import { testQuery } from "../db_test";
+// testQuery(getUserResumeToken, 1);
 // testQuery(getUserResumeInput, 1);
 // testQuery(foundUserResume, 1);
 // testQuery(getAiResumeInput, "abc123xyz456");
