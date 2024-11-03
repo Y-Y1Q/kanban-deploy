@@ -1,15 +1,15 @@
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import Grid from "@mui/material/Grid";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import { useState, useEffect, ChangeEvent } from "react";
+import Grid from "@mui/material/Grid";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
 import axios from "axios";
+import { ChangeEvent, useEffect, useState } from "react";
 
 interface Contact {
   id: string;
@@ -26,7 +26,7 @@ export default function ContactsPage() {
   const [open, setOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [contacts, setContacts] = useState<Contact[]>([]);
-  const [newContact, setNewContact] = useState<Omit<Contact, 'id'>>({
+  const [newContact, setNewContact] = useState<Omit<Contact, "id">>({
     user_id: "", // Assume user_id is available somehow, maybe from authentication
     name: "",
     email: "",
@@ -39,9 +39,9 @@ export default function ContactsPage() {
   useEffect(() => {
     const fetchContacts = async () => {
       try {
-        const response = await axios.get<Contact[]>("/api/contacts", {
+        const response = await axios.get<Contact[]>("/api/contacts/search", {
           params: {
-            search: searchTerm,
+            searchParam: searchTerm,
           },
         });
         setContacts(response.data);
@@ -49,7 +49,6 @@ export default function ContactsPage() {
         console.error("Error fetching contacts", error);
       }
     };
-
     fetchContacts();
   }, [searchTerm]);
 
@@ -67,7 +66,6 @@ export default function ContactsPage() {
       setOpen(false);
       setSearchTerm("");
       setContacts((prev) => [...prev, { ...newContact, id: response.data?.id ?? "" }]);
-      setContacts((prev) => [...prev, { ...newContact, id: response.data.id }]);
     } catch (error) {
       console.error("Error adding contact", error);
     }
@@ -92,7 +90,14 @@ export default function ContactsPage() {
       <Typography variant="h4" gutterBottom>
         Your Contacts
       </Typography>
-      <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 2 }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          marginBottom: 2,
+        }}
+      >
         <TextField
           label="Search Contacts"
           variant="outlined"
@@ -121,7 +126,8 @@ export default function ContactsPage() {
               Your Contacts list is empty
             </Typography>
             <Typography variant="body1" gutterBottom>
-              Add contacts to keep track of your relationships. You can link contacts to a job to keep track of your interactions.
+              Add contacts to keep track of your relationships. You can link contacts to a job to
+              keep track of your interactions.
             </Typography>
             <Button variant="contained" color="primary" onClick={handleClickOpen}>
               Add Contact
@@ -150,13 +156,10 @@ export default function ContactsPage() {
           </Grid>
         )}
       </Box>
-
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
         <DialogTitle>Add Contacts</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            Add contacts based on your job board
-          </DialogContentText>
+          <DialogContentText>Add contacts based on your job board</DialogContentText>
           <Grid container spacing={2} mt={1}>
             <Grid item xs={12} sm={6}>
               <TextField
