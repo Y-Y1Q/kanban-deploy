@@ -9,34 +9,40 @@
   </head>
 
   <body>
-    <!-- Personal Infomation Section Below -->
+    <!-- Personal Information Section Below -->
     <h1><%= resume.fullname %></h1>
 
-    <div class="headerInfo"><%= resume.ai_info %></div>
+    <% if (resume.ai_info) { %>
+    <div class="headerInfo"><%- resume.ai_info %></div>
+    <% } %>
 
     <!-- Education Section Below -->
     <div class="vertical-spacer"></div>
-
+    <% if (resume.ai_edu) { %>
     <h2>Education</h2>
-    <%= resume.ai_edu %>
+    <%- resume.ai_edu %>
+    <% } %>
 
     <!-- Skills Section Below -->
     <div class="vertical-spacer"></div>
+    <% if (resume.ai_skills) { %>
     <h2>Skills</h2>
-    <!-- Skills summary by GPT -->
-    <%= resume.ai_skills %>
+    <%- resume.ai_skills %>
+    <% } %>
 
     <!-- Experience Section Below -->
     <div class="vertical-spacer"></div>
+    <% if (resume.ai_exp) { %>
     <h2>Experience</h2>
-    <!-- Experience summary by GPT -->
-    <%= resume.ai_exp %>
+    <%- resume.ai_exp %>
+    <% } %>
 
     <!-- Projects Section Below -->
     <div class="vertical-spacer"></div>
+    <% if (resume.ai_proj) { %>
     <h2>Projects</h2>
-    <!-- Projects summary by GPT -->
-    <%= resume.ai_proj %>
+    <%- resume.ai_proj %>
+    <% } %>
 
     <script>
       // Wait until the page is fully loaded, then trigger print dialog

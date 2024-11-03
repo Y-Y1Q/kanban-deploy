@@ -4,6 +4,13 @@ import { Controller } from "../controllers";
 import { checkAuth } from "../middleware/check_auth";
 
 const router = express.Router();
+// test ejs
+import { Request, Response } from "express";
+import resume_test from "../views/resume_test";
+router.get("/ejs", (_req: Request, res: Response) => {
+  const resume = resume_test;
+  res.render("resume_template", { resume });
+});
 
 // Auth routes
 router.post("/api/auth/check", Controller.Auth.isAuthenticated);
@@ -29,7 +36,6 @@ router.get("/api/jobs/stats-date", checkAuth, Controller.Jobs.getDateStats);
 // //AI resume routes
 // router.post("/api/ai-resume/generate", checkAuth, Controller.AiResume.generateResume);
 // router.get("/api/ai-resume/:id", checkAuth, Controller.AiResume.getResumePrompts);
-
 
 // Contacts routes
 router.post("/api/contacts/add", checkAuth, Controller.Contacts.addContact);
