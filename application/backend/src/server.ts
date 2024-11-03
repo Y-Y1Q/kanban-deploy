@@ -23,11 +23,15 @@ const app = express();
 const httpServer = createServer(app);
 app.use(requestTime);
 
-// Static path to serve files
+// Setup static path and view path
 const BACKEND_PATH = path.dirname(import.meta.dirname);
 const STATIC_PATH = path.join(BACKEND_PATH, "public");
+const VIEW_PATH = path.join(BACKEND_PATH, "src", "views");
 console.log(`\nBE path: \x1b[32m\x1b[1m${BACKEND_PATH} \x1b[0m`);
-console.log(`BE Static files path: \x1b[32m\x1b[1m${STATIC_PATH}\x1b[0m \n`);
+console.log(`BE Static files path: \x1b[32m\x1b[1m${STATIC_PATH}\x1b[0m`);
+console.log(`BE EJS template path: \x1b[32m\x1b[1m${VIEW_PATH}\x1b[0m \n`);
+app.set("views", VIEW_PATH);
+app.set("view engine", "ejs");
 app.use(express.static(STATIC_PATH));
 
 // Setup cookie parsing
