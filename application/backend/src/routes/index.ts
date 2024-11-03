@@ -6,6 +6,13 @@ import { checkAuth } from "../middleware/check_auth";
 import { getChatbotResponse } from "../controllers/ai_interview_prep/generateQuestions";
 
 const router = express.Router();
+// test ejs
+import { Request, Response } from "express";
+import resume_test from "../views/resume_test";
+router.get("/ejs", (_req: Request, res: Response) => {
+  const resume = resume_test;
+  res.render("resume_template", { resume });
+});
 
 // Auth routes
 router.post("/api/auth/check", Controller.Auth.isAuthenticated);
