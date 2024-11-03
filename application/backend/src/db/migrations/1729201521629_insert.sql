@@ -64,6 +64,38 @@ VALUES
 (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), 
 (6, 6), (7, 7), (8, 8), (9, 9), (10, 10);
 
+-- Insert into ai_resume table
+INSERT INTO "ai_resume" (
+  "user_id",
+  "user_token",
+  "fullname",
+  "personal_information",
+  "relevant_skills",
+  "education",
+  "experience",
+  "projects",
+  "ai_info",
+  "ai_skills",
+  "ai_edu",
+  "ai_exp",
+  "ai_proj"
+) VALUES (
+  1,
+  'abc123xyz456',
+  'John Doe',
+  'Experienced software engineer with a focus on web development and AI.',
+  'JavaScript, Python, SQL, React, Node.js',
+  'B.S. in Computer Science from University of Example',
+  '3 years as a Software Developer at Tech Corp',
+  'Built a portfolio website, developed a task management app',
+  'Highly skilled in backend and frontend development, with a focus on AI applications.',
+  'JavaScript, Python, Machine Learning, REST APIs',
+  'B.S. in Computer Science, focus on AI courses',
+  '2 years at Example Corp as a Full Stack Developer',
+  'Developed AI-based recommendation system'
+);
+
+
 
 -- Insert into ai_interview_prep table
 INSERT INTO ai_interview_prep (user_id, company, job_position, job_description, ai_response)

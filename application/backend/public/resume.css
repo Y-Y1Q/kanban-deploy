@@ -1,5 +1,3 @@
-
-
 /* fonts */
 /* use machine readable font like sans serif*/
 /* @import url("https://fonts.googleapis.com/css2?family=Tinos:wght@400;700&display=swap"); */
@@ -148,4 +146,12 @@ a {
 @page {
   margin: 0.5in;
   size: letter;
+}
+
+@page :footer {
+  display: none;
+}
+
+@page :header {
+  display: none;
 }
