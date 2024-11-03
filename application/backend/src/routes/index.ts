@@ -8,9 +8,10 @@ import { getChatbotResponse } from "../controllers/ai_interview_prep/generateQue
 const router = express.Router();
 // test ejs
 import { Request, Response } from "express";
-import resume_test from "../views/resume_test";
-router.get("/ejs", (_req: Request, res: Response) => {
-  const resume = resume_test;
+// import resume_test from "../views/resume_test";
+import { getAiResumeInput } from "../db/ai_resume/get_resume";
+router.get("/ejs", async (_req: Request, res: Response) => {
+  const resume = await getAiResumeInput("abc123xyz456");
   res.render("resume_template", { resume });
 });
 
@@ -37,6 +38,7 @@ router.get("/api/jobs/stats-date", checkAuth, Controller.Jobs.getDateStats);
 
 // //AI resume routes
 // router.post("/api/ai-resume/generate", checkAuth, Controller.AiResume.generateResume);
+router.post("/api/ai-resume/delete", checkAuth, Controller.AiResume.deleteUserResume);
 // router.get("/api/ai-resume/:id", checkAuth, Controller.AiResume.getResumePrompts);
 
 // Contacts routes

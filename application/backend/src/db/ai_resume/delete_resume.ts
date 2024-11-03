@@ -2,7 +2,7 @@ import { SQL } from "sql-template-strings";
 
 import db from "../db_connection";
 
-export async function deleteUserResumeInput(user_id: number): Promise<boolean> {
+export async function deleteUserResumeRecord(user_id: number): Promise<boolean> {
   const query = SQL`
     DELETE FROM ai_resume
     WHERE
