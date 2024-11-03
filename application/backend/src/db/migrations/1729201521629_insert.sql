@@ -64,6 +64,20 @@ VALUES
 (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), 
 (6, 6), (7, 7), (8, 8), (9, 9), (10, 10);
 
+-- Insert into ai_interview_prep table
+INSERT INTO ai_interview_prep (user_id, company, job_position, job_description, ai_response)
+VALUES 
+(1, 'Company A', 'Software Engineer', 'Develop and maintain software applications.', 'Describe a project where you had to solve a complex problem.'),
+(1, 'Company B', 'Data Scientist', 'Analyze large datasets to find insights.', 'Tell me about a time you worked with unstructured data.'),
+(1, 'Company C', 'Backend Developer', 'Design backend systems and APIs.', 'Explain your experience with RESTful APIs.'),
+(1, 'Company D', 'Frontend Developer', 'Create responsive web applications.', 'What challenges have you faced with cross-browser compatibility?'),
+(1, 'Company E', 'Product Manager', 'Lead product development efforts.', 'How do you prioritize features in a product roadmap?'),
+(1, 'Company F', 'UI/UX Designer', 'Design user interfaces and improve UX.', 'How do you incorporate user feedback into design?'),
+(1, 'Company G', 'Mobile Developer', 'Build and maintain mobile applications.', 'Tell me about your experience with mobile app performance optimization.'),
+(1, 'Company H', 'DevOps Engineer', 'Automate deployment pipelines.', 'Describe your experience with CI/CD pipelines.'),
+(1, 'Company I', 'Cloud Architect', 'Design cloud infrastructure solutions.', 'What cloud services have you worked with, and how did you optimize costs?'),
+(1, 'Company J', 'Fullstack Developer', 'Develop both frontend and backend applications.', 'How do you ensure efficient communication between frontend and backend systems?');
+
 -- Insert into ai_resume table
 INSERT INTO "ai_resume" (
   "user_id",
@@ -88,27 +102,135 @@ INSERT INTO "ai_resume" (
   'B.S. in Computer Science from University of Example',
   '3 years as a Software Developer at Tech Corp',
   'Built a portfolio website, developed a task management app',
-  'Highly skilled in backend and frontend development, with a focus on AI applications.',
-  'JavaScript, Python, Machine Learning, REST APIs',
-  'B.S. in Computer Science, focus on AI courses',
-  '2 years at Example Corp as a Full Stack Developer',
-  'Developed AI-based recommendation system'
+  '<ul>
+      <li>PHONE</li>
+      <li>
+        <a href="mailto:{EMAIL}">EMAIL</a>
+      </li>
+      <li>
+        <a href="https://linkedin.com">LINKEDIN</a>
+      </li>
+      <li>
+        <a href="https://github.com">GITHUB</a>
+      </li>
+      <li>
+        <a href="https://example.com">PORTFOLIO</a>
+      </li>
+    </ul>',
+  '<p>
+      <strong>Front End</strong> | React, NextJS, Javascript, TypeScript,
+      Material UI
+    </p>
+    <p>
+      <strong>Back End</strong> | Golang, Java, C, C++, PostgreSQL, MongoDB,
+      MySQL, Spring Boot, Express, Gin
+    </p>
+    <p>
+      <strong>Testing/Deployment</strong> | Jest, Mocha, Chai, AWS:EC2, AWS:ECS,
+      Terraform, JUnit
+    </p>
+    <p>
+      <strong>Developer Tools</strong> | Docker, microservices, Git, npm, Vite,
+      ESBuild, Postman
+    </p>',
+  '<p>
+      <strong>University of XXX</strong> - Bachelors of Science, Computer
+      Science, GPA (only &gt;= 3.7)
+      <span class="spacer"></span>
+      Graduation Month Year
+    </p>',
+  '<p>
+    <strong>Job Title, Company</strong> - City, State
+    <span class="spacer"></span>
+    Month Year - Present
+  </p>
+  <ul>
+    <li>STAR - Situation Task Action Result</li>
+    <li>XYZ - Accomplished X as measured by Y by doing Z</li>
+    <li>CAR - Challenge Action Result</li>
+  </ul>
+
+  <div class="vertical-spacer"></div>
+  <p>
+    <strong>Job Title, Company</strong> - City, State
+    <span class="spacer"></span>
+    Month Year - Month Year
+  </p>
+  <ul>
+    <li>Start each bullet with a strong, past-tense action verb</li>
+    <li>
+      Each bullet point should be 1-2 lines long and max 1 sentence long.
+    </li>
+    <li>
+      Don''t let bullets spill onto the next line with only 1-4 words on it,
+      it''s a huge waste of space
+    </li>
+  </ul>
+
+  <div class="vertical-spacer"></div>
+  <p>
+    <strong>Job Title, Company</strong> - City, State
+    <span class="spacer"></span>
+    Month Year - Month Year
+  </p>
+  <ul>
+    <li>
+      Optimized existing monolithic back-end of an e-commerce website to
+      handle 360,000 requests per minute with low latency
+      <strong>(&lt;20 ms)</strong> and error rate
+      <strong>(&lt;0.1%)</strong> by horizontally microservice to 5 AWS EC2
+      instances
+    </li>
+    <li>
+      Leveraged K6 and Loader.io to identify performance bottlenecks, then
+      implemented caching to lower frequency of database retrieval to allow
+      for a throughput increase of <strong>733%</strong>
+    </li>
+    <li>
+      Reduced query times to database from 6,000 ms to
+      <strong>12 ms</strong> by using aggregator functions and indexing
+      foreign keys
+    </li>
+  </ul>',
+  '<p>
+      <strong>Project Title</strong>
+      <span class="spacer"></span>
+      project-link.com
+    </p>
+    <ul>
+      <li>
+        The more work experience you have, the less relevant outside-work
+        projects tend to become
+      </li>
+      <li>
+        If you have something that really stands out, consider listing it here
+      </li>
+      <li>
+        Implemented server-side rendering with Next.js to improve page load
+        time, achieving Lighthouse SEO score of 100
+      </li>
+    </ul>
+
+    <div class="vertical-spacer"></div>
+
+    <p>
+      <strong>Project Title</strong>
+      <span class="spacer"></span>
+      project-link.com
+    </p>
+    <ul>
+      <li>
+        Only list real projects, not mandatory school projects or trivial
+        tutorial projects found online
+      </li>
+      <li>Something that someone uses to solve a problem</li>
+      <li>
+        Something that has users (can be just you, as long as you use it often)
+        and is actively maintained and not just rotting in a GitHub repo, never
+        to see a PR for the rest of its life
+      </li>
+    </ul>'
 );
 
-
-
--- Insert into ai_interview_prep table
-INSERT INTO ai_interview_prep (user_id, company, job_position, job_description, ai_response)
-VALUES 
-(1, 'Company A', 'Software Engineer', 'Develop and maintain software applications.', 'Describe a project where you had to solve a complex problem.'),
-(1, 'Company B', 'Data Scientist', 'Analyze large datasets to find insights.', 'Tell me about a time you worked with unstructured data.'),
-(1, 'Company C', 'Backend Developer', 'Design backend systems and APIs.', 'Explain your experience with RESTful APIs.'),
-(1, 'Company D', 'Frontend Developer', 'Create responsive web applications.', 'What challenges have you faced with cross-browser compatibility?'),
-(1, 'Company E', 'Product Manager', 'Lead product development efforts.', 'How do you prioritize features in a product roadmap?'),
-(1, 'Company F', 'UI/UX Designer', 'Design user interfaces and improve UX.', 'How do you incorporate user feedback into design?'),
-(1, 'Company G', 'Mobile Developer', 'Build and maintain mobile applications.', 'Tell me about your experience with mobile app performance optimization.'),
-(1, 'Company H', 'DevOps Engineer', 'Automate deployment pipelines.', 'Describe your experience with CI/CD pipelines.'),
-(1, 'Company I', 'Cloud Architect', 'Design cloud infrastructure solutions.', 'What cloud services have you worked with, and how did you optimize costs?'),
-(1, 'Company J', 'Fullstack Developer', 'Develop both frontend and backend applications.', 'How do you ensure efficient communication between frontend and backend systems?');
 
 -- Down Migration

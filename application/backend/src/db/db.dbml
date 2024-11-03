@@ -121,22 +121,18 @@ Ref: contact_jobs.job_id > jobs.id [delete: cascade]
 Table ai_resume {
   id int [pk, increment]
   user_id int [not null, unique]
-  user_token varchar(200) [unique]
+  user_token varchar(50) [unique]
   fullname varchar(50) [not null]
-  personal_information varchar(200)
-  relevant_skills varchar(200)
-  education varchar(200)
-  experience varchar(200)
-  projects varchar(200)
-  ai_info varchar(200)
-  ai_skills varchar(200)
-  ai_edu varchar(200)
-  ai_exp varchar(200)
-  ai_proj varchar(200)
-
-  indexes {
-    user_id [name:"idx_ai_resume_user_id"]
-  }
+  personal_information text
+  relevant_skills text
+  education text
+  experience text
+  projects text
+  ai_info text
+  ai_skills text
+  ai_edu text
+  ai_exp text
+  ai_proj text
 }
 
 
