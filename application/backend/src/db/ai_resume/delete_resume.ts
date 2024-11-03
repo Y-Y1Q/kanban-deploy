@@ -18,7 +18,7 @@ export async function deleteUserResumeInput(user_id: number): Promise<boolean> {
   }
 }
 
-import { testQuery } from "../db_test";
-testQuery(deleteUserResumeInput, 1);
+// import { testQuery } from "../db_test";
+// testQuery(deleteUserResumeInput, 1);
 
 // npx tsx .\src\db\ai_resume\delete_resume.ts

@@ -3,7 +3,7 @@ import { SQL } from "sql-template-strings";
 import db from "../db_connection";
 import { AiResume } from "../db_types";
 
-export async function addUserResumeInput(resumeData: AiResume): Promise<boolean> {
+export async function addUserResumeInput(user_id: number, resumeData: AiResume): Promise<boolean> {
   const query = SQL`
     INSERT INTO
       ai_resume (
@@ -17,7 +17,7 @@ export async function addUserResumeInput(resumeData: AiResume): Promise<boolean>
       )
     VALUES
       (
-        ${resumeData.user_id},
+        ${user_id},
         ${resumeData.fullname},
         ${resumeData.personal_information},
         ${resumeData.relevant_skills},
@@ -37,7 +37,6 @@ export async function addUserResumeInput(resumeData: AiResume): Promise<boolean>
 }
 
 // const testData = {
-//   user_id: 1,
 //   fullname: "Test Name",
 //   personal_information: "Test Info",
 //   relevant_skills: null,
@@ -47,6 +46,6 @@ export async function addUserResumeInput(resumeData: AiResume): Promise<boolean>
 // };
 
 // import { testQuery } from "../db_test";
-// testQuery(addUserResumeInput, testData);
+// testQuery(addUserResumeInput, 1, testData);
 
 // npx tsx .\src\db\ai_resume\add_resume.ts
