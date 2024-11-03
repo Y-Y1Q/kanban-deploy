@@ -118,80 +118,92 @@ INSERT INTO "ai_resume" (
       </li>
     </ul>',
   '<p>
-      <strong>Front End</strong> | React, NextJS, Javascript, TypeScript,
-      Material UI
+      <strong>Programming Languages: </strong>Golang, Java, C, C++, JavaScript,
+      TypeScript
     </p>
+    <p><strong>Frameworks: </strong>Spring Boot, Express, Gin, React</p>
     <p>
-      <strong>Back End</strong> | Golang, Java, C, C++, PostgreSQL, MongoDB,
-      MySQL, Spring Boot, Express, Gin
-    </p>
-    <p>
-      <strong>Testing/Deployment</strong> | Jest, Mocha, Chai, AWS:EC2, AWS:ECS,
-      Terraform, JUnit
-    </p>
-    <p>
-      <strong>Developer Tools</strong> | Docker, microservices, Git, npm, Vite,
-      ESBuild, Postman
+      <strong>Tools: </strong>AWS, Docker, microservices, Git, npm, Vite,
+      ESBuild, Postman, PostgreSQL, MongoDB, MySQL
     </p>',
   '<p>
-      <strong>University of XXX</strong> - Bachelors of Science, Computer
-      Science, GPA (only &gt;= 3.7)
+      <strong>University of XXX</strong>
+      <span class="spacer"></span>
+      City, State
+    </p>
+    <p>
+      Bachelors of Science, Computer Science, GPA (only &gt;= 3.7)
       <span class="spacer"></span>
       Graduation Month Year
     </p>',
-  '<p>
-    <strong>Job Title, Company</strong> - City, State
-    <span class="spacer"></span>
-    Month Year - Present
-  </p>
-  <ul>
-    <li>STAR - Situation Task Action Result</li>
-    <li>XYZ - Accomplished X as measured by Y by doing Z</li>
-    <li>CAR - Challenge Action Result</li>
-  </ul>
+  ' <p>
+      <strong>Company</strong>
+      <span class="spacer"></span>
+      City, State
+    </p>
+    <p>
+      Job Title
+      <span class="spacer"></span>
+      Month Year - Present
+    </p>
+    <ul>
+      <li>STAR - Situation Task Action Result</li>
+      <li>XYZ - Accomplished X as measured by Y by doing Z</li>
+      <li>CAR - Challenge Action Result</li>
+    </ul>
 
-  <div class="vertical-spacer"></div>
-  <p>
-    <strong>Job Title, Company</strong> - City, State
-    <span class="spacer"></span>
-    Month Year - Month Year
-  </p>
-  <ul>
-    <li>Start each bullet with a strong, past-tense action verb</li>
-    <li>
-      Each bullet point should be 1-2 lines long and max 1 sentence long.
-    </li>
-    <li>
-      Don''t let bullets spill onto the next line with only 1-4 words on it,
-      it''s a huge waste of space
-    </li>
-  </ul>
+    <div class="vertical-spacer"></div>
+    <p>
+      <strong>Company</strong>
+      <span class="spacer"></span>
+      City, State
+    </p>
+    <p>
+      Job Title
+      <span class="spacer"></span>
+      Month Year - Month Year
+    </p>
+    <ul>
+      <li>Start each bullet with a strong, past-tense action verb</li>
+      <li>
+        Each bullet point should be 1-2 lines long and max 1 sentence long.
+      </li>
+      <li>
+        Don''t let bullets spill onto the next line with only 1-4 words on it,
+        it''s a huge waste of space
+      </li>
+    </ul>
 
-  <div class="vertical-spacer"></div>
-  <p>
-    <strong>Job Title, Company</strong> - City, State
-    <span class="spacer"></span>
-    Month Year - Month Year
-  </p>
-  <ul>
-    <li>
-      Optimized existing monolithic back-end of an e-commerce website to
-      handle 360,000 requests per minute with low latency
-      <strong>(&lt;20 ms)</strong> and error rate
-      <strong>(&lt;0.1%)</strong> by horizontally microservice to 5 AWS EC2
-      instances
-    </li>
-    <li>
-      Leveraged K6 and Loader.io to identify performance bottlenecks, then
-      implemented caching to lower frequency of database retrieval to allow
-      for a throughput increase of <strong>733%</strong>
-    </li>
-    <li>
-      Reduced query times to database from 6,000 ms to
-      <strong>12 ms</strong> by using aggregator functions and indexing
-      foreign keys
-    </li>
-  </ul>',
+    <div class="vertical-spacer"></div>
+    <p>
+      <strong>Company</strong>
+      <span class="spacer"></span>
+      City, State
+    </p>
+    <p>
+      Job Title
+      <span class="spacer"></span>
+      Month Year - Month Year
+    </p>
+    <ul>
+      <li>
+        Optimized existing monolithic back-end of an e-commerce website to
+        handle 360,000 requests per minute with low latency
+        <strong>(&lt;20 ms)</strong> and error rate
+        <strong>(&lt;0.1%)</strong> by horizontally microservice to 5 AWS EC2
+        instances
+      </li>
+      <li>
+        Leveraged K6 and Loader.io to identify performance bottlenecks, then
+        implemented caching to lower frequency of database retrieval to allow
+        for a throughput increase of <strong>733%</strong>
+      </li>
+      <li>
+        Reduced query times to database from 6,000 ms to
+        <strong>12 ms</strong> by using aggregator functions and indexing
+        foreign keys
+      </li>
+    </ul>',
   '<p>
       <strong>Project Title</strong>
       <span class="spacer"></span>
