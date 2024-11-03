@@ -11,7 +11,8 @@
     "prettier-plugin-sort-json",
     "@trivago/prettier-plugin-sort-imports",
     "prettier-plugin-sql",
-    "prettier-plugin-embed"
+    "prettier-plugin-embed",
+    "prettier-plugin-ejs"
   ],
   "printWidth": 100,
   "semi": true,
