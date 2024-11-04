@@ -27,6 +27,7 @@
     "react-dom": "^18.3.1",
     "react-pro-sidebar": "^0.7.1",
     "react-router-dom": "^6.26.2",
+    "react-toastify": "^10.0.6",
     "vitest": "^2.1.2"
   },
   "devDependencies": {

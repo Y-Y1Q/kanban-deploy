@@ -160,7 +160,7 @@ export default function SideBar() {
               AI tools
             </Typography>
             <Item
-              title="Generate Resume"
+              title="Resume Builder"
               to="/app/ai-resume"
               icon={<PictureAsPdfOutlinedIcon />}
               selected={selected}
