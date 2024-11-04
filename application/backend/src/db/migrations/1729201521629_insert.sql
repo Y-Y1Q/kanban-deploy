@@ -96,7 +96,7 @@ INSERT INTO "ai_resume" (
 ) VALUES (
   1,
   'abc123xyz456',
-  'John Doe',
+  'Jane Doe',
   'Jane Doe is a software engineer based in San Francisco. 
 You can reach her at janedoe@example.com or by phone at (123) 456-7890. 
 She has a LinkedIn profile at https://www.linkedin.com/ 
