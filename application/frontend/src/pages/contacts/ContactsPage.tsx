@@ -27,7 +27,7 @@ export default function ContactsPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [contacts, setContacts] = useState<Contact[]>([]);
   const [newContact, setNewContact] = useState<Omit<Contact, "id">>({
-    user_id: "", // Assume user_id is available somehow, maybe from authentication
+    user_id: "authenticatedUserId", // Replace "authenticatedUserId" with the actual authenticated user ID
     name: "",
     email: "",
     company: "",
@@ -61,8 +61,57 @@ export default function ContactsPage() {
   };
 
   const handleAddContact = async () => {
+    console.log("Add Contact button clicked.");
+    console.log("Adding new contact:", newContact);
+
+    // Validate required fields
+    if (
+      !newContact.user_id ||
+      !newContact.name ||
+      !newContact.email ||
+      !newContact.company ||
+      !newContact.position ||
+      !newContact.phone_num
+    ) {
+      console.error("Missing required fields:", newContact);
+      alert("Please fill in all the required fields.");
+      return;
+    }
+
+    // Replace "authenticatedUserId" with actual user ID
+    console.log("Adding new contact:", newContact);
+
+    // Validate required fields
+    if (
+      !newContact.user_id ||
+      !newContact.name ||
+      !newContact.email ||
+      !newContact.company ||
+      !newContact.position ||
+      !newContact.phone_num
+    ) {
+      console.error("Missing required fields:", newContact);
+      alert("Please fill in all the required fields.");
+      return;
+    }
+    console.log("Adding new contact:", newContact);
+    // Validate required fields
+    if (
+      !newContact.user_id ||
+      !newContact.name ||
+      !newContact.email ||
+      !newContact.company ||
+      !newContact.position ||
+      !newContact.phone_num
+    ) {
+      console.error("Missing required fields:", newContact);
+      alert("Please fill in all the required fields.");
+      return;
+    }
+    console.log("Adding new contact:", newContact);
     try {
       const response = await axios.post("/api/contacts/add", newContact);
+      console.log("Response from adding contact:", response.data);
       setOpen(false);
       setSearchTerm("");
       setContacts((prev) => [...prev, { ...newContact, id: response.data?.id ?? "" }]);
