@@ -64,20 +64,6 @@ VALUES
 (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), 
 (6, 6), (7, 7), (8, 8), (9, 9), (10, 10);
 
--- Insert into ai_resume table
-INSERT INTO ai_resume (user_id, personal_information, relevant_skills, education, experience, projects)
-VALUES 
-(1, 'Test User - San Jose, CA', 'JavaScript, React, Node.js', 'B.S. Computer Science', 'Software Engineer at XYZ', 'Built Kanban board app'),
-(1, 'Test User - San Jose, CA', 'Python, Data Science', 'M.S. Data Science', 'Data Analyst at ABC Corp', 'Developed data analysis tool'),
-(1, 'Test User - San Jose, CA', 'DevOps, AWS, Docker', 'B.S. Information Technology', 'DevOps Engineer at DEF Ltd.', 'Automated deployment pipelines'),
-(1, 'Test User - San Jose, CA', 'Fullstack, HTML, CSS', 'B.S. Software Engineering', 'Frontend Developer at GHI Inc.', 'Redesigned frontend UI'),
-(1, 'Test User - San Jose, CA', 'Cloud Computing, Kubernetes', 'M.S. Cloud Computing', 'Cloud Engineer at JKL Tech', 'Managed cloud infrastructure'),
-(1, 'Test User - San Jose, CA', 'Project Management, Agile', 'MBA', 'Product Manager at MNO Inc.', 'Led cross-functional team'),
-(1, 'Test User - San Jose, CA', 'Mobile Development, Swift', 'B.S. Mobile Computing', 'iOS Developer at PQR Mobile', 'Built mobile application'),
-(1, 'Test User - San Jose, CA', 'Cybersecurity, Penetration Testing', 'M.S. Cybersecurity', 'Security Engineer at STU Security', 'Secured enterprise systems'),
-(1, 'Test User - San Jose, CA', 'AI, Machine Learning', 'Ph.D. in AI', 'ML Engineer at VWX AI', 'Developed AI models'),
-(1, 'Test User - San Jose, CA', 'Blockchain, Cryptography', 'B.S. Cryptography', 'Blockchain Developer at YZ Crypto', 'Created blockchain solutions');
-
 -- Insert into ai_interview_prep table
 INSERT INTO ai_interview_prep (user_id, company, job_position, job_description, ai_response)
 VALUES 
@@ -91,5 +77,204 @@ VALUES
 (1, 'Company H', 'DevOps Engineer', 'Automate deployment pipelines.', 'Describe your experience with CI/CD pipelines.'),
 (1, 'Company I', 'Cloud Architect', 'Design cloud infrastructure solutions.', 'What cloud services have you worked with, and how did you optimize costs?'),
 (1, 'Company J', 'Fullstack Developer', 'Develop both frontend and backend applications.', 'How do you ensure efficient communication between frontend and backend systems?');
+
+-- Insert into ai_resume table
+INSERT INTO "ai_resume" (
+  "user_id",
+  "user_token",
+  "fullname",
+  "personal_information",
+  "relevant_skills",
+  "education",
+  "experience",
+  "projects",
+  "ai_info",
+  "ai_skills",
+  "ai_edu",
+  "ai_exp",
+  "ai_proj"
+) VALUES (
+  1,
+  'abc123xyz456',
+  'Jane Doe',
+  'Jane Doe is a software engineer based in San Francisco. 
+You can reach her at janedoe@example.com or by phone at (123) 456-7890. 
+She has a LinkedIn profile at https://www.linkedin.com/ 
+and a GitHub page at https://github.com/. 
+Her personal portfolio can be found at https://example.com.',
+
+  'Jane is proficient in various programming languages, 
+including Golang, Java, C, C++, JavaScript, and TypeScript. 
+She has experience with frameworks such as Spring Boot, Express, Gin, and React. 
+Additionally, she is skilled in using tools like AWS, Docker, microservices, Git, npm, Vite, ESBuild, Postman, PostgreSQL, MongoDB, and MySQL.',
+
+  'Jane Doe completed her Bachelor of Science in Computer Science at Stanford University in Stanford, CA, 
+with a GPA of 3.8 in June 2020. Later, 
+she pursued her Master of Science in Artificial Intelligence at Massachusetts Institute of Technology (MIT) in Cambridge, MA, 
+and graduated with a GPA of 3.6 in May 2023.',
+
+
+  'Jane Doe worked as a Software Engineer at Tech Solutions Inc. in San Francisco, CA, from January 2020 to August 2023. 
+During her time there, she was responsible for developing and maintaining web applications, collaborating with cross-functional teams, and optimizing application performance.
+Jane also implemented new features using JavaScript, React, and Node.js, and worked with AWS for cloud services.
+
+Before that, she was an Intern at Innovative Labs in New York, NY, from June 2019 to August 2019. 
+In this role, she assisted with frontend development, fixed bugs in the codebase, and contributed to the team’s efforts to improve website accessibility. 
+Jane also gained experience with HTML, CSS, and JavaScript.',
+
+  'Jane created a real-time chat application as a personal project. 
+The project involved using React for the frontend, Node.js with Express for the backend, and WebSocket for real-time messaging. 
+She designed an intuitive UI with Material UI and added CSS animations to enhance user engagement. 
+The app supports up to 10,000 concurrent users and has secure authentication using JWT. 
+The source code is available on GitHub at https://example.com.
+
+She also built an e-commerce platform as a side project. 
+The platform uses Next.js for server-side rendering, MongoDB as the database,
+ and Stripe for payment processing. The project includes features like product management, shopping cart functionality, 
+ and order tracking. 
+ The e-commerce platform is optimized for SEO and has a responsive design for mobile and desktop users. 
+ You can find it on GitHub at https://example.com.',
+  '<ul>
+      <li>PHONE</li>
+      <li>
+        <a href="mailto:{EMAIL}">EMAIL</a>
+      </li>
+      <li>
+        <a href="https://linkedin.com">LINKEDIN</a>
+      </li>
+      <li>
+        <a href="https://github.com">GITHUB</a>
+      </li>
+      <li>
+        <a href="https://example.com">PORTFOLIO</a>
+      </li>
+    </ul>',
+  '<p>
+      <strong>Programming Languages: </strong>Golang, Java, C, C++, JavaScript,
+      TypeScript
+    </p>
+    <p><strong>Frameworks: </strong>Spring Boot, Express, Gin, React</p>
+    <p>
+      <strong>Tools: </strong>AWS, Docker, microservices, Git, npm, Vite,
+      ESBuild, Postman, PostgreSQL, MongoDB, MySQL
+    </p>',
+  '<p>
+      <strong>University of XXX</strong>
+      <span class="spacer"></span>
+      City, State
+    </p>
+    <p>
+      Bachelors of Science, Computer Science, GPA (only &gt;= 3.7)
+      <span class="spacer"></span>
+      Graduation Month Year
+    </p>',
+  ' <p>
+      <strong>Company</strong>
+      <span class="spacer"></span>
+      City, State
+    </p>
+    <p>
+      Job Title
+      <span class="spacer"></span>
+      Month Year - Present
+    </p>
+    <ul>
+      <li>STAR - Situation Task Action Result</li>
+      <li>XYZ - Accomplished X as measured by Y by doing Z</li>
+      <li>CAR - Challenge Action Result</li>
+    </ul>
+
+    <div class="vertical-spacer"></div>
+    <p>
+      <strong>Company</strong>
+      <span class="spacer"></span>
+      City, State
+    </p>
+    <p>
+      Job Title
+      <span class="spacer"></span>
+      Month Year - Month Year
+    </p>
+    <ul>
+      <li>Start each bullet with a strong, past-tense action verb</li>
+      <li>
+        Each bullet point should be 1-2 lines long and max 1 sentence long.
+      </li>
+      <li>
+        Don''t let bullets spill onto the next line with only 1-4 words on it,
+        it''s a huge waste of space
+      </li>
+    </ul>
+
+    <div class="vertical-spacer"></div>
+    <p>
+      <strong>Company</strong>
+      <span class="spacer"></span>
+      City, State
+    </p>
+    <p>
+      Job Title
+      <span class="spacer"></span>
+      Month Year - Month Year
+    </p>
+    <ul>
+      <li>
+        Optimized existing monolithic back-end of an e-commerce website to
+        handle 360,000 requests per minute with low latency
+        <strong>(&lt;20 ms)</strong> and error rate
+        <strong>(&lt;0.1%)</strong> by horizontally microservice to 5 AWS EC2
+        instances
+      </li>
+      <li>
+        Leveraged K6 and Loader.io to identify performance bottlenecks, then
+        implemented caching to lower frequency of database retrieval to allow
+        for a throughput increase of <strong>733%</strong>
+      </li>
+      <li>
+        Reduced query times to database from 6,000 ms to
+        <strong>12 ms</strong> by using aggregator functions and indexing
+        foreign keys
+      </li>
+    </ul>',
+  '<p>
+      <strong>Project Title</strong>
+      <span class="spacer"></span>
+      project-link.com
+    </p>
+    <ul>
+      <li>
+        The more work experience you have, the less relevant outside-work
+        projects tend to become
+      </li>
+      <li>
+        If you have something that really stands out, consider listing it here
+      </li>
+      <li>
+        Implemented server-side rendering with Next.js to improve page load
+        time, achieving Lighthouse SEO score of 100
+      </li>
+    </ul>
+
+    <div class="vertical-spacer"></div>
+
+    <p>
+      <strong>Project Title</strong>
+      <span class="spacer"></span>
+      project-link.com
+    </p>
+    <ul>
+      <li>
+        Only list real projects, not mandatory school projects or trivial
+        tutorial projects found online
+      </li>
+      <li>Something that someone uses to solve a problem</li>
+      <li>
+        Something that has users (can be just you, as long as you use it often)
+        and is actively maintained and not just rotting in a GitHub repo, never
+        to see a PR for the rest of its life
+      </li>
+    </ul>'
+);
+
 
 -- Down Migration

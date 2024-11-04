@@ -1,0 +1,157 @@
+/* fonts */
+/* use machine readable font like sans serif*/
+/* @import url("https://fonts.googleapis.com/css2?family=Tinos:wght@400;700&display=swap"); */
+/* @import url(http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&subset=latin,latin-ext); */
+
+/* meta */
+body {
+  font-family: sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.spacer {
+  margin: 0px auto;
+}
+
+.vertical-spacer {
+  height: 8px;
+}
+
+/* ordering of content */
+h1 {
+  order: 0;
+}
+
+.headerInfo {
+  order: 1;
+}
+
+/* styling content */
+h1,
+h2,
+h3,
+p,
+a {
+  color: black;
+}
+
+h2 {
+  margin: 10px 0px;
+}
+
+h3 {
+  margin: 6px 0px;
+}
+
+h1 {
+  color: black;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 32px;
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  border-bottom: 1px solid #000000;
+  text-transform: uppercase;
+  font-size: 16px;
+  padding: 0;
+}
+
+h3 {
+  display: flex;
+  font-size: 15px;
+  padding: 0;
+  justify-content: space-between;
+}
+
+strong {
+  /* padding-left: 1px;
+  padding-right: 2px; */
+  justify-content: space-between;
+}
+
+p {
+  margin: 0;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  padding: 0;
+  display: flex;
+}
+
+li > p {
+  display: inline;
+}
+
+a {
+  color: black;
+}
+
+ul {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+li {
+  color: black;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+em,
+a {
+  padding-left: 1px;
+  padding-right: 2px;
+}
+
+/* header info content */
+
+.headerInfo > ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto; /* Ensure horizontal centering */
+  padding: 0;
+}
+
+.headerInfo > ul > li {
+  display: inline-flex;
+  align-items: center; /* Vertically align content */
+  list-style-type: none;
+  white-space: nowrap; /* Ensure no wrapping */
+}
+
+.headerInfo > ul > li:not(:last-child) {
+  margin-right: 8px;
+}
+
+.headerInfo > ul > li:not(:last-child):after {
+  content: "|"; /* Add a separator between list items */
+  margin-left: 8px;
+}
+
+.headerInfo > ul > li > a {
+  text-decoration: none;
+  white-space: nowrap; /* Prevent wrapping */
+  display: inline-flex;
+  align-items: center; /* Ensure text is vertically aligned */
+}
+
+/* page */
+@page {
+  margin: 0.5in;
+  size: letter;
+}
+
+@page :footer {
+  display: none;
+}
+
+@page :header {
+  display: none;
+}

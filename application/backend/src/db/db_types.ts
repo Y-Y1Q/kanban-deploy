@@ -71,6 +71,7 @@ export interface Contact {
 export interface AiResume {
   id: number;
   user_id: number;
+  fullname: string;
   user_token?: string | null;
   personal_information?: string | null;
   relevant_skills?: string | null;
