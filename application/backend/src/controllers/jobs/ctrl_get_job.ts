@@ -17,6 +17,24 @@ export async function getJobs(req: Request, res: Response) {
   }
 }
 
+export async function getJobDetail(req: Request, res: Response) {
+  const jobId = Number(req.params.id);
+
+  if (isNaN(jobId)) {
+    return res.status(HttpCode.BadRequest).json({ error: "Invalid job ID. Must be a number." });
+  }
+
+  try {
+    const jobs = await JobsDB.getJobById(jobId);
+    return res.status(HttpCode.OK).json({ jobs });
+  } catch (err) {
+    console.log(err);
+    return res
+      .status(HttpCode.InternalServerError)
+      .json({ error: "Internal server error: " + err });
+  }
+}
+
 export async function getJobsByCompany(req: Request, res: Response) {
   const { id: userId } = req.session.user!;
   const { company } = req.query;

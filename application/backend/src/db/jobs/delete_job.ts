@@ -2,7 +2,7 @@ import { SQL } from "sql-template-strings";
 
 import db from "../db_connection";
 
-export async function deleteJob(job_id: number): Promise<boolean> {
+export async function deleteJobById(job_id: number): Promise<boolean> {
   const query = SQL`
     DELETE FROM jobs
     WHERE
