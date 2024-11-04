@@ -30,7 +30,7 @@ router.get("/api/jobs/stats-date", checkAuth, Controller.Jobs.getDateStats);
 router.get("/ai-resume/:token", Controller.AiResume.getResumePage);
 router.get("/api/ai-resume", checkAuth, Controller.AiResume.getUserResumeInput);
 router.delete("/api/ai-resume", checkAuth, Controller.AiResume.deleteUserResume);
-// router.post("/api/ai-resume/generate", checkAuth, Controller.AiResume.generateResume);
+router.post("/api/ai-resume/save", checkAuth, Controller.AiResume.saveUserResumeInput);
 
 // Contacts routes
 router.post("/api/contacts/add", checkAuth, Controller.Contacts.addContact);
