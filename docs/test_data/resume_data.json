@@ -1,0 +1,15 @@
+{
+  "resumeData": {
+    "fullname": "Update Name",
+    "personal_information": null,
+    "relevant_skills": "Update skill",
+    "education": "Update edu",
+    "experience": "Update exp",
+    "projects": "Update proj",
+    "ai_info": "Updated AI-generated personal information",
+    "ai_skills": "Updated AI-generated skills",
+    "ai_edu": "Updated AI-generated education",
+    "ai_exp": "Updated AI-generated experience",
+    "ai_proj": "Updated AI-generated projects"
+  }
+}
