@@ -50,7 +50,7 @@ export default function SideBar() {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [selected, setSelected] = useState("Kanban Board");
+  const [selected, setSelected] = useState(getSelectedTitle(location.pathname));
 
   return (
     <Box
@@ -209,3 +209,33 @@ export default function SideBar() {
     </Box>
   );
 }
+
+// Function to determine selected title based on current path
+const getSelectedTitle = (path: string) => {
+  switch (path) {
+    case "/app/":
+      return "Kanban Board";
+    case "/app/contacts":
+      return "Contacts";
+    case "/app/stats-heatmap":
+      return "Heat Map";
+    case "/app/stats-bar":
+      return "Bar Chart";
+    case "/app/stats-donut":
+      return "Donut Chart";
+    case "/app/stats-sankey":
+      return "Sankey Chart";
+    case "/app/ai-resume":
+      return "Resume Builder";
+    case "/app/ai-interview":
+      return "Interview Prep";
+    case "/app/test":
+      return "Test Jobs Data";
+    case "/app/search-company":
+      return "Test Search by Company";
+    case "/app/search-type":
+      return "Test Search by Type";
+    default:
+      return "";
+  }
+};
