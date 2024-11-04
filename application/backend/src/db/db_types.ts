@@ -22,6 +22,20 @@ export interface Job {
   date_scheduled?: string | null;
 }
 
+export interface JobData {
+  current_status: string;
+  company: string;
+  position: string;
+  salary?: string | null;
+  type?: string | null;
+  location?: string | null;
+  link?: string | null;
+  description?: string | null;
+  user_note?: string | null;
+  date_applied?: Date | null;
+  date_scheduled?: string | null;
+}
+
 export interface Column {
   id: number;
   name: string;
