@@ -61,3 +61,27 @@ export async function getJobs(user_id: number): Promise<Job[] | null> {
     return null;
   }
 }
+
+export async function getJobById(job_id: number): Promise<Job[] | null> {
+  const query = SQL`
+    SELECT
+      *
+    FROM
+      jobs
+    WHERE
+      id = ${job_id}
+  `;
+
+  try {
+    const jobs = await db.manyOrNone<Job>(query.text, query.values);
+    return jobs;
+  } catch (error) {
+    console.error(`Error fetching job data:`, error);
+    return null;
+  }
+}
+
+// import { testQuery } from "../db_test";
+// testQuery(getJobById, 1);
+
+// npx tsx .\src\db\jobs\get_jobs.ts

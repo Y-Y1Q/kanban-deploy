@@ -105,7 +105,7 @@ export default function SideBar() {
 
           <Box paddingLeft={isCollapsed ? undefined : "10%"} paddingRight="0%">
             <Item
-              title="Kanban Board"
+              title="Job Board"
               to="/app/"
               icon={<DashboardIcon />}
               selected={selected}
@@ -214,7 +214,7 @@ export default function SideBar() {
 const getSelectedTitle = (path: string) => {
   switch (path) {
     case "/app/":
-      return "Kanban Board";
+      return "Job Board";
     case "/app/contacts":
       return "Contacts";
     case "/app/stats-heatmap":
