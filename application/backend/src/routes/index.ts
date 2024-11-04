@@ -31,6 +31,7 @@ router.get("/ai-resume/:token", Controller.AiResume.getResumePage);
 router.get("/api/ai-resume", checkAuth, Controller.AiResume.getUserResumeInput);
 router.delete("/api/ai-resume", checkAuth, Controller.AiResume.deleteUserResume);
 router.post("/api/ai-resume/save", checkAuth, Controller.AiResume.saveUserResumeInput);
+router.post("/api/ai-resume/build", checkAuth, Controller.AiResume.updateAiResumeInput);
 
 // Contacts routes
 router.post("/api/contacts/add", checkAuth, Controller.Contacts.addContact);
