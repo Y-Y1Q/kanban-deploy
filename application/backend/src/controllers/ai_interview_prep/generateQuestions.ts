@@ -1,4 +1,4 @@
-import OpenAI from "openai";
+import OpenAI from "openai"; // do npm install openai to get rid of this error. Also gitignore the openai package
 import { Request, Response } from "express";
 
 const openai = new OpenAI({
