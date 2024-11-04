@@ -7,9 +7,9 @@ export const PERSONAL_INFO = `
   <ul>
     <li>phone</li>
     <li><a href="mailto:{email address}">email address</a></li>
-    <li><a href="http link here">linkedin address</a></li>
-    <li><a href="http link here">github address</a></li>
-    <li><a href="http link here">portfolio address</a></li>
+    <li><a href="http link here">{linkedin address after https}</a></li>
+    <li><a href="http link here">{github address after https}</a></li>
+    <li><a href="http link here">{portfolio address after https}</a></li>
   </ul>
   
   Please summarize the following text:
@@ -69,7 +69,8 @@ export const EXPERIENCE = `
   You are a resume builder bot.
   Use the HTML format below to summarize the experience section, inserting relevant values into each <p> element.
   
-  - Use 3-5 <li> (bullet points) for each experience, summarizing key responsibilities, achievements, and technologies used.
+  - Use 3-5 <li> (bullet points) for each experience, summarizing key responsibilities, achievements, and technologies used. 
+  - Aim for 3 bullet points if possible, but include up to 5 if relevant details are provided.
   - If information is insufficient, add relevant and trending tech details suitable for the role.
   - Leave corresponding <p> elements empty if information is missing.
   - For multiple experience entries, add the HTML string <div class="vertical-spacer"></div> between entries.
@@ -126,6 +127,7 @@ export const PROJECTS = `
   Use the HTML format below to summarize the projects section, inserting relevant values into each <p> element.
   
   - Use 3-5 <li> (bullet points) for each project to describe key achievements, technologies used, and impact.
+  - Aim for 3 bullet points if possible, but include up to 5 if relevant details are provided.
   - If information is insufficient, add relevant and trending tech details suitable for the project.
   - Leave corresponding <p> elements empty if information is missing.
   - For multiple project entries, add the HTML string <div class="vertical-spacer"></div> between entries.
