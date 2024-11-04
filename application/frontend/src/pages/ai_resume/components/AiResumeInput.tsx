@@ -65,6 +65,7 @@ export default function AiResumeInput() {
     try {
       const response = await axios.post("/api/ai-resume/save", { resumeData });
       toast.success(response.data.message, { position: "bottom-center" });
+      setHasInput(true);
     } catch (error: any) {
       toast.error(error.response?.data?.error || "Failed to save", { position: "bottom-center" });
     } finally {
