@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
@@ -13,12 +14,38 @@ export default function InterviewPrepPage() {
   const [messages, setMessages] = useState<{ user: string; text: string }[]>([]);
   const [inputValue, setInputValue] = useState("");
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const fetchResponseFromOpenAI = async (message: string) => {
+    try {
+      const response = await axios.post(
+        "https://api.openai.com/v1/engines/davinci-codex/completions",
+        {
+          prompt: message,
+          max_tokens: 150,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer YOUR_OPENAI_API_KEY`,
+          },
+        }
+      );
+      return response.data.choices[0].text.trim();
+    } catch (error) {
+      console.error("Error fetching response from OpenAI:", error);
+      return "Sorry, I couldn't process your request.";
+    }
+  };
+
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     if (inputValue.trim()) {
       setMessages([...messages, { user: "You", text: inputValue }]);
+      const botResponse = await fetchResponseFromOpenAI(inputValue);
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { user: "Bot", text: botResponse },
+      ]);
       setInputValue("");
-      // Here you can add logic to get a response from the chatbot
     }
   };
 
@@ -32,22 +59,19 @@ export default function InterviewPrepPage() {
         <List sx={{ maxHeight: 400, overflow: 'auto', mb: 2 }}>
           {messages.map((message, index) => (
             <ListItem key={index} sx={{ display: 'flex', justifyContent: message.user === "You" ? 'flex-end' : 'flex-start' }}>
-              <Paper sx={{ p: 1.5, backgroundColor: message.user === "You" ? '#e0f7fa' : '#f1f1f1', maxWidth: '75%' }}>
-                <ListItemText primary={message.text} />
-              </Paper>
+              <ListItemText primary={message.text} />
             </ListItem>
           ))}
         </List>
-        <form onSubmit={handleSubmit} style={{ display: 'flex', alignItems: 'center' }}>
+        <form onSubmit={handleSubmit}>
           <TextField
             fullWidth
             variant="outlined"
-            label="Type your message"
+            placeholder="Type your message..."
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
-            sx={{ mr: 2 }}
           />
-          <Button type="submit" variant="contained" color="primary">
+          <Button type="submit" variant="contained" color="primary" sx={{ mt: 2 }}>
             Send
           </Button>
         </form>
