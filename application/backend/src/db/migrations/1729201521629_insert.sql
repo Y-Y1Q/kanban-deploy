@@ -97,11 +97,43 @@ INSERT INTO "ai_resume" (
   1,
   'abc123xyz456',
   'John Doe',
-  'Experienced software engineer with a focus on web development and AI.',
-  'JavaScript, Python, SQL, React, Node.js',
-  'B.S. in Computer Science from University of Example',
-  '3 years as a Software Developer at Tech Corp',
-  'Built a portfolio website, developed a task management app',
+  'Jane Doe is a software engineer based in San Francisco. 
+You can reach her at janedoe@example.com or by phone at (123) 456-7890. 
+She has a LinkedIn profile at https://www.linkedin.com/ 
+and a GitHub page at https://github.com/. 
+Her personal portfolio can be found at https://example.com.',
+
+  'Jane is proficient in various programming languages, 
+including Golang, Java, C, C++, JavaScript, and TypeScript. 
+She has experience with frameworks such as Spring Boot, Express, Gin, and React. 
+Additionally, she is skilled in using tools like AWS, Docker, microservices, Git, npm, Vite, ESBuild, Postman, PostgreSQL, MongoDB, and MySQL.',
+
+  'Jane Doe completed her Bachelor of Science in Computer Science at Stanford University in Stanford, CA, 
+with a GPA of 3.8 in June 2020. Later, 
+she pursued her Master of Science in Artificial Intelligence at Massachusetts Institute of Technology (MIT) in Cambridge, MA, 
+and graduated with a GPA of 3.6 in May 2023.',
+
+
+  'Jane Doe worked as a Software Engineer at Tech Solutions Inc. in San Francisco, CA, from January 2020 to August 2023. 
+During her time there, she was responsible for developing and maintaining web applications, collaborating with cross-functional teams, and optimizing application performance.
+Jane also implemented new features using JavaScript, React, and Node.js, and worked with AWS for cloud services.
+
+Before that, she was an Intern at Innovative Labs in New York, NY, from June 2019 to August 2019. 
+In this role, she assisted with frontend development, fixed bugs in the codebase, and contributed to the team’s efforts to improve website accessibility. 
+Jane also gained experience with HTML, CSS, and JavaScript.',
+
+  'Jane created a real-time chat application as a personal project. 
+The project involved using React for the frontend, Node.js with Express for the backend, and WebSocket for real-time messaging. 
+She designed an intuitive UI with Material UI and added CSS animations to enhance user engagement. 
+The app supports up to 10,000 concurrent users and has secure authentication using JWT. 
+The source code is available on GitHub at https://example.com.
+
+She also built an e-commerce platform as a side project. 
+The platform uses Next.js for server-side rendering, MongoDB as the database,
+ and Stripe for payment processing. The project includes features like product management, shopping cart functionality, 
+ and order tracking. 
+ The e-commerce platform is optimized for SEO and has a responsive design for mobile and desktop users. 
+ You can find it on GitHub at https://example.com.',
   '<ul>
       <li>PHONE</li>
       <li>
