@@ -32,6 +32,7 @@
     "lexorank": "^1.0.5",
     "morgan": "^1.10.0",
     "node-pg-migrate": "^7.7.1",
+    "openai": "^4.70.2",
     "pg": "^8.13.0",
     "pg-promise": "^11.10.1",
     "sql-template-strings": "^2.2.2",
