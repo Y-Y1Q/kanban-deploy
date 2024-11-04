@@ -73,6 +73,27 @@ export async function foundUserResume(user_id: number): Promise<boolean> {
   }
 }
 
+export async function foundUserToken(user_token: string): Promise<boolean> {
+  const query = SQL`
+    SELECT
+      EXISTS (
+        SELECT
+          1
+        FROM
+          ai_resume
+        WHERE
+          user_token = ${user_token}
+      )
+  `;
+
+  try {
+    const result = await db.one<{ exists: boolean }>(query.text, query.values);
+    return result.exists;
+  } catch (error) {
+    return false;
+  }
+}
+
 export async function getUserResumeToken(user_id: number): Promise<string | null> {
   const query = SQL`
     SELECT
