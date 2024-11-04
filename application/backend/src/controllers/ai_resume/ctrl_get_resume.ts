@@ -31,7 +31,7 @@ export async function getUserResumeInput(req: Request, res: Response) {
 
 /*  
 
-test resume page
+default test resume page after DB reset
 
 http://localhost:3333/ai-resume/abc123xyz456
 
