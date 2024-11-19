@@ -13,7 +13,6 @@ import { ChangeEvent, useEffect, useState } from "react";
 
 interface Contact {
   id: string;
-  user_id: string;
   name: string;
   email: string;
   company: string;
@@ -27,7 +26,6 @@ export default function ContactsPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [contacts, setContacts] = useState<Contact[]>([]);
   const [newContact, setNewContact] = useState<Omit<Contact, "id">>({
-    user_id: "authenticatedUserId", // Replace "authenticatedUserId" with the actual authenticated user ID
     name: "",
     email: "",
     company: "",
@@ -64,51 +62,6 @@ export default function ContactsPage() {
     console.log("Add Contact button clicked.");
     console.log("Adding new contact:", newContact);
 
-    // Validate required fields
-    if (
-      !newContact.user_id ||
-      !newContact.name ||
-      !newContact.email ||
-      !newContact.company ||
-      !newContact.position ||
-      !newContact.phone_num
-    ) {
-      console.error("Missing required fields:", newContact);
-      alert("Please fill in all the required fields.");
-      return;
-    }
-
-    // Replace "authenticatedUserId" with actual user ID
-    console.log("Adding new contact:", newContact);
-
-    // Validate required fields
-    if (
-      !newContact.user_id ||
-      !newContact.name ||
-      !newContact.email ||
-      !newContact.company ||
-      !newContact.position ||
-      !newContact.phone_num
-    ) {
-      console.error("Missing required fields:", newContact);
-      alert("Please fill in all the required fields.");
-      return;
-    }
-    console.log("Adding new contact:", newContact);
-    // Validate required fields
-    if (
-      !newContact.user_id ||
-      !newContact.name ||
-      !newContact.email ||
-      !newContact.company ||
-      !newContact.position ||
-      !newContact.phone_num
-    ) {
-      console.error("Missing required fields:", newContact);
-      alert("Please fill in all the required fields.");
-      return;
-    }
-    console.log("Adding new contact:", newContact);
     try {
       const response = await axios.post("/api/contacts/add", newContact);
       console.log("Response from adding contact:", response.data);
@@ -220,6 +173,7 @@ export default function ContactsPage() {
                 variant="outlined"
                 value={newContact.name}
                 onChange={handleInputChange}
+                required
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -253,6 +207,7 @@ export default function ContactsPage() {
                 variant="outlined"
                 value={newContact.email}
                 onChange={handleInputChange}
+                required
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -264,6 +219,7 @@ export default function ContactsPage() {
                 variant="outlined"
                 value={newContact.phone_num}
                 onChange={handleInputChange}
+                required
               />
             </Grid>
             <Grid item xs={12}>
