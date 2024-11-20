@@ -1,9 +1,20 @@
-import axios from 'axios';
-import React, { useState } from 'react';
-import { Box, Paper, Typography, Divider, List, ListItem, ListItemText, TextField, Button } from '@mui/material';
+import { LoadingButton } from "@mui/lab";
+import {
+  Box,
+  Divider,
+  List,
+  ListItem,
+  ListItemText,
+  Paper,
+  TextField,
+  Typography,
+} from "@mui/material";
+import axios from "axios";
+import React, { useState } from "react";
 
 function InterviewPrepPage() {
   const [messages, setMessages] = useState<{ user: string; text: string }[]>([]);
+  const [loadingMessage, setLoadingMessage] = useState(false);
   const [inputValue, setInputValue] = useState("");
 
   const fetchResponseFromOpenAI = async (message: string) => {
@@ -18,12 +29,14 @@ function InterviewPrepPage() {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+    setLoadingMessage(true);
     if (inputValue.trim()) {
       setMessages([...messages, { user: "You", text: inputValue }]);
+      setInputValue("");
       const botResponse = await fetchResponseFromOpenAI(inputValue);
       setMessages((prevMessages) => [...prevMessages, { user: "Bot", text: botResponse }]);
-      setInputValue("");
     }
+    setLoadingMessage(false);
   };
 
   return (
@@ -54,9 +67,15 @@ function InterviewPrepPage() {
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
           />
-          <Button type="submit" variant="contained" color="primary" sx={{ mt: 2 }}>
+          <LoadingButton
+            type="submit"
+            variant="contained"
+            color="primary"
+            sx={{ mt: 2 }}
+            loading={loadingMessage}
+          >
             Send
-          </Button>
+          </LoadingButton>
         </form>
       </Paper>
     </Box>
