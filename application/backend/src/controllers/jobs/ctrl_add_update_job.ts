@@ -31,7 +31,7 @@ export async function updateJob(req: Request, res: Response) {
     const success = await JobDB.updateJob(userId, jobId, jobData);
 
     if (success) {
-      return res.status(HttpCode.Created).json({ message: "Job entry updated successfully." });
+      return res.status(HttpCode.OK).json({ message: "Job entry updated successfully." });
     } else {
       return res.status(HttpCode.BadRequest).json({ error: "Failed to update job entry." });
     }
