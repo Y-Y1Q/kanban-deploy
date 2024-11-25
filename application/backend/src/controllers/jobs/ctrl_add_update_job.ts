@@ -22,6 +22,21 @@ export async function addJob(req: Request, res: Response) {
   }
 }
 
-export function updateJob() {
-  //todo
+export async function updateJob(req: Request, res: Response) {
+  const { id: userId } = req.session.user!;
+  const jobId = Number(req.params.id);
+  const jobData = req.body.jobData!;
+
+  try {
+    const success = await JobDB.updateJob(userId, jobId, jobData);
+
+    if (success) {
+      return res.status(HttpCode.Created).json({ message: "Job entry updated successfully." });
+    } else {
+      return res.status(HttpCode.BadRequest).json({ error: "Failed to update job entry." });
+    }
+  } catch (error) {
+    console.error("Error adding job entry:", error);
+    return res.status(HttpCode.InternalServerError).json({ error: "Failed to update job entry." });
+  }
 }
