@@ -20,11 +20,11 @@ router.get("/api/jobs", checkAuth, Controller.Jobs.getJobs);
 router.get("/api/jobs/company", checkAuth, Controller.Jobs.getJobsByCompany);
 router.get("/api/jobs/type", checkAuth, Controller.Jobs.getJobsByType);
 router.post("/api/jobs/add", checkAuth, Controller.Jobs.addJob);
-// router.get("/api/jobs/:id", checkAuth, Controller.Jobs.getJobDetail);
+router.post("/api/jobs/update/:id", checkAuth, Controller.Jobs.updateJob);
+// router.get("/api/job-detail/:id", checkAuth, Controller.Jobs.getJobDetail);
 router.delete("/api/jobs/:id", checkAuth, Controller.Jobs.deleteJob);
 router.get("/api/jobs/stats", checkAuth, Controller.Jobs.getJobStats);
 router.get("/api/jobs/stats-date", checkAuth, Controller.Jobs.getDateStats);
-// router.post("/api/jobs/:id", checkAuth, Controller.Jobs.updateJob);
 
 // Column routes
 
