@@ -3,6 +3,7 @@ import { testQuery } from "../db_test";
 import { Contact } from "../db_types";
 import { SQL } from "sql-template-strings";
 
+
 export async function createContact(
   user_id: number,
   name: string,
@@ -84,6 +85,32 @@ export async function getContacts(searchParam: string): Promise<Contact[] | null
   }
 }
 
+export async function updateContact(
+  id: number,
+  contactData: Partial<Contact>
+): Promise<boolean> {
+  const query = SQL`
+    UPDATE contacts
+    SET
+      name = COALESCE(${contactData.name}, name),
+      email = COALESCE(${contactData.email}, email),
+      company = COALESCE(${contactData.company}, company),
+      position = COALESCE(${contactData.position}, position),
+      phone_num = COALESCE(${contactData.phone_num}, phone_num),
+      user_note = COALESCE(${contactData.user_note}, user_note)
+    WHERE
+      id = ${id}
+  `;
+
+  try {
+    await db.none(query.text, query.values);
+    return true;
+  } catch (error) {
+    console.error(`Error updating contact with ID ${id}:`, error);
+    return false;
+  }
+}
+
 // run npx tsx .\src\db\contacts\index.ts to test
 // Adds contact //
 // testQuery(
@@ -97,8 +124,10 @@ export async function getContacts(searchParam: string): Promise<Contact[] | null
 //   "blah"
 // );
 
+
 // Deletes contact // 2nd parameter is the id of the contact //
 // testQuery(deleteContactById, 12);
+
 
 // Gets Contacts //
 // If query doesn't have any parameter from the database,
@@ -118,3 +147,19 @@ export async function getContacts(searchParam: string): Promise<Contact[] | null
 
 // By email
 //testQuery(getContacts, "emily");
+
+
+// Updates Contact
+// Test data
+// const contactId = 11;
+// const contactData = {
+//   name: "Updated Name",
+//   email: "updated.email@example.com",
+//   company: "Updated Company",
+//   position: "Updated Position",
+//   phone_num: "9876543210",
+//   user_note: "Updated note",
+// };
+
+// Runs the test
+// testQuery(updateContact, contactId, contactData);
