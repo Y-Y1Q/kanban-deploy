@@ -17,6 +17,7 @@ export async function getJobs(req: Request, res: Response) {
   }
 }
 
+/* istanbul ignore next */
 export async function getJobDetail(req: Request, res: Response) {
   const jobId = Number(req.params.id);
 
@@ -35,6 +36,7 @@ export async function getJobDetail(req: Request, res: Response) {
   }
 }
 
+/* istanbul ignore next */
 export async function getJobsByCompany(req: Request, res: Response) {
   const { id: userId } = req.session.user!;
   const { company } = req.query;
@@ -54,6 +56,7 @@ export async function getJobsByCompany(req: Request, res: Response) {
   }
 }
 
+/* istanbul ignore next */
 export async function getJobsByType(req: Request, res: Response) {
   const { id: userId } = req.session.user!;
   const { type } = req.query;

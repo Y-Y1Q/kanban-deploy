@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 enum HttpCode {
   OK = 200,
   Created = 201,

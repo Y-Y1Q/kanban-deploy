@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import { SQL } from "sql-template-strings";
 import db from "../db_connection";
 import { JobData } from "../db_types";

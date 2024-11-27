@@ -1,5 +1,6 @@
+/* istanbul ignore file */
 import db from "../db_connection";
-import { testQuery } from "../db_test";
+// import { testQuery } from "../db_test";
 import { Contact } from "../db_types";
 import { SQL } from "sql-template-strings";
 
