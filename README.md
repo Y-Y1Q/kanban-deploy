@@ -2,8 +2,6 @@
 
 ## Application URL
 
-**Suspended**, will redeploy near M5 due date
-
 > **https://ezjobs.onrender.com**
 
 <br>
