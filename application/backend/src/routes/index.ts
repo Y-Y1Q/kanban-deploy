@@ -39,6 +39,7 @@ router.post("/api/ai-resume/build", checkAuth, Controller.AiResume.updateAiResum
 router.post("/api/contacts/add", checkAuth, Controller.Contacts.addContact);
 router.get("/api/contacts/search", checkAuth, Controller.Contacts.getContact);
 router.delete("/api/contacts/:id", checkAuth, Controller.Contacts.removeContact);
+router.put("/api/contacts/:id", checkAuth, Controller.Contacts.updateContacts);
 
 // OpenAI route for AI Interview Prep
 router.post("/api/chatbot", getChatbotResponse);
