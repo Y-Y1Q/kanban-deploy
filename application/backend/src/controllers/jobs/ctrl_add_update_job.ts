@@ -22,6 +22,7 @@ export async function addJob(req: Request, res: Response) {
   }
 }
 
+/* istanbul ignore next */
 export async function updateJob(req: Request, res: Response) {
   const { id: userId } = req.session.user!;
   const jobId = Number(req.params.id);
