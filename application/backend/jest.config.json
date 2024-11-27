@@ -1,0 +1,7 @@
+{
+  "preset": "ts-jest",
+  "verbose": true,
+  "watchman": false,
+  "testEnvironment": "node",
+  "testRegex": "src/__tests__/.*\\.test\\.ts$"
+}
