@@ -3,7 +3,9 @@
 -- Mock data for testing
 -- Insert into users table, pwd: SFSUcsc648
 INSERT INTO users (username, email, password) 
-VALUES ('test', 'test@example.com', '$2a$12$rIm35EX/UiFlj72.IIG7b.l7.czeUdFpmfIehsdBhhCRY8o/ZdJ2e');
+VALUES 
+('test', 'test@example.com', '$2a$12$rIm35EX/UiFlj72.IIG7b.l7.czeUdFpmfIehsdBhhCRY8o/ZdJ2e'),
+('unit-test', 'unit-test@email.com', '$2a$12$rIm35EX/UiFlj72.IIG7b.l7.czeUdFpmfIehsdBhhCRY8o/ZdJ2e');
 
 -- Insert into columns table, default value for all users, not customizable
 INSERT INTO columns (name, position, color) 
