@@ -24,10 +24,11 @@ export async function getChatbotResponse(req: Request, res: Response) {
       max_tokens: 150,
     });
 
-    const chatbotMessage = response.choices[0].message?.content.trim();
+    const chatbotMessage = response.choices![0]!.message!.content!.trim();
+
     console.log("Received response from OpenAI API:", chatbotMessage);
     return res.status(200).json({ message: chatbotMessage });
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error getting chatbot response:", error);
     if (error.response) {
       console.error("OpenAI API response error:", error.response.data);
