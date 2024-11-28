@@ -5,7 +5,7 @@ import HttpCode from "../../constants/http_code";
 
 jest.mock("../../db/ai_resume/get_resume");
 
-describe("GET /api/resumes/input", () => {
+describe("GET /api/ai-resume", () => {
   const req = getMockReq({
     session: {
       user: { id: 1 }, // Mock user with id 1 in session
