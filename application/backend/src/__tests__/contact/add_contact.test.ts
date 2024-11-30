@@ -116,74 +116,95 @@ describe("addContact controller", () => {
     expect(createContact).toHaveBeenCalled();
   });
 
-  // These 3 tests are failing the unit tests and I cannot seem to make them pass
-  // I believe that they are covering the remaining or most of the uncovered 30 lines from the test results
-  // it("should return 400 status if session user is not available", async () => {
-  //   const req = getMockReq({
-  //     session: { user: {} },
-  //     body: {
-  //       name: "John Doe",
-  //       email: "john.doe@example.com",
-  //       company: "Company1",
-  //       position: "Developer",
-  //       phone_num: "1234567890",
-  //       user_note: "Test note",
-  //     },
-  //   });
-  //   const { res } = getMockRes();
+  it("should return 400 status if session user is not available", async () => {
+    const req = getMockReq({
+      session: { user: null }, // Ensure user is null to simulate missing user
+      body: {
+        name: "John Doe",
+        email: "john.doe@example.com",
+        company: "Company1",
+        position: "Developer",
+        phone_num: "1234567890",
+        user_note: "Test note",
+      },
+    });
+    const { res } = getMockRes();
 
-  //   await addContact(req, res);
+    await addContact(req, res);
 
-  //   expect(res.status).toHaveBeenCalledWith(400);
-  //   expect(res.json).toHaveBeenCalledWith({
-  //     error: "User session is required.",
-  //   });
-  //   expect(createContact).not.toHaveBeenCalled();
-  // });
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith({
+      error: "User session is required.",
+    });
+    expect(createContact).not.toHaveBeenCalled();
+  });
 
-  // it("should return 400 status if session user is undefined", async () => {
-  //   const req = getMockReq({
-  //     session: { user: undefined },
-  //     body: {
-  //       name: "John Doe",
-  //       email: "john.doe@example.com",
-  //       company: "Company1",
-  //       position: "Developer",
-  //       phone_num: "1234567890",
-  //       user_note: "Test note",
-  //     },
-  //   });
-  //   const { res } = getMockRes();
+  it("should return 400 status if session user is undefined", async () => {
+    const req = getMockReq({
+      session: { user: undefined }, // Ensure user is undefined to simulate missing user
+      body: {
+        name: "John Doe",
+        email: "john.doe@example.com",
+        company: "Company1",
+        position: "Developer",
+        phone_num: "1234567890",
+        user_note: "Test note",
+      },
+    });
+    const { res } = getMockRes();
 
-  //   await addContact(req, res);
+    await addContact(req, res);
 
-  //   expect(res.status).toHaveBeenCalledWith(400);
-  //   expect(res.json).toHaveBeenCalledWith({
-  //     error: "User session is required.",
-  //   });
-  //   expect(createContact).not.toHaveBeenCalled();
-  // });
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith({
+      error: "User session is required.",
+    });
+    expect(createContact).not.toHaveBeenCalled();
+  });
 
-  // it("should return 400 status if session is null", async () => {
-  //   const req = getMockReq({
-  //     session: null,
-  //     body: {
-  //       name: "John Doe",
-  //       email: "john.doe@example.com",
-  //       company: "Company1",
-  //       position: "Developer",
-  //       phone_num: "1234567890",
-  //       user_note: "Test note",
-  //     },
-  //   });
-  //   const { res } = getMockRes();
+  it("should return 400 status if session is null", async () => {
+    const req = getMockReq({
+      session: null, // Ensure session is null to simulate missing session
+      body: {
+        name: "John Doe",
+        email: "john.doe@example.com",
+        company: "Company1",
+        position: "Developer",
+        phone_num: "1234567890",
+        user_note: "Test note",
+      },
+    });
+    const { res } = getMockRes();
 
-  //   await addContact(req, res);
+    await addContact(req, res);
 
-  //   expect(res.status).toHaveBeenCalledWith(400);
-  //   expect(res.json).toHaveBeenCalledWith({
-  //     error: "User session is required.",
-  //   });
-  //   expect(createContact).not.toHaveBeenCalled();
-  // });
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith({
+      error: "User session is required.",
+    });
+    expect(createContact).not.toHaveBeenCalled();
+  });
+
+  it("should return 500 status with unknown error message if createContact throws a non-Error object", async () => {
+    (createContact as jest.Mock).mockRejectedValue("Non-error object");
+
+    const req = getMockReq({
+      session: { user: { id: 1 } },
+      body: {
+        name: "John Doe",
+        email: "john.doe@example.com",
+        company: "Company1",
+        position: "Developer",
+        phone_num: "1234567890",
+        user_note: "Test note",
+      },
+    });
+    const { res } = getMockRes();
+
+    await addContact(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.send).toHaveBeenCalledWith("Error adding contact: Unknown error");
+    expect(createContact).toHaveBeenCalled();
+  });
 });

@@ -2,7 +2,14 @@ import { Request, Response } from "express";
 import { createContact } from "../../db/contacts";
 
 export const addContact = async (req: Request, res: Response) => {
-  const { id: user_id } = req.session.user!;
+  const session = req.session;
+
+  // Validate session
+  if (!session || !session.user || !session.user.id) {
+    return res.status(400).json({ error: "User session is required." });
+  }
+
+  const { id: user_id } = session.user;
   const { name, email, company, position, phone_num, user_note } = req.body;
 
   // Validate input data
