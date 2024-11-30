@@ -3,7 +3,7 @@ import express from "express";
 import { Controller } from "../controllers";
 import { checkAuth } from "../middleware/check_auth";
 
-import { getChatbotResponse } from "../controllers/ai_interview_prep/generateQuestions";
+import { getChatbotResponse } from "../controllers/ai_interview_prep/ctrl_generateQuestions";
 
 const router = express.Router();
 
