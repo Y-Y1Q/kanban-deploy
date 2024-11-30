@@ -1,4 +1,4 @@
-import { getContact } from "../../controllers/contacts/getContacts";
+import { getContact } from "../../controllers/contacts/ctrl_get_contact";
 import * as getContactDB from "../../db/contacts";
 import { getMockReq, getMockRes } from "@jest-mock/express";
 

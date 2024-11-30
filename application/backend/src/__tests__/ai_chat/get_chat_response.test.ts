@@ -1,5 +1,5 @@
 import { getMockReq, getMockRes } from "@jest-mock/express";
-import { getChatbotResponse } from "../../controllers/ai_interview_prep/generateQuestions";
+import { getChatbotResponse } from "../../controllers/ai_interview_prep/ctrl_generateQuestions";
 import OpenAI from "openai";
 
 jest.mock("openai");
