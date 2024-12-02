@@ -13,11 +13,26 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
+
+      - name: Sync package-lock.json
+        working-directory: application/frontend
+        run: |
+          npm install --package-lock-only
+          if [ "$(git status --porcelain)" ]; then
+            git config user.name "GitHub Actions"
+            git config user.email "actions@github.com"
+            git add package-lock.json
+            git commit -m "Sync package-lock.json [ci skip]"
+            git push origin HEAD:${{ github.head_ref }}
+          fi
 
       - name: Install dependencies
         working-directory: application/frontend
@@ -38,11 +53,26 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
+
+      - name: Sync package-lock.json
+        working-directory: application/backend
+        run: |
+          npm install --package-lock-only
+          if [ "$(git status --porcelain)" ]; then
+            git config user.name "GitHub Actions"
+            git config user.email "actions@github.com"
+            git add package-lock.json
+            git commit -m "Sync package-lock.json [ci skip]"
+            git push origin HEAD:${{ github.head_ref }}
+          fi
 
       - name: Install dependencies
         working-directory: application/backend
@@ -59,3 +89,4 @@ jobs:
       - name: Build backend
         working-directory: application/backend
         run: npm run build
+
