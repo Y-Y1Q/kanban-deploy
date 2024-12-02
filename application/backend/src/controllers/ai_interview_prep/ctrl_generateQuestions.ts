@@ -1,8 +1,5 @@
-import OpenAI from "openai"; // run the npm install openai command to rid of the error here
+import OpenAI from "openai";
 import { Request, Response } from "express";
-
-// NOTE: Ignore these red squiggly lines, they will still show after installing openai package, but the code will still work
-// Probably are just false positives -shrugs-
 
 const openai = new OpenAI({
   apiKey: process.env.OPEN_AI_KEY,
