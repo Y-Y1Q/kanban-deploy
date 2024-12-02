@@ -6,6 +6,9 @@ import { createServer } from "http";
 import morgan from "morgan";
 import path from "path";
 
+import swaggerUi from "swagger-ui-express";
+import swaggerConfig from "./config/swagger";
+
 import * as Session from "./config/session";
 import { requestTime } from "./middleware/request_time";
 import ApiRoutes from "./routes";
@@ -59,6 +62,9 @@ console.log(`Cross origin allowed: \x1b[32m\x1b[1m${corsOptions.origin}\x1b[0m`)
 
 //Backend API Routes
 app.use(ApiRoutes);
+
+// Swagger setup
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerConfig));
 
 const PORT = process.env.PORT || 3333;
 httpServer.listen(PORT, () => {
