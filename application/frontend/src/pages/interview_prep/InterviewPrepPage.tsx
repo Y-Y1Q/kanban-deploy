@@ -1,16 +1,8 @@
-import { LoadingButton } from "@mui/lab";
-import {
-  Box,
-  Divider,
-  List,
-  ListItem,
-  ListItemText,
-  Paper,
-  TextField,
-  Typography,
-} from "@mui/material";
-import axios from "axios";
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import axios from 'axios';
+import { Box, Paper, Typography, Divider, List, ListItem, TextField } from '@mui/material';
+import LoadingButton from '@mui/lab/LoadingButton';
+import ReactMarkdown from 'react-markdown';
 
 function InterviewPrepPage() {
   const [messages, setMessages] = useState<{ user: string; text: string }[]>([]);
@@ -27,6 +19,43 @@ function InterviewPrepPage() {
     }
   };
 
+  const formatBotResponse = (response: string) => {
+    const lines = response.split('\n').map(line => line.trim());
+    let formattedResponse = '';
+    let intro = ''; // To hold the introductory text
+    let inQuestion = false;
+  
+    lines.forEach((line) => {
+      if (line.match(/^\d+\./)) {
+        // Start of a numbered list
+        formattedResponse += `\n${line}\n`;
+        inQuestion = true;
+      } else if (inQuestion) {
+        // Adding the question text under the number (only once)
+        formattedResponse += `**Question:** "${line}"\n`;
+        inQuestion = false;
+      } else if (line.startsWith('•')) {
+        // Bullet points
+        formattedResponse += `\n${line.replace('•', '').trim()}\n`;
+      } else if (line.startsWith('-')) {
+        // Subpoints under bullets
+        formattedResponse += `  ${line.replace('-', '').trim()}\n`;
+      } else if (line.toLowerCase().includes('purpose') && !formattedResponse.includes('**Purpose:**')) {
+        // Add "Purpose" only once
+        formattedResponse += `**Purpose:** ${line.replace('Purpose:', '').trim()}\n`;
+      } else if (!line.match(/^\d+\./) && !line.startsWith('-') && !line.startsWith('•')) {
+        // Collect any introductory text (lines not part of the main content)
+        intro += `${line} `;
+      }
+    });
+  
+    // Trim trailing artifacts and combine intro text with formatted response
+    intro = intro.trim();
+    formattedResponse = formattedResponse.replace(/(\*\*Question:\*\*\s*".*")\s*\*\*Question:\*\*\s*""/g, '$1').trim();
+  
+    return `${intro}\n\n${formattedResponse}`;
+  };
+  
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     setLoadingMessage(true);
@@ -34,7 +63,8 @@ function InterviewPrepPage() {
       setMessages([...messages, { user: "You", text: inputValue }]);
       setInputValue("");
       const botResponse = await fetchResponseFromOpenAI(inputValue);
-      setMessages((prevMessages) => [...prevMessages, { user: "Bot", text: botResponse }]);
+      const formattedResponse = formatBotResponse(botResponse);
+      setMessages((prevMessages) => [...prevMessages, { user: "Bot", text: formattedResponse }]);
     }
     setLoadingMessage(false);
   };
@@ -48,24 +78,19 @@ function InterviewPrepPage() {
         <Divider sx={{ mb: 2 }} />
         <List sx={{ maxHeight: 400, overflow: "auto", mb: 2 }}>
           {messages.map((message, index) => (
-            <ListItem
-              key={index}
-              sx={{
-                display: "flex",
-                justifyContent: message.user === "You" ? "flex-end" : "flex-start",
-              }}
-            >
-              <ListItemText primary={message.text} />
+            <ListItem key={index}>
+              <ReactMarkdown>{message.text}</ReactMarkdown>
             </ListItem>
           ))}
         </List>
         <form onSubmit={handleSubmit}>
           <TextField
-            fullWidth
-            variant="outlined"
-            placeholder="Type your message..."
+            label="Type your message"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
+            variant="outlined"
+            fullWidth
+            margin="normal"
           />
           <LoadingButton
             type="submit"
