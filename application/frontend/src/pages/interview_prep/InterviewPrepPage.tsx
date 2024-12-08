@@ -1,5 +1,15 @@
 import LoadingButton from "@mui/lab/LoadingButton";
-import { Box, Button, Divider, List, ListItem, Paper, TextField, Typography } from "@mui/material";
+import {
+  Autocomplete,
+  Box,
+  Button,
+  Divider,
+  List,
+  ListItem,
+  Paper,
+  TextField,
+  Typography,
+} from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
@@ -11,11 +21,18 @@ function InterviewPrepPage() {
   });
   const [loadingMessage, setLoadingMessage] = useState(false);
   const [inputValue, setInputValue] = useState("");
-  const [interviewType, setInterviewType] = useState<string | null>(null);
+  const [inputHistory, setInputHistory] = useState<string[]>(() => {
+    const savedHistory = localStorage.getItem("inputHistory");
+    return savedHistory ? JSON.parse(savedHistory) : [];
+  });
 
   useEffect(() => {
     localStorage.setItem("chatbotMessages", JSON.stringify(messages));
   }, [messages]);
+
+  useEffect(() => {
+    localStorage.setItem("inputHistory", JSON.stringify(inputHistory));
+  }, [inputHistory]);
 
   const fetchResponseFromOpenAI = async (message: string) => {
     try {
@@ -35,19 +52,19 @@ function InterviewPrepPage() {
 
     lines.forEach((line) => {
       if (line.match(/^\d+\./)) {
-        // Start of a numbered list
-        formattedResponse += `\n${line}\n`;
+        // Start of a bolded point
+        formattedResponse += `\n**• ${line.replace(/^\d+\./, "").trim()}**\n`;
         inQuestion = true;
       } else if (inQuestion) {
-        // Adding the question text under the number (only once)
-        formattedResponse += `**Question:** "${line}"\n`;
+        // Adding the question text under the bolded point (only once)
+        formattedResponse += `\n${line}\n`;
         inQuestion = false;
       } else if (line.startsWith("•")) {
-        // Bullet points
-        formattedResponse += `\n${line.replace("•", "").trim()}\n`;
+        // Bullet points with increased indentation and bolded
+        formattedResponse += `\n    **• ${line.replace("•", "").trim()}**\n`;
       } else if (line.startsWith("-")) {
-        // Subpoints under bullets
-        formattedResponse += `  ${line.replace("-", "").trim()}\n`;
+        // Subpoints under bullets with increased indentation
+        formattedResponse += `      - ${line.replace("-", "").trim()}\n`;
       } else if (
         line.toLowerCase().includes("purpose") &&
         !formattedResponse.includes("**Purpose:**")
@@ -74,6 +91,7 @@ function InterviewPrepPage() {
     setLoadingMessage(true);
     if (inputValue.trim()) {
       setMessages([...messages, { user: "You", text: inputValue }]);
+      setInputHistory([...inputHistory, inputValue]);
       setInputValue("");
       const botResponse = await fetchResponseFromOpenAI(inputValue);
       const formattedResponse = formatBotResponse(botResponse);
@@ -90,7 +108,6 @@ function InterviewPrepPage() {
   const handleInterview = async () => {
     const interviewTypeResponse = prompt("What sort of interview are you preparing for?");
     if (interviewTypeResponse) {
-      setInterviewType(interviewTypeResponse);
       const botResponse = await fetchResponseFromOpenAI(
         `I am preparing for a ${interviewTypeResponse} interview. Can you provide some questions?`
       );
@@ -102,7 +119,7 @@ function InterviewPrepPage() {
   return (
     <Box sx={{ width: "100%", maxWidth: "90%", margin: "auto", mt: 4 }}>
       <Paper elevation={3} sx={{ p: 2 }}>
-        <Typography variant="h4" gutterBottom align="center" sx={{ fontWeight: 'bold' }}>
+        <Typography variant="h4" gutterBottom align="center" sx={{ fontWeight: "bold" }}>
           Interview Prep Chatbot
         </Typography>
         <Divider sx={{ mb: 2 }} />
@@ -114,13 +131,20 @@ function InterviewPrepPage() {
           ))}
         </List>
         <form onSubmit={handleSubmit}>
-          <TextField
-            label="Type your message"
+          <Autocomplete
+            freeSolo
+            options={inputHistory}
             value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            variant="outlined"
-            fullWidth
-            margin="normal"
+            onInputChange={(event, newInputValue) => setInputValue(newInputValue)}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label="Type your message"
+                variant="outlined"
+                fullWidth
+                margin="normal"
+              />
+            )}
           />
           <LoadingButton
             type="submit"
@@ -135,7 +159,12 @@ function InterviewPrepPage() {
         <Button variant="contained" color="error" sx={{ mt: 2 }} onClick={handleReset}>
           Clear Chat
         </Button>
-        <Button variant="contained" color="secondary" sx={{ mt: 2, fontWeight: 'bold' }} onClick={handleInterview}>
+        <Button
+          variant="contained"
+          color="secondary"
+          sx={{ mt: 2, fontWeight: "bold" }}
+          onClick={handleInterview}
+        >
           Interview
         </Button>
       </Paper>
