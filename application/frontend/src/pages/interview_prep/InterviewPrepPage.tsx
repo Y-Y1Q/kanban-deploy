@@ -1,5 +1,5 @@
 import LoadingButton from "@mui/lab/LoadingButton";
-import { Box, Divider, List, ListItem, Paper, TextField, Typography, Button } from "@mui/material";
+import { Box, Button, Divider, List, ListItem, Paper, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
@@ -91,22 +91,24 @@ function InterviewPrepPage() {
     const interviewTypeResponse = prompt("What sort of interview are you preparing for?");
     if (interviewTypeResponse) {
       setInterviewType(interviewTypeResponse);
-      const botResponse = await fetchResponseFromOpenAI(`I am preparing for a ${interviewTypeResponse} interview. Can you provide some questions?`);
+      const botResponse = await fetchResponseFromOpenAI(
+        `I am preparing for a ${interviewTypeResponse} interview. Can you provide some questions?`
+      );
       const formattedResponse = formatBotResponse(botResponse);
       setMessages((prevMessages) => [...prevMessages, { user: "Bot", text: formattedResponse }]);
     }
   };
 
   return (
-    <Box sx={{ width: "100%", maxWidth: 600, margin: "auto", mt: 4 }}>
+    <Box sx={{ width: "100%", maxWidth: "90%", margin: "auto", mt: 4 }}>
       <Paper elevation={3} sx={{ p: 2 }}>
-        <Typography variant="h4" gutterBottom align="center">
+        <Typography variant="h4" gutterBottom align="center" sx={{ fontWeight: 'bold' }}>
           Interview Prep Chatbot
         </Typography>
         <Divider sx={{ mb: 2 }} />
         <List sx={{ maxHeight: 400, overflow: "auto", mb: 2 }}>
           {messages.map((message, index) => (
-            <ListItem key={index}>
+            <ListItem key={index} sx={{ display: "block", textAlign: "left" }}>
               <ReactMarkdown>{message.text}</ReactMarkdown>
             </ListItem>
           ))}
@@ -130,20 +132,10 @@ function InterviewPrepPage() {
             Send
           </LoadingButton>
         </form>
-        <Button
-          variant="contained"
-          color="error"
-          sx={{ mt: 2 }}
-          onClick={handleReset}
-        >
+        <Button variant="contained" color="error" sx={{ mt: 2 }} onClick={handleReset}>
           Clear Chat
         </Button>
-        <Button
-          variant="contained"
-          color="secondary"
-          sx={{ mt: 2 }}
-          onClick={handleInterview}
-        >
+        <Button variant="contained" color="secondary" sx={{ mt: 2, fontWeight: 'bold' }} onClick={handleInterview}>
           Interview
         </Button>
       </Paper>
