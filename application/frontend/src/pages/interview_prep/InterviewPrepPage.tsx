@@ -11,6 +11,7 @@ function InterviewPrepPage() {
   });
   const [loadingMessage, setLoadingMessage] = useState(false);
   const [inputValue, setInputValue] = useState("");
+  const [interviewType, setInterviewType] = useState<string | null>(null);
 
   useEffect(() => {
     localStorage.setItem("chatbotMessages", JSON.stringify(messages));
@@ -86,6 +87,16 @@ function InterviewPrepPage() {
     localStorage.removeItem("chatbotMessages");
   };
 
+  const handleInterview = async () => {
+    const interviewTypeResponse = prompt("What sort of interview are you preparing for?");
+    if (interviewTypeResponse) {
+      setInterviewType(interviewTypeResponse);
+      const botResponse = await fetchResponseFromOpenAI(`I am preparing for a ${interviewTypeResponse} interview. Can you provide some questions?`);
+      const formattedResponse = formatBotResponse(botResponse);
+      setMessages((prevMessages) => [...prevMessages, { user: "Bot", text: formattedResponse }]);
+    }
+  };
+
   return (
     <Box sx={{ width: "100%", maxWidth: 600, margin: "auto", mt: 4 }}>
       <Paper elevation={3} sx={{ p: 2 }}>
@@ -126,6 +137,14 @@ function InterviewPrepPage() {
           onClick={handleReset}
         >
           Clear Chat
+        </Button>
+        <Button
+          variant="contained"
+          color="secondary"
+          sx={{ mt: 2 }}
+          onClick={handleInterview}
+        >
+          Interview
         </Button>
       </Paper>
     </Box>
