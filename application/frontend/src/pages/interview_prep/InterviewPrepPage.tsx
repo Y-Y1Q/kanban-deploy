@@ -1,5 +1,5 @@
 import LoadingButton from "@mui/lab/LoadingButton";
-import { Box, Divider, List, ListItem, Paper, TextField, Typography } from "@mui/material";
+import { Box, Divider, List, ListItem, Paper, TextField, Typography, Button } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
@@ -81,6 +81,11 @@ function InterviewPrepPage() {
     setLoadingMessage(false);
   };
 
+  const handleReset = () => {
+    setMessages([]);
+    localStorage.removeItem("chatbotMessages");
+  };
+
   return (
     <Box sx={{ width: "100%", maxWidth: 600, margin: "auto", mt: 4 }}>
       <Paper elevation={3} sx={{ p: 2 }}>
@@ -114,6 +119,14 @@ function InterviewPrepPage() {
             Send
           </LoadingButton>
         </form>
+        <Button
+          variant="contained"
+          color="error"
+          sx={{ mt: 2 }}
+          onClick={handleReset}
+        >
+          Clear Chat
+        </Button>
       </Paper>
     </Box>
   );
