@@ -1,13 +1,20 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { Box, Paper, Typography, Divider, List, ListItem, TextField } from '@mui/material';
-import LoadingButton from '@mui/lab/LoadingButton';
-import ReactMarkdown from 'react-markdown';
+import LoadingButton from "@mui/lab/LoadingButton";
+import { Box, Divider, List, ListItem, Paper, TextField, Typography } from "@mui/material";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import ReactMarkdown from "react-markdown";
 
 function InterviewPrepPage() {
-  const [messages, setMessages] = useState<{ user: string; text: string }[]>([]);
+  const [messages, setMessages] = useState<{ user: string; text: string }[]>(() => {
+    const savedMessages = localStorage.getItem("chatbotMessages");
+    return savedMessages ? JSON.parse(savedMessages) : [];
+  });
   const [loadingMessage, setLoadingMessage] = useState(false);
   const [inputValue, setInputValue] = useState("");
+
+  useEffect(() => {
+    localStorage.setItem("chatbotMessages", JSON.stringify(messages));
+  }, [messages]);
 
   const fetchResponseFromOpenAI = async (message: string) => {
     try {
@@ -20,11 +27,11 @@ function InterviewPrepPage() {
   };
 
   const formatBotResponse = (response: string) => {
-    const lines = response.split('\n').map(line => line.trim());
-    let formattedResponse = '';
-    let intro = ''; // To hold the introductory text
+    const lines = response.split("\n").map((line) => line.trim());
+    let formattedResponse = "";
+    let intro = ""; // To hold the introductory text
     let inQuestion = false;
-  
+
     lines.forEach((line) => {
       if (line.match(/^\d+\./)) {
         // Start of a numbered list
@@ -34,28 +41,33 @@ function InterviewPrepPage() {
         // Adding the question text under the number (only once)
         formattedResponse += `**Question:** "${line}"\n`;
         inQuestion = false;
-      } else if (line.startsWith('•')) {
+      } else if (line.startsWith("•")) {
         // Bullet points
-        formattedResponse += `\n${line.replace('•', '').trim()}\n`;
-      } else if (line.startsWith('-')) {
+        formattedResponse += `\n${line.replace("•", "").trim()}\n`;
+      } else if (line.startsWith("-")) {
         // Subpoints under bullets
-        formattedResponse += `  ${line.replace('-', '').trim()}\n`;
-      } else if (line.toLowerCase().includes('purpose') && !formattedResponse.includes('**Purpose:**')) {
+        formattedResponse += `  ${line.replace("-", "").trim()}\n`;
+      } else if (
+        line.toLowerCase().includes("purpose") &&
+        !formattedResponse.includes("**Purpose:**")
+      ) {
         // Add "Purpose" only once
-        formattedResponse += `**Purpose:** ${line.replace('Purpose:', '').trim()}\n`;
-      } else if (!line.match(/^\d+\./) && !line.startsWith('-') && !line.startsWith('•')) {
+        formattedResponse += `**Purpose:** ${line.replace("Purpose:", "").trim()}\n`;
+      } else if (!line.match(/^\d+\./) && !line.startsWith("-") && !line.startsWith("•")) {
         // Collect any introductory text (lines not part of the main content)
         intro += `${line} `;
       }
     });
-  
+
     // Trim trailing artifacts and combine intro text with formatted response
     intro = intro.trim();
-    formattedResponse = formattedResponse.replace(/(\*\*Question:\*\*\s*".*")\s*\*\*Question:\*\*\s*""/g, '$1').trim();
-  
+    formattedResponse = formattedResponse
+      .replace(/(\*\*Question:\*\*\s*".*")\s*\*\*Question:\*\*\s*""/g, "$1")
+      .trim();
+
     return `${intro}\n\n${formattedResponse}`;
   };
-  
+
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     setLoadingMessage(true);
