@@ -167,7 +167,7 @@ export default function ContactsPage() {
                   <Box sx={{ mt: 1, display: 'flex', gap: 1 }}>
                     <Button
                       variant="outlined"
-                      color="primary"
+                      color="success"
                       onClick={() => {
                         setEditingContact(contact);
                         setNewContact({
@@ -186,7 +186,7 @@ export default function ContactsPage() {
                     </Button>
                     <Button
                       variant="outlined"
-                      color="secondary"
+                      color="error"
                       onClick={() => handleRemoveContact(contact.id)}
                       sx={{ marginTop: 1 }}
                     >
