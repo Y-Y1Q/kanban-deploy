@@ -164,6 +164,8 @@ export default function ContactsPage() {
                   <Typography variant="body1">Position: {contact.position}</Typography>
                   <Typography variant="body1">Company: {contact.company}</Typography>
                   <Typography variant="body1">Email: {contact.email}</Typography>
+                  <Typography variant="body1">Phone: {contact.phone_num}</Typography>
+                  <Typography variant="body1">Notes: {contact.user_note}</Typography>
                   <Box sx={{ mt: 1, display: 'flex', gap: 1 }}>
                     <Button
                       variant="outlined"
