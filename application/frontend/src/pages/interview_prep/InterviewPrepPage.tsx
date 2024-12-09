@@ -20,6 +20,7 @@ function InterviewPrepPage() {
     return savedMessages ? JSON.parse(savedMessages) : [];
   });
   const [loadingMessage, setLoadingMessage] = useState(false);
+  const [loadingInterview, setLoadingInterview] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [inputHistory, setInputHistory] = useState<string[]>(() => {
     const savedHistory = localStorage.getItem("inputHistory");
@@ -91,7 +92,12 @@ function InterviewPrepPage() {
     setLoadingMessage(true);
     if (inputValue.trim()) {
       setMessages([...messages, { user: "You", text: inputValue }]);
-      setInputHistory([...inputHistory, inputValue]);
+      setInputHistory((prevHistory) => {
+        if (!prevHistory.includes(inputValue)) {
+          return [...prevHistory, inputValue];
+        }
+        return prevHistory;
+      });
       setInputValue("");
       const botResponse = await fetchResponseFromOpenAI(inputValue);
       const formattedResponse = formatBotResponse(botResponse);
@@ -107,6 +113,7 @@ function InterviewPrepPage() {
 
   const handleInterview = async () => {
     const interviewTypeResponse = prompt("What sort of interview are you preparing for?");
+    setLoadingInterview(true);
     if (interviewTypeResponse) {
       const botResponse = await fetchResponseFromOpenAI(
         `I am preparing for a ${interviewTypeResponse} interview. Can you provide some questions?`
@@ -114,6 +121,7 @@ function InterviewPrepPage() {
       const formattedResponse = formatBotResponse(botResponse);
       setMessages((prevMessages) => [...prevMessages, { user: "Bot", text: formattedResponse }]);
     }
+    setLoadingInterview(false);
   };
 
   return (
@@ -135,7 +143,7 @@ function InterviewPrepPage() {
             freeSolo
             options={inputHistory}
             value={inputValue}
-            onInputChange={(event, newInputValue) => setInputValue(newInputValue)}
+            onInputChange={(_, newInputValue) => setInputValue(newInputValue)}
             renderInput={(params) => (
               <TextField
                 {...params}
@@ -156,17 +164,18 @@ function InterviewPrepPage() {
             Send
           </LoadingButton>
         </form>
-        <Button variant="contained" color="error" sx={{ mt: 2 }} onClick={handleReset}>
+        <Button variant="contained" color="error" sx={{ mt: 2, mr: 2 }} onClick={handleReset}>
           Clear Chat
         </Button>
-        <Button
+        <LoadingButton
           variant="contained"
           color="secondary"
           sx={{ mt: 2, fontWeight: "bold" }}
+          loading={loadingInterview}
           onClick={handleInterview}
         >
           Interview
-        </Button>
+        </LoadingButton>
       </Paper>
     </Box>
   );
