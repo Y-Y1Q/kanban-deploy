@@ -39,13 +39,13 @@ export default function SignIn() {
         });
 
         setShowGif(true);
-      }, 3000);
-    }, 6000);
+      }, 1500);
+    }, 3000);
 
     return () => clearInterval(intervalId);
   }, [gifs]);
 
-  const [bgColor, setBgColor] = useState<string>("#ffffff");
+  const [bgColor, setBgColor] = useState<string>("transparent");
 
   useEffect(() => {
     const fac = new FastAverageColor();
@@ -59,6 +59,11 @@ export default function SignIn() {
         document.body.style.transition = "background-color 3s ease";
         document.body.style.backgroundColor = color.rgba;
       });
+    };
+
+    return () => {
+      // Reset background color when the component unmounts
+      document.body.style.backgroundColor = "";
     };
   }, [currentGif]);
 
