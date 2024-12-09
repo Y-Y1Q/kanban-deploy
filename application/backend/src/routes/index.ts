@@ -27,6 +27,7 @@ router.get("/api/jobs/stats", checkAuth, Controller.Jobs.getJobStats);
 router.get("/api/jobs/stats-date", checkAuth, Controller.Jobs.getDateStats);
 
 // Column routes
+router.get("/api/col/:id/cards", checkAuth, Controller.Columns.getCardsInColumn);
 
 //AI resume routes
 router.get("/ai-resume/:token", Controller.AiResume.getResumePage);
