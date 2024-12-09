@@ -22,10 +22,10 @@ const KanbanColumn: React.FC<KanbanColumnProps> = ({
   const headerColor = column.color;
   const cardAreaColor = `${column.color}25`;
 
-  const [isDialogOpen, setDialogOpen] = useState(false);
+  const [isAddDialogOpen, setAddDialogOpen] = useState(false);
 
-  const handleDialogOpen = () => setDialogOpen(true);
-  const handleDialogClose = () => setDialogOpen(false);
+  const handleAddDialogOpen = () => setAddDialogOpen(true);
+  const handleAddDialogClose = () => setAddDialogOpen(false);
 
   return (
     <Paper
@@ -63,14 +63,14 @@ const KanbanColumn: React.FC<KanbanColumnProps> = ({
       >
         <IconButton
           style={{ margin: "auto", color: "#fff", fontWeight: "bold" }}
-          onClick={handleDialogOpen}
+          onClick={handleAddDialogOpen}
         >
           <AddBoxTwoToneIcon fontSize="large" /> &nbsp;&nbsp;Add New Job
         </IconButton>
 
         <AddJobDialog
-          isOpen={isDialogOpen}
-          onClose={handleDialogClose}
+          isOpen={isAddDialogOpen}
+          onClose={handleAddDialogClose}
           columnId={column.id}
           columnName={column.name}
           addJob={addJobToColumn}

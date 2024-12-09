@@ -10,8 +10,6 @@ interface JobDialogProps {
 }
 
 const JobDialog: React.FC<JobDialogProps> = ({ isOpen, onClose, job, onUpdate, onDelete }) => {
-  console.log(job.current_status);
-
   const [jobData, setJobData] = useState({
     column_id: job.column_id,
     company: job.company,
@@ -43,7 +41,7 @@ const JobDialog: React.FC<JobDialogProps> = ({ isOpen, onClose, job, onUpdate, o
 
   return (
     <Dialog open={isOpen} onClose={onClose} maxWidth="sm" fullWidth>
-      <DialogContent>
+      <DialogContent onClick={(e) => e.stopPropagation()}>
         <TextField
           label="Company"
           name="company"
@@ -154,18 +152,18 @@ const JobDialog: React.FC<JobDialogProps> = ({ isOpen, onClose, job, onUpdate, o
             },
           }}
         />
+        <DialogActions>
+          <Button onClick={onClose} color="secondary">
+            Cancel
+          </Button>
+          <Button onClick={handleDelete} color="error">
+            Delete
+          </Button>
+          <Button onClick={handleUpdate} color="primary">
+            Update
+          </Button>
+        </DialogActions>
       </DialogContent>
-      <DialogActions>
-        <Button onClick={onClose} color="secondary">
-          Cancel
-        </Button>
-        <Button onClick={handleDelete} color="error">
-          Delete
-        </Button>
-        <Button onClick={handleUpdate} color="primary">
-          Update
-        </Button>
-      </DialogActions>
     </Dialog>
   );
 };
