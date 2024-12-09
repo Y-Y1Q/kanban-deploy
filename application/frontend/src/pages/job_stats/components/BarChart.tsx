@@ -1,4 +1,4 @@
-import { Box, CircularProgress } from "@mui/material";
+import { Box, CircularProgress, Typography } from "@mui/material";
 import { ResponsiveBar } from "@nivo/bar";
 
 import JobStatus from "../../../constants/job_status_values";
@@ -19,6 +19,17 @@ export const JobStatsBarChart: React.FC = () => {
   // Check if data exists and contains job_stats array
   if (!data) return <Box>No data available</Box>;
   // console.log(data);
+
+  // Render a centered message if data is null or empty
+  if (data.total === 0) {
+    return (
+      <Box display="flex" alignItems="center" justifyContent="center" height="100vh">
+        <Typography variant="h1" align="center" color="textSecondary" mb="30%">
+          You haven't applied to any job yet.
+        </Typography>
+      </Box>
+    );
+  }
 
   // Extract and transform the data to fit the chart format
   const chartData: ChartData[] = [
