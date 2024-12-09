@@ -1,2 +1,2 @@
 export { getCardsInColumn } from "./ctrl_get_col_cards";
-export { getColumns } from "./ctrl_get_columns";
+export { updateJobCardStatus } from "./ctrl_update_card_col";

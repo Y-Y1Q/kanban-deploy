@@ -30,7 +30,7 @@ const KanbanBoard: React.FC = () => {
     fetchColumns();
   }, [columnData]);
 
-  const handleDragEnd = (result: DropResult) => {
+  const handleDragEnd = async (result: DropResult) => {
     if (!result.destination) return;
 
     const { source, destination } = result;
@@ -47,7 +47,27 @@ const KanbanBoard: React.FC = () => {
     const [movedCard] = updatedColumns[sourceColumnIndex].cards.splice(source.index, 1);
     updatedColumns[destColumnIndex].cards.splice(destination.index, 0, movedCard);
 
+    // Optimistically update the UI
     setColumns(updatedColumns);
+
+    // Update backend with the new column_id and current_status
+    try {
+      await axios.post(`/api/card/${movedCard.id}`, {
+        jobData: {
+          column_id: updatedColumns[destColumnIndex].id,
+          current_status: updatedColumns[destColumnIndex].name, // Assuming column name reflects status
+        },
+      });
+    } catch (error) {
+      console.error("Failed to update job card:", error);
+      // Optionally revert the UI changes on error
+      setColumns((prevColumns) => {
+        const revertedColumns = [...prevColumns];
+        revertedColumns[sourceColumnIndex].cards.splice(source.index, 0, movedCard);
+        revertedColumns[destColumnIndex].cards.splice(destination.index, 1);
+        return revertedColumns;
+      });
+    }
   };
 
   const refetchColumnCards = async (columnId: number) => {

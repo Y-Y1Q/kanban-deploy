@@ -98,3 +98,28 @@ export async function getColCards(user_id: number, column_id: number): Promise<J
     return null;
   }
 }
+
+export async function updateJobColumn(
+  user_id: number,
+  job_id: number,
+  column_id: number,
+  current_status: string
+): Promise<boolean> {
+  const query = SQL`
+    UPDATE jobs
+    SET
+      column_id = COALESCE(${column_id}, column_id),
+      current_status = COALESCE(${current_status}, POSITION)
+    WHERE
+      id = ${job_id}
+      AND user_id = ${user_id}
+  `;
+
+  try {
+    await db.none(query.text, query.values);
+    return true;
+  } catch (error) {
+    console.error(`Error updating job's column with ID ${job_id}:`, error);
+    return false;
+  }
+}
