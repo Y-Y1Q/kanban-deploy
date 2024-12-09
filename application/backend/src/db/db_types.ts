@@ -87,12 +87,15 @@ export interface AiResume {
   user_id: number;
   fullname: string;
   user_token?: string | null;
-  personal_information?: string | null;
+  phone_num?: string | null;
+  email?: string | null;
+  linkedin?: string | null;
+  website?: string | null;
+  location?: string | null;
   relevant_skills?: string | null;
   education?: string | null;
   experience?: string | null;
   projects?: string | null;
-  ai_info?: string | null;
   ai_skills?: string | null;
   ai_edu?: string | null;
   ai_exp?: string | null;

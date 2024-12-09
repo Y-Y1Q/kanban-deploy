@@ -9,7 +9,11 @@ export async function addUserResumeInput(user_id: number, resumeData: AiResume):
       ai_resume (
         user_id,
         fullname,
-        personal_information,
+        phone_num,
+        email,
+        linkedin,
+        website,
+        location,
         relevant_skills,
         education,
         experience,
@@ -19,7 +23,11 @@ export async function addUserResumeInput(user_id: number, resumeData: AiResume):
       (
         ${user_id},
         ${resumeData.fullname},
-        ${resumeData.personal_information},
+        ${resumeData.phone_num},
+        ${resumeData.email},
+        ${resumeData.linkedin},
+        ${resumeData.website},
+        ${resumeData.location},
         ${resumeData.relevant_skills},
         ${resumeData.education},
         ${resumeData.experience},
@@ -44,10 +52,11 @@ export async function updateUserResumeInput(
     UPDATE ai_resume
     SET
       fullname = COALESCE(${resumeData.fullname}, fullname),
-      personal_information = COALESCE(
-        ${resumeData.personal_information},
-        personal_information
-      ),
+      phone_num = COALESCE(${resumeData.phone_num}, phone_num),
+      email = COALESCE(${resumeData.email}, email),
+      linkedin = COALESCE(${resumeData.linkedin}, linkedin),
+      website = COALESCE(${resumeData.website}, website),
+      location = COALESCE(${resumeData.location}, location),
       relevant_skills = COALESCE(
         ${resumeData.relevant_skills},
         relevant_skills
@@ -77,7 +86,6 @@ export async function updateAiResumeInput(
     UPDATE ai_resume
     SET
       user_token = COALESCE(${user_token}, user_token),
-      ai_info = COALESCE(${resumeData.ai_info}, ai_info),
       ai_skills = COALESCE(${resumeData.ai_skills}, ai_skills),
       ai_edu = COALESCE(${resumeData.ai_edu}, ai_edu),
       ai_exp = COALESCE(${resumeData.ai_exp}, ai_exp),
@@ -99,7 +107,6 @@ export async function updateAiResumeInput(
 
 // const testData = {
 //   fullname: "Update Name",
-//   personal_information: null,
 //   relevant_skills: "Update skill",
 //   education: "Update edu",
 //   experience: "Update exp",
@@ -113,7 +120,6 @@ export async function updateAiResumeInput(
 
 // const testData = {
 //   fullname: "Test Name",
-//   personal_information: "Test Info",
 //   relevant_skills: null,
 //   education: null,
 //   experience: null,

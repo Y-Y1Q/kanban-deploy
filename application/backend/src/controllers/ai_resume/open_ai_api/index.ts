@@ -14,29 +14,6 @@ const openai = new OpenAI({
   apiKey: process.env.OPEN_AI_KEY,
 });
 
-export async function summarizePersonalInfo(userInput: string): Promise<string> {
-  try {
-    const response = await await openai.chat.completions.create({
-      model: "gpt-4o-mini",
-      messages: [
-        {
-          role: "user",
-          content: `${Message.PERSONAL_INFO}\n\n${userInput}`,
-        },
-      ],
-    });
-
-    let htmlFormattedSummary =
-      response.choices[0].message.content || "<div><p>No summary available</p></div>";
-
-    htmlFormattedSummary = htmlFormattedSummary.replace(/```html|```/g, "").trim();
-    return htmlFormattedSummary;
-  } catch (error) {
-    console.error("Error summarizing text:", error);
-    return "<div><p>Error occurred while summarizing.</p></div>";
-  }
-}
-
 export async function summarizeSkills(userInput: string): Promise<string> {
   try {
     const response = await await openai.chat.completions.create({
