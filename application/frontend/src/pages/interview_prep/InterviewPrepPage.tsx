@@ -157,20 +157,31 @@ function InterviewPrepPage() {
           <LoadingButton
             type="submit"
             variant="contained"
-            color="primary"
-            sx={{ mt: 2 }}
+            sx={{
+              backgroundColor: "#607D8B",
+              "&:hover": { backgroundColor: "#455A64" },
+              mt: 2,
+            }}
             loading={loadingMessage}
           >
             Send
           </LoadingButton>
         </form>
-        <Button variant="contained" color="error" sx={{ mt: 2, mr: 2 }} onClick={handleReset}>
+        <Button
+          variant="contained"
+          sx={{
+            backgroundColor: "#F44336",
+            "&:hover": { backgroundColor: "#D32F2F" },
+            mt: 2,
+            mr: 2,
+          }}
+          onClick={handleReset}
+        >
           Clear Chat
         </Button>
         <LoadingButton
           variant="contained"
-          color="secondary"
-          sx={{ mt: 2, fontWeight: "bold" }}
+          sx={{ backgroundColor: "#2196F3", "&:hover": { backgroundColor: "#1976D2" }, mt: 2 }}
           loading={loadingInterview}
           onClick={handleInterview}
         >

@@ -166,10 +166,10 @@ const AddJobDialog: React.FC<AddJobDialogProps> = ({
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose} color="secondary">
+        <Button onClick={onClose} color="secondary" variant="outlined">
           Cancel
         </Button>
-        <Button onClick={handleSubmit} color="primary">
+        <Button onClick={handleSubmit} color="primary" variant="outlined">
           Add
         </Button>
       </DialogActions>

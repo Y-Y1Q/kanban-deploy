@@ -153,13 +153,13 @@ const JobDialog: React.FC<JobDialogProps> = ({ isOpen, onClose, job, onUpdate, o
           }}
         />
         <DialogActions>
-          <Button onClick={onClose} color="secondary">
+          <Button onClick={onClose} color="secondary" variant="outlined">
             Cancel
           </Button>
-          <Button onClick={handleDelete} color="error">
+          <Button onClick={handleDelete} color="error" variant="outlined">
             Delete
           </Button>
-          <Button onClick={handleUpdate} color="primary">
+          <Button onClick={handleUpdate} color="primary" variant="outlined">
             Update
           </Button>
         </DialogActions>

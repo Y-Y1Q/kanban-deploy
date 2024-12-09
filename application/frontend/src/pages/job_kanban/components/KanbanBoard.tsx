@@ -8,11 +8,14 @@ import KanbanColumn from "./KanbanColumn";
 
 const KanbanBoard: React.FC = () => {
   const [columns, setColumns] = useState<ColumnData[]>([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchType, setSearchType] = useState("company");
 
   // Load columns and cards data
   const fetchColumns = async () => {
     const fetchCardsForColumn = async (columnId: number) => {
-      const response = await axios.get(`/api/col/${columnId}/cards`);
+      const params = searchQuery ? { [searchType]: searchQuery } : {};
+      const response = await axios.get(`/api/col/${columnId}/cards`, { params });
       return response.data.jobs;
     };
 
@@ -28,7 +31,7 @@ const KanbanBoard: React.FC = () => {
 
   useEffect(() => {
     fetchColumns();
-  }, [columnData]);
+  }, [searchQuery, searchType]);
 
   const handleDragEnd = async (result: DropResult) => {
     if (!result.destination) return;
@@ -97,6 +100,14 @@ const KanbanBoard: React.FC = () => {
     }
   };
 
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const handleSearchTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSearchType(event.target.value);
+  };
+
   const refetchColumnCards = async (columnId: number) => {
     try {
       const response = await axios.get(`/api/col/${columnId}/cards`);
@@ -135,19 +146,40 @@ const KanbanBoard: React.FC = () => {
   };
 
   return (
-    <DragDropContext onDragEnd={handleDragEnd}>
-      <div style={{ display: "flex", gap: "16px", overflowX: "auto" }}>
-        {columns.map((col) => (
-          <KanbanColumn
-            key={col.id}
-            column={col}
-            addJobToColumn={addJobToColumn}
-            onUpdate={handleCardUpdate}
-            onDelete={handleCardDelete}
-          />
-        ))}
+    <div>
+      <div style={{ display: "flex", marginBottom: "16px" }}>
+        <select
+          value={searchType}
+          onChange={handleSearchTypeChange}
+          style={{ marginRight: "8px", padding: "4px", fontSize: "20px" }}
+        >
+          <option value="company">Company</option>
+          <option value="type">Type</option>
+          <option value="location">Location</option>
+        </select>
+        <input
+          type="text"
+          placeholder={`Search by ${searchType}`}
+          value={searchQuery}
+          onChange={handleSearch}
+          style={{ padding: "4px", flex: 1, fontSize: "16px" }}
+        />
       </div>
-    </DragDropContext>
+
+      <DragDropContext onDragEnd={handleDragEnd}>
+        <div style={{ display: "flex", gap: "16px", overflowX: "auto" }}>
+          {columns.map((col) => (
+            <KanbanColumn
+              key={col.id}
+              column={col}
+              addJobToColumn={addJobToColumn}
+              onUpdate={handleCardUpdate}
+              onDelete={handleCardDelete}
+            />
+          ))}
+        </div>
+      </DragDropContext>
+    </div>
   );
 };
 
