@@ -7,6 +7,7 @@ export interface User {
 
 export interface Job {
   id: number;
+  card_pos: number;
   user_id: number;
   column_id: number;
   current_status: string;

@@ -35,38 +35,65 @@ const KanbanBoard: React.FC = () => {
 
     const { source, destination } = result;
 
-    // Reorganize the cards in columns
-    const updatedColumns = [...columns];
-    const sourceColumnIndex = updatedColumns.findIndex(
-      (col) => col.id === parseInt(source.droppableId)
-    );
-    const destColumnIndex = updatedColumns.findIndex(
-      (col) => col.id === parseInt(destination.droppableId)
-    );
+    // Check if the card was moved within the same column
+    if (source.droppableId === destination.droppableId) {
+      const updatedColumns = [...columns];
+      const columnIndex = updatedColumns.findIndex(
+        (col) => col.id === parseInt(source.droppableId)
+      );
 
-    const [movedCard] = updatedColumns[sourceColumnIndex].cards.splice(source.index, 1);
-    updatedColumns[destColumnIndex].cards.splice(destination.index, 0, movedCard);
+      // Reorder the cards within the same column
+      const [movedCard] = updatedColumns[columnIndex].cards.splice(source.index, 1);
+      updatedColumns[columnIndex].cards.splice(destination.index, 0, movedCard);
 
-    // Optimistically update the UI
-    setColumns(updatedColumns);
+      // Optimistically update the UI
+      setColumns(updatedColumns);
 
-    // Update backend with the new column_id and current_status
-    try {
-      await axios.post(`/api/card/${movedCard.id}`, {
-        jobData: {
-          column_id: updatedColumns[destColumnIndex].id,
-          current_status: updatedColumns[destColumnIndex].name, // Assuming column name reflects status
-        },
-      });
-    } catch (error) {
-      console.error("Failed to update job card:", error);
-      // Optionally revert the UI changes on error
-      setColumns((prevColumns) => {
-        const revertedColumns = [...prevColumns];
-        revertedColumns[sourceColumnIndex].cards.splice(source.index, 0, movedCard);
-        revertedColumns[destColumnIndex].cards.splice(destination.index, 1);
-        return revertedColumns;
-      });
+      // Update backend with the new position
+      try {
+        await axios.post(`/api/card-pos/${movedCard.id}`, {
+          card_pos: destination.index,
+        });
+      } catch (error) {
+        console.error("Failed to update card position:", error);
+        // Optionally revert the UI changes on error
+        setColumns(columns);
+      }
+    } else {
+      // Handle card moving between columns
+      const updatedColumns = [...columns];
+      const sourceColumnIndex = updatedColumns.findIndex(
+        (col) => col.id === parseInt(source.droppableId)
+      );
+      const destColumnIndex = updatedColumns.findIndex(
+        (col) => col.id === parseInt(destination.droppableId)
+      );
+
+      const [movedCard] = updatedColumns[sourceColumnIndex].cards.splice(source.index, 1);
+      updatedColumns[destColumnIndex].cards.splice(destination.index, 0, movedCard);
+
+      // Optimistically update the UI
+      setColumns(updatedColumns);
+
+      // Update backend with the new column_id and current_status
+      try {
+        await axios.post(`/api/card/${movedCard.id}`, {
+          jobData: {
+            column_id: updatedColumns[destColumnIndex].id,
+            current_status: updatedColumns[destColumnIndex].name,
+            card_pos: destination.index,
+          },
+        });
+      } catch (error) {
+        console.error("Failed to update job card:", error);
+        // Optionally revert the UI changes on error
+        setColumns((prevColumns) => {
+          const revertedColumns = [...prevColumns];
+          revertedColumns[sourceColumnIndex].cards.splice(source.index, 0, movedCard);
+          revertedColumns[destColumnIndex].cards.splice(destination.index, 1);
+          return revertedColumns;
+        });
+      }
     }
   };
 
