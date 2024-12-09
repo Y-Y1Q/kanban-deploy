@@ -12,9 +12,25 @@
     <!-- Personal Information Section Below -->
     <h1><%= resume.fullname %></h1>
 
-    <% if (resume.ai_info) { %>
-    <div class="headerInfo"><%- resume.ai_info %></div>
-    <% } %>
+    <div class="headerInfo">
+      <ul>
+        <% if (resume.phone_num) { %>
+        <li><%= resume.phone_num %></li>
+        <% } %>
+        <% if (resume.location) { %>
+        <li><%= resume.location %></li>
+        <% } %>
+        <% if (resume.email) { %>
+        <li><%= resume.email %></li>
+        <% } %>
+        <% if (resume.linkedin) { %>
+        <li><%= resume.linkedin %></li>
+        <% } %>
+        <% if (resume.website) { %>
+        <li><%= resume.website %></li>
+        <% } %>
+      </ul>
+    </div>
 
     <!-- Education Section Below -->
     <div class="vertical-spacer"></div>

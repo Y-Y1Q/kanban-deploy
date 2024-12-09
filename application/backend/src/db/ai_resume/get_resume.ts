@@ -9,7 +9,11 @@ export async function getUserResumeInput(user_id: number): Promise<AiResume | nu
     SELECT
       fullname,
       user_token,
-      personal_information,
+      phone_num,
+      email,
+      linkedin,
+      website,
+      location,
       relevant_skills,
       education,
       experience,
@@ -33,7 +37,11 @@ export async function getAiResumeInput(user_token: string): Promise<AiResume | n
   const query = SQL`
     SELECT
       fullname,
-      ai_info,
+      phone_num,
+      email,
+      linkedin,
+      website,
+      location,
       ai_skills,
       ai_edu,
       ai_exp,

@@ -9,7 +9,11 @@ const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 interface ResumeData {
   fullname: string;
-  personal_information: string;
+  phone_num: string;
+  email: string;
+  linkedin: string;
+  website: string;
+  location: string;
   relevant_skills: string;
   education: string;
   experience: string;
@@ -20,7 +24,11 @@ interface ResumeData {
 export default function AiResumeInput() {
   const [resumeData, setResumeData] = useState<ResumeData>({
     fullname: "",
-    personal_information: "",
+    phone_num: "",
+    email: "",
+    linkedin: "",
+    website: "",
+    location: "",
     relevant_skills: "",
     education: "",
     experience: "",
@@ -57,7 +65,7 @@ export default function AiResumeInput() {
 
   const handleInputChange =
     (field: keyof ResumeData) => (e: React.ChangeEvent<HTMLInputElement>) => {
-      setResumeData((prev) => ({ ...prev, [field]: e.target.value }));
+      setResumeData((prev) => ({ ...prev, [field]: e.target.value.trim() }));
     };
 
   const handleSave = async () => {
@@ -81,7 +89,11 @@ export default function AiResumeInput() {
       setHasInput(false);
       setResumeData({
         fullname: "",
-        personal_information: "",
+        phone_num: "",
+        email: "",
+        linkedin: "",
+        website: "",
+        location: "",
         relevant_skills: "",
         education: "",
         experience: "",
@@ -132,16 +144,17 @@ export default function AiResumeInput() {
                 required
                 fullWidth
               />
+
               <TextField
-                label="Personal Information"
-                value={resumeData.personal_information}
-                onChange={handleInputChange("personal_information")}
+                label="Phone Number"
+                value={resumeData.phone_num}
+                onChange={handleInputChange("phone_num")}
                 variant="outlined"
                 margin="dense"
+                required
                 fullWidth
-                multiline
-                maxRows={5}
               />
+
               <TextField
                 label="Relevant Skills"
                 value={resumeData.relevant_skills}
@@ -165,7 +178,27 @@ export default function AiResumeInput() {
             </Box>
 
             {/* Group 2 */}
-            <Box sx={{ flex: 1, minWidth: 250 }}>
+            <Box sx={{ flex: 1, minWidth: 250, display: "flex", flexDirection: "column", gap: 2 }}>
+              <TextField
+                label="Location"
+                value={resumeData.location}
+                onChange={handleInputChange("location")}
+                variant="outlined"
+                margin="dense"
+                required
+                fullWidth
+              />
+
+              <TextField
+                label="Email"
+                value={resumeData.email}
+                onChange={handleInputChange("email")}
+                variant="outlined"
+                margin="dense"
+                required
+                fullWidth
+              />
+
               <TextField
                 label="Experience"
                 value={resumeData.experience}
@@ -179,7 +212,28 @@ export default function AiResumeInput() {
             </Box>
 
             {/* Group 3 */}
-            <Box sx={{ flex: 1, minWidth: 250 }}>
+
+            <Box sx={{ flex: 1, minWidth: 250, display: "flex", flexDirection: "column", gap: 2 }}>
+              <TextField
+                label="Linkedin"
+                value={resumeData.linkedin}
+                onChange={handleInputChange("linkedin")}
+                variant="outlined"
+                margin="dense"
+                required
+                fullWidth
+              />
+
+              <TextField
+                label="Website"
+                value={resumeData.website}
+                onChange={handleInputChange("website")}
+                variant="outlined"
+                margin="dense"
+                required
+                fullWidth
+              />
+
               <TextField
                 label="Projects"
                 value={resumeData.projects}

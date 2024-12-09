@@ -51,14 +51,12 @@ export async function updateAiResumeInput(req: Request, res: Response) {
 
     // Summarize user input via OpenAI api and save to DB
     const resumeUserInput = await getUserResumeInput(userId);
-    const aiInfo = await OpenAiResume.summarizePersonalInfo(resumeUserInput!.personal_information!);
     const aiSkills = await OpenAiResume.summarizeSkills(resumeUserInput!.relevant_skills!);
     const aiEdu = await OpenAiResume.summarizeEducation(resumeUserInput!.education!);
     const aiExp = await OpenAiResume.summarizeExperience(resumeUserInput!.experience!);
     const aiProj = await OpenAiResume.summarizeProjects(resumeUserInput!.projects!);
 
     const resumeData: Partial<AiResume> = {
-      ai_info: aiInfo,
       ai_skills: aiSkills,
       ai_edu: aiEdu,
       ai_exp: aiExp,
