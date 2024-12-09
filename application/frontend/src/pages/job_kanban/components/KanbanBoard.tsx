@@ -10,25 +10,25 @@ const KanbanBoard: React.FC = () => {
   const [columns, setColumns] = useState<ColumnData[]>([]);
 
   // Load columns and cards data
-  useEffect(() => {
-    const fetchColumns = async () => {
-      const fetchCardsForColumn = async (columnId: number) => {
-        const response = await axios.get(`/api/col/${columnId}/cards`);
-        return response.data.jobs;
-      };
-
-      const enrichedColumns = await Promise.all(
-        columnData.map(async (col) => ({
-          ...col,
-          cards: await fetchCardsForColumn(col.id),
-        }))
-      );
-
-      setColumns(enrichedColumns);
+  const fetchColumns = async () => {
+    const fetchCardsForColumn = async (columnId: number) => {
+      const response = await axios.get(`/api/col/${columnId}/cards`);
+      return response.data.jobs;
     };
 
+    const enrichedColumns = await Promise.all(
+      columnData.map(async (col) => ({
+        ...col,
+        cards: await fetchCardsForColumn(col.id),
+      }))
+    );
+
+    setColumns(enrichedColumns);
+  };
+
+  useEffect(() => {
     fetchColumns();
-  }, []);
+  }, [columnData]);
 
   const handleDragEnd = (result: DropResult) => {
     if (!result.destination) return;
@@ -75,11 +75,29 @@ const KanbanBoard: React.FC = () => {
     }
   };
 
+  const handleCardUpdate = async (jobId: number, updatedJob: any) => {
+    await axios.post(`/api/jobs/update/${jobId}`, {
+      jobData: updatedJob,
+    });
+    await fetchColumns();
+  };
+
+  const handleCardDelete = async (jobId: number, columnId: number) => {
+    await axios.delete(`/api/jobs/${jobId}`);
+    await refetchColumnCards(columnId);
+  };
+
   return (
     <DragDropContext onDragEnd={handleDragEnd}>
       <div style={{ display: "flex", gap: "16px", overflowX: "auto" }}>
         {columns.map((col) => (
-          <KanbanColumn key={col.id} column={col} addJobToColumn={addJobToColumn} />
+          <KanbanColumn
+            key={col.id}
+            column={col}
+            addJobToColumn={addJobToColumn}
+            onUpdate={handleCardUpdate}
+            onDelete={handleCardDelete}
+          />
         ))}
       </div>
     </DragDropContext>

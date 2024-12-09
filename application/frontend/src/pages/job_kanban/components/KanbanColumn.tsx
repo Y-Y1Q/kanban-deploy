@@ -10,8 +10,15 @@ import JobCard from "./JobCards";
 interface KanbanColumnProps {
   column: ColumnData;
   addJobToColumn: (columnId: number, newJob: any) => void;
+  onUpdate: (jobId: number, updatedJob: any) => void;
+  onDelete: (jobId: number, columnId: number) => void;
 }
-const KanbanColumn: React.FC<KanbanColumnProps> = ({ column, addJobToColumn }) => {
+const KanbanColumn: React.FC<KanbanColumnProps> = ({
+  column,
+  addJobToColumn,
+  onUpdate,
+  onDelete,
+}) => {
   const headerColor = column.color;
   const cardAreaColor = `${column.color}25`;
 
@@ -87,7 +94,13 @@ const KanbanColumn: React.FC<KanbanColumnProps> = ({ column, addJobToColumn }) =
             }}
           >
             {column.cards.map((job, index) => (
-              <JobCard key={job.id} job={job} index={index} />
+              <JobCard
+                key={job.id}
+                job={job}
+                index={index}
+                onUpdate={onUpdate}
+                onDelete={onDelete}
+              />
             ))}
             {provided.placeholder}
           </Box>

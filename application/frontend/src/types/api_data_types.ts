@@ -18,7 +18,7 @@ export interface Job {
   link?: string | null;
   description?: string | null;
   user_note?: string | null;
-  date_applied?: Date | null;
+  date_applied?: string | null;
   date_scheduled?: string | null;
 }
 

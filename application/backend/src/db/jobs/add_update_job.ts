@@ -60,10 +60,6 @@ export async function updateJob(
   const query = SQL`
     UPDATE jobs
     SET
-      current_status = COALESCE(
-        ${jobData.current_status},
-        current_status
-      ),
       company = COALESCE(${jobData.company}, company),
       POSITION = COALESCE(${jobData.position}, POSITION),
       salary = COALESCE(${jobData.salary}, salary),

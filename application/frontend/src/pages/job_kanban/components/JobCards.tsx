@@ -1,15 +1,23 @@
 import { Box, Paper, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
 
 import { Job } from "../../../types/api_data_types";
+import JobDialog from "./JobDialog";
 
 interface JobCardProps {
   job: Job;
   index: number;
+  onUpdate: (jobId: number, updatedJob: any) => void;
+  onDelete: (jobId: number, columnId: number) => void;
 }
 
-const JobCard: React.FC<JobCardProps> = ({ job, index }) => {
+const JobCard: React.FC<JobCardProps> = ({ job, index, onUpdate, onDelete }) => {
+  const [isDialogOpen, setDialogOpen] = useState(false);
+
+  const handleDialogOpen = () => setDialogOpen(true);
+  const handleDialogClose = () => setDialogOpen(false);
+
   return (
     <Draggable draggableId={String(job.id)} index={index}>
       {(provided) => (
@@ -22,6 +30,7 @@ const JobCard: React.FC<JobCardProps> = ({ job, index }) => {
             marginBottom: "8px",
             ...provided.draggableProps.style,
           }}
+          onClick={handleDialogOpen}
         >
           <Typography variant="h3">{job.company}</Typography>
           <Typography variant="h4">{job.position}</Typography>
@@ -30,6 +39,14 @@ const JobCard: React.FC<JobCardProps> = ({ job, index }) => {
             <Typography variant="h5">{job.type}</Typography>
             <Typography variant="h5">{job.salary}</Typography>
           </Box>
+
+          <JobDialog
+            isOpen={isDialogOpen}
+            onClose={handleDialogClose}
+            job={job}
+            onUpdate={onUpdate}
+            onDelete={onDelete}
+          />
         </Paper>
       )}
     </Draggable>
