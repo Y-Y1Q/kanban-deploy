@@ -24,7 +24,7 @@ export default function SignIn() {
   const [passwordError, setPasswordError] = useState("");
 
   const gifs = ["/img/signin.gif", "/img/signin2.gif", "/img/signin3.gif"];
-  const [currentGif, setCurrentGif] = useState<string>("your-gif-url.gif");
+  const [currentGif, setCurrentGif] = useState<string>("/img/signin3.gif");
   const [showGif, setShowGif] = useState(true);
 
   useEffect(() => {
