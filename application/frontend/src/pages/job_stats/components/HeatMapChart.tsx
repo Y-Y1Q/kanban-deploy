@@ -11,6 +11,17 @@ export default function CalendarHeatMap() {
   if (error) return <div>Error loading data.</div>;
   // console.log(data);
 
+  // Render a centered message if data is null or empty
+  if (!data || data.length === 0) {
+    return (
+      <Box display="flex" alignItems="center" justifyContent="center" height="100vh">
+        <Typography variant="h1" align="center" color="textSecondary" mb="30%">
+          You haven't applied to any job yet.
+        </Typography>
+      </Box>
+    );
+  }
+
   const heatmapData =
     data?.map((stat: DateStats) => ({
       day: stat.date_applied,
@@ -29,7 +40,6 @@ export default function CalendarHeatMap() {
     (acc: number, item: TempData) => acc + parseInt(item.count, 10),
     0
   );
-  console.log(totalCount);
 
   return (
     <Box height="100%" width="90%" ml={5}>
