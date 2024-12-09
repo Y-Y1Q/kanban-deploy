@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "npm i && vite",
-    "dev": "npm i && vite",
+    "start": "npm i --legacy-peer-deps && vite",
+    "dev": "npm i --legacy-peer-deps && vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
