@@ -7,7 +7,9 @@ import AiResumePage from "./ai_resume/AiResumePage";
 import ContactsPage from "./contacts/ContactsPage";
 import InterviewPrepPage from "./interview_prep/InterviewPrepPage";
 import * as JobStatsPage from "./job_stats";
-import JobsPage from "./jobs/JobsPage";
+import JobKanban from "./jobs/JobKanban";
+import TestJobsPage from "./jobs/backup_job_page/JobsPage";
+import TestJobComp from "./jobs/test_job_components/TestJobPage";
 import TestJobsData from "./m2_test/TestJobsData";
 import TestSearchCompany from "./m2_test/TestSearchCompany";
 import TestSearchType from "./m2_test/TestSearchType";
@@ -23,10 +25,7 @@ const LayoutRoutes: React.FC<LayoutProps> = ({ theme, colorMode }) => {
     <Routes>
       {/* Wrap only the valid routes with Layout */}
       <Route element={<Layout theme={theme} colorMode={colorMode} />}>
-        <Route path="/test" element={<TestJobsData />} />
-        <Route path="/search-company" element={<TestSearchCompany />} />
-        <Route path="/search-type" element={<TestSearchType />} />
-        <Route path="/" element={<JobsPage />} />
+        <Route path="/" element={<JobKanban />} />
         <Route path="/stats-heatmap" element={<JobStatsPage.HeatMap />} />
         <Route path="/stats-bar" element={<JobStatsPage.Bar />} />
         <Route path="/stats-donut" element={<JobStatsPage.Donut />} />
@@ -34,6 +33,13 @@ const LayoutRoutes: React.FC<LayoutProps> = ({ theme, colorMode }) => {
         <Route path="/contacts" element={<ContactsPage />} />
         <Route path="/ai-resume" element={<AiResumePage />} />
         <Route path="/ai-interview" element={<InterviewPrepPage />} />
+
+        {/* Test Routes, not displayed on sidebar */}
+        <Route path="/test" element={<TestJobsPage />} />
+        <Route path="/test-comp" element={<TestJobComp />} />
+        <Route path="/test-data" element={<TestJobsData />} />
+        <Route path="/search-company" element={<TestSearchCompany />} />
+        <Route path="/search-type" element={<TestSearchType />} />
       </Route>
 
       {/* Catch-all for invalid paths without Layout styling */}
