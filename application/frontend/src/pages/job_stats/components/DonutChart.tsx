@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { ResponsivePie } from "@nivo/pie";
 import React from "react";
@@ -12,6 +12,17 @@ const DonutChart: React.FC = () => {
 
   if (isLoading) return <Typography>Loading...</Typography>;
   if (error) return <Typography>Error loading data</Typography>;
+
+  // Render a centered message if data is null or empty
+  if (jobStats.total === 0) {
+    return (
+      <Box display="flex" alignItems="center" justifyContent="center" height="100vh">
+        <Typography variant="h1" align="center" color="textSecondary" mb="30%">
+          You haven't applied to any job yet.
+        </Typography>
+      </Box>
+    );
+  }
 
   // Map job stats to the data format required by @nivo/pie
   const chartData = [
