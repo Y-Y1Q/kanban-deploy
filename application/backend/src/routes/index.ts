@@ -21,12 +21,16 @@ router.get("/api/jobs/company", checkAuth, Controller.Jobs.getJobsByCompany);
 router.get("/api/jobs/type", checkAuth, Controller.Jobs.getJobsByType);
 router.post("/api/jobs/add", checkAuth, Controller.Jobs.addJob);
 router.post("/api/jobs/update/:id", checkAuth, Controller.Jobs.updateJob);
-// router.get("/api/job-detail/:id", checkAuth, Controller.Jobs.getJobDetail);
+router.get("/api/job-detail/:id", checkAuth, Controller.Jobs.getJobDetail);
 router.delete("/api/jobs/:id", checkAuth, Controller.Jobs.deleteJob);
 router.get("/api/jobs/stats", checkAuth, Controller.Jobs.getJobStats);
 router.get("/api/jobs/stats-date", checkAuth, Controller.Jobs.getDateStats);
 
 // Column routes
+router.get("/api/col/:id/cards", checkAuth, Controller.Columns.getCardsInColumn);
+router.post("/api/card/:id", checkAuth, Controller.Columns.updateJobCardStatus);
+router.post("/api/card-pos/:id/", checkAuth, Controller.Columns.updateCardPosition);
+router.post("api/col/:id/update-positions", checkAuth, Controller.Columns.updateMultiplePositions);
 
 //AI resume routes
 router.get("/ai-resume/:token", Controller.AiResume.getResumePage);

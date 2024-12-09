@@ -7,6 +7,7 @@ export interface User {
 
 export interface Job {
   id: number;
+  card_pos: number;
   user_id: number;
   column_id: number;
   current_status: string;
@@ -18,7 +19,7 @@ export interface Job {
   link?: string | null;
   description?: string | null;
   user_note?: string | null;
-  date_applied?: Date | null;
+  date_applied?: string | null;
   date_scheduled?: string | null;
 }
 
@@ -27,6 +28,13 @@ export interface Column {
   name: string;
   color: string;
   position: number;
+}
+
+export interface ColumnData {
+  id: number;
+  name: string;
+  color: string;
+  cards: Job[];
 }
 
 export interface ColumnCards {

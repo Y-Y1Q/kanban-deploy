@@ -14,7 +14,7 @@ export async function getChatbotResponse(req: Request, res: Response) {
   }
 
   try {
-    console.log("Sending request to OpenAI API with message:", message);
+    // console.log("Sending request to OpenAI API with message:", message);
     const response = await openai.chat.completions.create({
       model: "gpt-4o-mini",
       messages: [{ role: "user", content: message }],
@@ -23,7 +23,7 @@ export async function getChatbotResponse(req: Request, res: Response) {
 
     const chatbotMessage = response.choices![0]!.message!.content!.trim();
 
-    console.log("Received response from OpenAI API:", chatbotMessage);
+    // console.log("Received response from OpenAI API:", chatbotMessage);
     return res.status(200).json({ message: chatbotMessage });
   } catch (error: any) {
     console.error("Error getting chatbot response:", error);

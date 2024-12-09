@@ -16,10 +16,10 @@ import {
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-import JobStatus from "../../constants/job_status_values";
-import { Job } from "../../types/api_data_types";
+import JobStatus from "../../../constants/job_status_values";
+import { Job } from "../../../types/api_data_types";
 
-export default function TestJobsData() {
+export default function TestJobsPage() {
   const [jobsData, setJobsData] = useState<Job[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [searchType, setSearchType] = useState<"company" | "type">("company");

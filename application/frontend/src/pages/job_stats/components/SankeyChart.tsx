@@ -11,6 +11,17 @@ export function SankeyChart() {
     return <Typography>Loading...</Typography>;
   }
 
+  // Render a centered message if data is null or empty
+  if (data.total === 0) {
+    return (
+      <Box display="flex" alignItems="center" justifyContent="center" height="100vh">
+        <Typography variant="h1" align="center" color="textSecondary" mb="30%">
+          You haven't applied to any job yet.
+        </Typography>
+      </Box>
+    );
+  }
+
   // Map JobStatus to colors
   const statusColors = {
     Interested: JobStatus.Interested.getColor(),
