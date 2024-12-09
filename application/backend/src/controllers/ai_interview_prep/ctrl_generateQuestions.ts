@@ -18,7 +18,7 @@ export async function getChatbotResponse(req: Request, res: Response) {
     const response = await openai.chat.completions.create({
       model: "gpt-4o-mini",
       messages: [{ role: "user", content: message }],
-      max_tokens: 1000,
+      max_tokens: 5000,
     });
 
     const chatbotMessage = response.choices![0]!.message!.content!.trim();
