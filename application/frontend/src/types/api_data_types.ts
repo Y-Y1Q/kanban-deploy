@@ -29,6 +29,13 @@ export interface Column {
   position: number;
 }
 
+export interface ColumnData {
+  id: number;
+  name: string;
+  color: string;
+  cards: Job[];
+}
+
 export interface ColumnCards {
   id: number;
   user_id: number;
