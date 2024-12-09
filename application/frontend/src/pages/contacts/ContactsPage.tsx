@@ -33,6 +33,7 @@ export default function ContactsPage() {
     phone_num: "",
     user_note: "",
   });
+  const [editingContact, setEditingContact] = useState<Contact | null>(null);
 
   useEffect(() => {
     const fetchContacts = async () => {
@@ -56,6 +57,15 @@ export default function ContactsPage() {
 
   const handleClose = () => {
     setOpen(false);
+    setEditingContact(null);
+    setNewContact({
+      name: "",
+      email: "",
+      company: "",
+      position: "",
+      phone_num: "",
+      user_note: "",
+    });
   };
 
   const handleAddContact = async () => {
@@ -85,6 +95,16 @@ export default function ContactsPage() {
   const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setNewContact((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleUpdateContact = async (contact: Contact) => {
+    try {
+      await axios.put(`/api/contacts/${contact.id}`, contact);
+      setContacts(contacts.map((c) => (c.id === contact.id ? contact : c)));
+      setEditingContact(null);
+    } catch (error) {
+      console.error("Error updating contact", error);
+    }
   };
 
   return (
@@ -144,14 +164,37 @@ export default function ContactsPage() {
                   <Typography variant="body1">Position: {contact.position}</Typography>
                   <Typography variant="body1">Company: {contact.company}</Typography>
                   <Typography variant="body1">Email: {contact.email}</Typography>
-                  <Button
-                    variant="outlined"
-                    color="secondary"
-                    onClick={() => handleRemoveContact(contact.id)}
-                    sx={{ marginTop: 1 }}
-                  >
-                    Remove Contact
-                  </Button>
+                  <Typography variant="body1">Phone: {contact.phone_num}</Typography>
+                  <Typography variant="body1">Notes: {contact.user_note}</Typography>
+                  <Box sx={{ mt: 1, display: 'flex', gap: 1 }}>
+                    <Button
+                      variant="outlined"
+                      color="success"
+                      onClick={() => {
+                        setEditingContact(contact);
+                        setNewContact({
+                          name: contact.name,
+                          email: contact.email,
+                          company: contact.company,
+                          position: contact.position,
+                          phone_num: contact.phone_num,
+                          user_note: contact.user_note,
+                        });
+                        setOpen(true);
+                      }}
+                      sx={{ marginTop: 1 }}
+                    >
+                      Update Contact
+                    </Button>
+                    <Button
+                      variant="outlined"
+                      color="error"
+                      onClick={() => handleRemoveContact(contact.id)}
+                      sx={{ marginTop: 1 }}
+                    >
+                      Remove Contact
+                    </Button>
+                  </Box>
                 </Box>
               </Grid>
             ))}
@@ -159,7 +202,7 @@ export default function ContactsPage() {
         )}
       </Box>
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
-        <DialogTitle>Add Contacts</DialogTitle>
+        <DialogTitle>{editingContact ? 'Update Contact' : 'Add Contact'}</DialogTitle>
         <DialogContent>
           <DialogContentText>Add contacts based on your job board</DialogContentText>
           <Grid container spacing={2} mt={1}>
@@ -241,8 +284,15 @@ export default function ContactsPage() {
           <Button onClick={handleClose} color="secondary">
             Cancel
           </Button>
-          <Button onClick={handleAddContact} variant="contained" color="primary">
-            Add Contact
+          <Button 
+            onClick={editingContact ? 
+              () => handleUpdateContact({ ...editingContact, ...newContact }) : 
+              handleAddContact
+            } 
+            variant="contained" 
+            color="primary"
+          >
+            {editingContact ? 'Update Contact' : 'Add Contact'}
           </Button>
         </DialogActions>
       </Dialog>
