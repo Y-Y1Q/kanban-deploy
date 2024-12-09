@@ -1,0 +1,12 @@
+/* JobCard.module.css */
+.jobCard {
+  padding: 8px;
+  cursor: pointer;
+  background-color: #f5f5f5;
+  transition: background-color 0.3s;
+  border-radius: 4px; /* Optional: Add rounded corners */
+}
+
+.jobCard:hover {
+  background-color: #d3d3d3;
+}
