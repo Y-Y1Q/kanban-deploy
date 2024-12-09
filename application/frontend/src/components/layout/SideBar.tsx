@@ -101,7 +101,7 @@ export default function SideBar() {
 
           {!isCollapsed && <Box mb="25px"></Box>}
 
-          <Box paddingLeft={isCollapsed ? undefined : "10%"} paddingRight="0%" paddingTop="20px">
+          <Box paddingLeft={isCollapsed ? undefined : "10%"} paddingRight="0%">
             <Item
               title="Job Board"
               to="/app/"
