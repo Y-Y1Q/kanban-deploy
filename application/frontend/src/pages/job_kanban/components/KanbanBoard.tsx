@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
 
@@ -12,9 +13,8 @@ const KanbanBoard: React.FC = () => {
   useEffect(() => {
     const fetchColumns = async () => {
       const fetchCardsForColumn = async (columnId: number) => {
-        const response = await fetch(`/api/col/${columnId}/cards`);
-        const data = await response.json();
-        return data.jobs;
+        const response = await axios.get(`/api/col/${columnId}/cards`);
+        return response.data.jobs;
       };
 
       const enrichedColumns = await Promise.all(
@@ -50,11 +50,36 @@ const KanbanBoard: React.FC = () => {
     setColumns(updatedColumns);
   };
 
+  const refetchColumnCards = async (columnId: number) => {
+    try {
+      const response = await axios.get(`/api/col/${columnId}/cards`);
+      const updatedCards = response.data.jobs;
+
+      setColumns((prevColumns) =>
+        prevColumns.map((col) => (col.id === columnId ? { ...col, cards: updatedCards } : col))
+      );
+    } catch (error) {
+      console.error("Error fetching column cards:", error);
+    }
+  };
+
+  const addJobToColumn = async (columnId: number, newJob: any) => {
+    try {
+      await axios.post("/api/jobs/add", {
+        column_id: newJob.column_id,
+        jobData: newJob,
+      });
+      await refetchColumnCards(columnId); // Refetch column cards after adding the job
+    } catch (error) {
+      console.error("Error adding job to column:", error);
+    }
+  };
+
   return (
     <DragDropContext onDragEnd={handleDragEnd}>
       <div style={{ display: "flex", gap: "16px", overflowX: "auto" }}>
         {columns.map((col) => (
-          <KanbanColumn key={col.id} column={col} />
+          <KanbanColumn key={col.id} column={col} addJobToColumn={addJobToColumn} />
         ))}
       </div>
     </DragDropContext>
