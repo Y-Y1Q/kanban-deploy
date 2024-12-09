@@ -13,6 +13,7 @@ import {
   Typography,
 } from "@mui/material";
 import axios from "axios";
+import { FastAverageColor } from "fast-average-color";
 import React, { useEffect, useState } from "react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 
@@ -21,6 +22,45 @@ export default function SignIn() {
   const [showPassword, setShowPassword] = useState(false);
   const [usernameError, setUsernameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+
+  const gifs = ["/img/signin.gif", "/img/signin2.gif", "/img/signin3.gif"];
+  const [currentGif, setCurrentGif] = useState<string>("your-gif-url.gif");
+  const [showGif, setShowGif] = useState(true);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setShowGif(false);
+
+      setTimeout(() => {
+        setCurrentGif((prevGif) => {
+          const currentIndex = gifs.indexOf(prevGif);
+          const nextIndex = (currentIndex + 1) % gifs.length;
+          return gifs[nextIndex];
+        });
+
+        setShowGif(true);
+      }, 3000);
+    }, 6000);
+
+    return () => clearInterval(intervalId);
+  }, [gifs]);
+
+  const [bgColor, setBgColor] = useState<string>("#ffffff");
+
+  useEffect(() => {
+    const fac = new FastAverageColor();
+    const img = new Image();
+    img.src = currentGif;
+
+    img.onload = () => {
+      fac.getColorAsync(img).then((color: { rgba: string }) => {
+        setBgColor(color.rgba);
+
+        document.body.style.transition = "background-color 3s ease";
+        document.body.style.backgroundColor = color.rgba;
+      });
+    };
+  }, [currentGif]);
 
   // Check if user is already authenticated
   useEffect(() => {
@@ -99,6 +139,8 @@ export default function SignIn() {
             alignItems: "center",
             textAlign: "center",
             padding: 4,
+            backgroundColor: bgColor,
+            transition: "background-color 3s ease",
           }}
         >
           <Box sx={{ textAlign: "center", mb: 4 }}>
@@ -110,7 +152,16 @@ export default function SignIn() {
             </Typography>
           </Box>
 
-          <img src="/img/home.svg" alt="home page" />
+          <img
+            src={currentGif}
+            alt="Changing GIF"
+            style={{
+              width: "690px",
+              borderRadius: "15px",
+              opacity: showGif ? 1 : 0,
+              transition: "opacity 3s ease-in-out",
+            }}
+          />
         </Grid>
 
         {/* Right Side - Sign in Form */}
@@ -205,14 +256,3 @@ export default function SignIn() {
     </Container>
   );
 }
-
-/**
- <span>Test Account<span>
- <span>
-            Username: <b>test</b>
-          </span>
-          <span>
-            Password: <b>SFSUcsc648</b>
-          </span>
-
- */
