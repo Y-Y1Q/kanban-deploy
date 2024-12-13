@@ -21,13 +21,14 @@ const ProtectedRoute = ({ element }: ProtectedRouteProps) => {
         const response = await axios.post("/api/auth/check");
         if (response.data.authenticated) {
           setIsAuthenticated(true);
-        } else {
-          setIsAuthenticated(false);
-          alert("You are not authenticated. Redirecting to login page...");
-          navigate("/");
         }
-      } catch (error) {
-        // console.log("Authentication error:", error);
+      } catch (err: unknown) {
+        if (axios.isAxiosError(err)) {
+          console.log(err.status);
+          console.error(err.response);
+        } else {
+          console.error(err);
+        }
         setIsAuthenticated(false);
         alert("Authentication error occurred. Redirecting to login page...");
         navigate("/");

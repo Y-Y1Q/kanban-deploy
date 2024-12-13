@@ -1,13 +1,12 @@
-import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
 import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import ContactPageOutlinedIcon from "@mui/icons-material/ContactPageOutlined";
-// M2 icon
-import LooksTwoOutlinedIcon from "@mui/icons-material/LooksTwoOutlined";
-// M2 icon
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import DataUsageIcon from "@mui/icons-material/DataUsage";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import PictureAsPdfOutlinedIcon from "@mui/icons-material/PictureAsPdfOutlined";
 import SmartToyOutlinedIcon from "@mui/icons-material/SmartToyOutlined";
-import ViewKanbanOutlinedIcon from "@mui/icons-material/ViewKanbanOutlined";
+import SsidChartIcon from "@mui/icons-material/SsidChart";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { useState } from "react";
 import { FC } from "react";
@@ -34,11 +33,12 @@ const Item: FC<ItemProps> = ({ title, to, icon, selected, setSelected }) => {
       active={selected === title}
       style={{
         color: colors.grey[100],
+        paddingTop: "10px",
       }}
       onClick={() => setSelected(title)}
       icon={icon}
     >
-      <Typography>{title}</Typography>
+      <Typography sx={{ fontSize: "20px" }}>{title}</Typography>
       <Link to={to} />
     </MenuItem>
   );
@@ -48,7 +48,7 @@ export default function SideBar() {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [selected, setSelected] = useState("Jobs Board");
+  const [selected, setSelected] = useState(getSelectedTitle(location.pathname));
 
   return (
     <Box
@@ -72,10 +72,6 @@ export default function SideBar() {
     >
       <ProSidebar collapsed={isCollapsed}>
         <Menu>
-          {/* <Typography variant="h1" color={colors.grey[100]}>
-            TEST
-          </Typography> */}
-
           {/* LOGO AND MENU ICON */}
           <MenuItem
             onClick={() => setIsCollapsed(!isCollapsed)}
@@ -90,7 +86,7 @@ export default function SideBar() {
                 display="flex"
                 justifyContent="space-between"
                 alignItems="center"
-                paddingLeft="12%"
+                paddingLeft="11%"
                 mr="45px"
               >
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
@@ -106,60 +102,14 @@ export default function SideBar() {
           {!isCollapsed && <Box mb="25px"></Box>}
 
           <Box paddingLeft={isCollapsed ? undefined : "10%"} paddingRight="0%">
-            <Typography variant="h5" color={colors.grey[300]} sx={{ m: "15px 0 5px 20px" }}>
-              M2 Test
-            </Typography>
-
             <Item
-              title="Test Jobs Data"
-              to="/app"
-              icon={<LooksTwoOutlinedIcon />}
+              title="Job Board"
+              to="/app/"
+              icon={<DashboardIcon />}
               selected={selected}
               setSelected={setSelected}
             />
 
-            <Item
-              title="Test Search by Company"
-              to="/app/search-company"
-              icon={<LooksTwoOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-
-            <Item
-              title="Test Search by Type"
-              to="/app/search-type"
-              icon={<LooksTwoOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-
-            <Typography variant="h5" color={colors.grey[300]} sx={{ m: "15px 0 5px 20px" }}>
-              Data
-            </Typography>
-
-            <Item
-              title="Jobs Board"
-              to="/app/jobs"
-              icon={<ViewKanbanOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-
-            <Item
-              title="Jobs Statistics"
-              to="/app/stats"
-              icon={<BarChartOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Documents"
-              to="/app/docs"
-              icon={<ArticleOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
             <Item
               title="Contacts"
               to="/app/contacts"
@@ -168,11 +118,55 @@ export default function SideBar() {
               setSelected={setSelected}
             />
 
-            <Typography variant="h5" color={colors.grey[300]} sx={{ m: "15px 0 5px 20px" }}>
+            <Typography
+              variant="h3"
+              color={colors.grey[300]}
+              sx={{ m: "15px 0 5px 20px", pt: "15px" }}
+            >
+              Job Stats
+            </Typography>
+
+            <Item
+              title="Heat Map"
+              to="/app/stats-heatmap"
+              icon={<CalendarMonthIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+
+            <Item
+              title="Bar Chart"
+              to="/app/stats-bar"
+              icon={<BarChartOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+
+            <Item
+              title="Donut Chart"
+              to="/app/stats-donut"
+              icon={<DataUsageIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+
+            <Item
+              title="Sankey Chart"
+              to="/app/stats-sankey"
+              icon={<SsidChartIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+
+            <Typography
+              variant="h3"
+              color={colors.grey[300]}
+              sx={{ m: "15px 0 5px 20px", pt: "15px" }}
+            >
               AI tools
             </Typography>
             <Item
-              title="Generate Resume"
+              title="Resume Builder"
               to="/app/ai-resume"
               icon={<PictureAsPdfOutlinedIcon />}
               selected={selected}
@@ -193,22 +187,26 @@ export default function SideBar() {
   );
 }
 
-/* 
-    
-          <Box
-            borderTop="1px solid"
-            borderColor={colors.grey[100]}
-            mt="60%"
-            paddingLeft={isCollapsed ? undefined : "10%"}
-          >
-            <Item
-              title="Logout"
-              to="/logout"
-              icon={<LogoutOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-          </Box>
-
-
-*/
+// Function to determine selected title based on current path
+const getSelectedTitle = (path: string) => {
+  switch (path) {
+    case "/app/":
+      return "Job Board";
+    case "/app/contacts":
+      return "Contacts";
+    case "/app/stats-heatmap":
+      return "Heat Map";
+    case "/app/stats-bar":
+      return "Bar Chart";
+    case "/app/stats-donut":
+      return "Donut Chart";
+    case "/app/stats-sankey":
+      return "Sankey Chart";
+    case "/app/ai-resume":
+      return "Resume Builder";
+    case "/app/ai-interview":
+      return "Interview Prep";
+    default:
+      return "";
+  }
+};

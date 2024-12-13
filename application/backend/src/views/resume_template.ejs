@@ -1,0 +1,70 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="/resume.css" />
+  </head>
+
+  <body>
+    <!-- Personal Information Section Below -->
+    <h1><%= resume.fullname %></h1>
+
+    <div class="headerInfo">
+      <ul>
+        <% if (resume.phone_num) { %>
+        <li><%= resume.phone_num %></li>
+        <% } %>
+        <% if (resume.location) { %>
+        <li><%= resume.location %></li>
+        <% } %>
+        <% if (resume.email) { %>
+        <li><%= resume.email %></li>
+        <% } %>
+        <% if (resume.linkedin) { %>
+        <li><%= resume.linkedin %></li>
+        <% } %>
+        <% if (resume.website) { %>
+        <li><%= resume.website %></li>
+        <% } %>
+      </ul>
+    </div>
+
+    <!-- Education Section Below -->
+    <div class="vertical-spacer"></div>
+    <% if (resume.ai_edu) { %>
+    <h2>Education</h2>
+    <%- resume.ai_edu %>
+    <% } %>
+
+    <!-- Skills Section Below -->
+    <div class="vertical-spacer"></div>
+    <% if (resume.ai_skills) { %>
+    <h2>Skills</h2>
+    <%- resume.ai_skills %>
+    <% } %>
+
+    <!-- Experience Section Below -->
+    <div class="vertical-spacer"></div>
+    <% if (resume.ai_exp) { %>
+    <h2>Experience</h2>
+    <%- resume.ai_exp %>
+    <% } %>
+
+    <!-- Projects Section Below -->
+    <div class="vertical-spacer"></div>
+    <% if (resume.ai_proj) { %>
+    <h2>Projects</h2>
+    <%- resume.ai_proj %>
+    <% } %>
+
+    <script>
+      // Wait until the page is fully loaded, then trigger print dialog
+      window.addEventListener("load", function () {
+        window.print();
+      });
+    </script>
+  </body>
+</html>

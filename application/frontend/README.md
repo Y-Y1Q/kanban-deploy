@@ -1,11 +1,13 @@
-# Frontend for ...
-
-WIP
+# EZJobs Frontend
 
 ## Pre-Requisites
 
-> Node.js 20.17.0
+> Node.js 20.18.0 (LTS)
 > https://nodejs.org/en/download/prebuilt-installer
+
+Node version for this project is updated on 10/23/2024
+
+ <br>
 
 ## Installation
 
@@ -21,62 +23,60 @@ npm install
 
 ## Running the Server
 
-For development: start a development server
+### Development
 
-```
-npm run start
-```
+start a development server <br>
+`npm run start` or `npm run dev`
 
 <br>
 
-For deployment: create a production-ready build
+### Deployment
+
+create a production-ready build
 
 ```
 npm run build
 ```
 
-## Folder Structure
+<br>
 
-WIP
+## Other commands
 
-## Expanding the ESLint configuration
+Lint code with eslint
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
+```
+npm run lint
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Format code with prettier
 
-```js
-// eslint.config.js
-import react from "eslint-plugin-react";
+```
+npm run format
+```
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: "18.3" } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs["jsx-runtime"].rules,
-  },
-});
+<br>
+
+## Folder Structure
+
+```php
+application
+|__ frontend
+    |__ public               # Contains static assets (e.g., images, icons)
+    |
+    |__ src                  # Main source code directory
+        |__ components       # Global components used across multiple pages
+        |
+        |__ constants        # Holds static constants
+        |
+        |__ pages            # Page-level components for routing
+        |
+        |__ theme            # Light & Dark mode theme
+        |
+        |__ types            # TypeScript types for shared interfaces and types
+        |
+        |__ App.tsx          # Root application component
+        |
+        |__ main.css         # Global CSS styling
+        |
+        |__ main.tsx         # Application entry point, renders App
 ```

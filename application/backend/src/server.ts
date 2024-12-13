@@ -6,6 +6,9 @@ import { createServer } from "http";
 import morgan from "morgan";
 import path from "path";
 
+import swaggerUi from "swagger-ui-express";
+import swaggerConfig from "./config/swagger";
+
 import * as Session from "./config/session";
 import { requestTime } from "./middleware/request_time";
 import ApiRoutes from "./routes";
@@ -23,11 +26,15 @@ const app = express();
 const httpServer = createServer(app);
 app.use(requestTime);
 
-// Static path to serve files
+// Setup static path and view path
 const BACKEND_PATH = path.dirname(import.meta.dirname);
 const STATIC_PATH = path.join(BACKEND_PATH, "public");
+const VIEW_PATH = path.join(BACKEND_PATH, "src", "views");
 console.log(`\nBE path: \x1b[32m\x1b[1m${BACKEND_PATH} \x1b[0m`);
-console.log(`BE Static files path: \x1b[32m\x1b[1m${STATIC_PATH}\x1b[0m \n`);
+console.log(`BE Static files path: \x1b[32m\x1b[1m${STATIC_PATH}\x1b[0m`);
+console.log(`BE EJS template path: \x1b[32m\x1b[1m${VIEW_PATH}\x1b[0m \n`);
+app.set("views", VIEW_PATH);
+app.set("view engine", "ejs");
 app.use(express.static(STATIC_PATH));
 
 // Setup cookie parsing
@@ -55,6 +62,9 @@ console.log(`Cross origin allowed: \x1b[32m\x1b[1m${corsOptions.origin}\x1b[0m`)
 
 //Backend API Routes
 app.use(ApiRoutes);
+
+// Swagger setup
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerConfig));
 
 const PORT = process.env.PORT || 3333;
 httpServer.listen(PORT, () => {

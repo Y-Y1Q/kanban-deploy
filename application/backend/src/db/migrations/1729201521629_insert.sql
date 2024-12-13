@@ -3,52 +3,49 @@
 -- Mock data for testing
 -- Insert into users table, pwd: SFSUcsc648
 INSERT INTO users (username, email, password) 
-VALUES ('test', 'test@example.com', '$2a$12$rIm35EX/UiFlj72.IIG7b.l7.czeUdFpmfIehsdBhhCRY8o/ZdJ2e');
+VALUES 
+('test', 'test@example.com', '$2a$12$rIm35EX/UiFlj72.IIG7b.l7.czeUdFpmfIehsdBhhCRY8o/ZdJ2e'),
+('unit-test', 'unit-test@email.com', '$2a$12$rIm35EX/UiFlj72.IIG7b.l7.czeUdFpmfIehsdBhhCRY8o/ZdJ2e');
 
--- Insert into columns table
+-- Insert into columns table, default value for all users, not customizable
 INSERT INTO columns (name, position, color) 
 VALUES 
 ('Interested', 1, '#0693E3'),
-('Pending', 2, '#9900ef'),
+('Pending', 2, '#FFC107'),
 ('In Progress', 3, '#008B02'),
 ('Offer', 4, '#37D67A'),
 ('Declined', 5, '#f47373'),
 ('Ghosted', 6, '#abb8c3'),
-('Follow Up', 7, '#ff6900');
+('Follow Up', 7, '#FD7E14');
 
 -- Insert into jobs table
-INSERT INTO jobs (user_id, column_id, current_status, company, position, salary, type, location, link, description, user_note, date_applied, date_scheduled)
+INSERT INTO jobs (user_id, column_id, card_pos, current_status, company, position, salary, type, location, link, description, user_note, date_applied, date_scheduled)
 VALUES 
-(1, 1, 'Interested', 'Company A', 'Software Engineer', '80k', 'Full-Time', 'San Jose', 'https://example.com/job1', 'Job description 1', 'Excited about this role', '2024-01-01', '2024-01-15 10:00:00'),
-(1, 2, 'Pending', 'Company B', 'Data Scientist', '85k', 'Contract', 'New York', 'https://example.com/job2', 'Job description 2', 'Awaiting response', '2024-02-01', '2024-02-20 15:00:00'),
-(1, 3, 'In Progress', 'Company C', 'Backend Developer', '90k', 'Full-Time', 'Chicago', 'https://example.com/job3', 'Job description 3', 'Scheduled interview', '2024-03-01', '2024-03-10 11:00:00'),
-(1, 4, 'Offer', 'Company D', 'Frontend Developer', '100k', 'Part-Time', 'Los Angeles', 'https://example.com/job4', 'Job description 4', 'Offer accepted', '2024-04-01', '2024-04-15 14:00:00'),
-(1, 5, 'Declined', 'Company E', 'Product Manager', '110k', 'Full-Time', 'Houston', 'https://example.com/job5', 'Job description 5', 'Declined offer', '2024-05-01', '2024-05-25 12:00:00'),
-(1, 6, 'Ghosted', 'Company F', 'UI/UX Designer', '95k', 'Full-Time', 'Austin', 'https://example.com/job6', 'Job description 6', 'No response from recruiter', '2024-06-01', '2024-06-20 16:00:00'),
-(1, 7, 'Follow Up', 'Company G', 'Mobile Developer', '105k', 'Remote', 'Remote', 'https://example.com/job7', 'Job description 7', 'Following up', '2024-07-01', '2024-07-30 09:00:00'),
-(1, 1, 'Interested', 'Company H', 'DevOps Engineer', '115k', 'Full-Time', 'San Francisco', 'https://example.com/job8', 'Job description 8', 'Initial interest', '2024-08-01', '2024-08-10 10:30:00'),
-(1, 2, 'Pending', 'Company I', 'Cloud Architect', '120k', 'Contract', 'Seattle', 'https://example.com/job9', 'Job description 9', 'Pending feedback', '2024-09-01', '2024-09-20 13:00:00'),
-(1, 3, 'In Progress', 'Company J', 'Fullstack Developer', '125k', 'Full-Time', 'Boston', 'https://example.com/job10', 'Job description 10', 'Second round of interviews', '2024-10-01', '2024-10-15 11:30:00');
+(1, 1, 0, 'Interested', 'Company A', 'Software Engineer', '80k', 'Full-Time', 'San Jose', 'https://example.com/job1', 'Job description 1', 'Excited about this role', NULL, NULL),
+(1, 2, 1, 'Pending', 'Company B', 'Data Scientist', '85k', 'Contract', 'New York', 'https://example.com/job2', 'Job description 2', 'Awaiting response', '2024-02-01', '2024-02-20 15:00:00'),
+(1, 3, 2, 'In Progress', 'Company C', 'Backend Developer', '90k', 'Full-Time', 'Chicago', 'https://example.com/job3', 'Job description 3', 'Scheduled interview', '2024-03-01', '2024-03-10 11:00:00'),
+(1, 4, 0, 'Offer', 'Company D', 'Frontend Developer', '100k', 'Part-Time', 'Los Angeles', 'https://example.com/job4', 'Job description 4', 'Offer accepted', '2024-04-01', '2024-04-15 14:00:00'),
+(1, 5, 1, 'Declined', 'Company E', 'Product Manager', '110k', 'Full-Time', 'Houston', 'https://example.com/job5', 'Job description 5', 'Declined offer', '2024-05-01', '2024-05-25 12:00:00'),
+(1, 6, 0, 'Ghosted', 'Company F', 'UI/UX Designer', '95k', 'Full-Time', 'Austin', 'https://example.com/job6', 'Job description 6', 'No response from recruiter', '2024-06-01', '2024-06-20 16:00:00'),
+(1, 7, 1, 'Follow Up', 'Company G', 'Mobile Developer', '105k', 'Remote', 'Remote', 'https://example.com/job7', 'Job description 7', 'Following up', '2024-07-01', '2024-07-30 09:00:00'),
+(1, 1, 1, 'Interested', 'Company H', 'DevOps Engineer', '115k', 'Full-Time', 'San Francisco', 'https://example.com/job8', 'Job description 8', 'Initial interest', NULL, NULL),
+(1, 2, 2, 'Pending', 'Company I', 'Cloud Architect', '120k', 'Contract', 'Seattle', 'https://example.com/job9', 'Job description 9', 'Pending feedback', '2024-09-01', '2024-09-20 13:00:00'),
+(1, 3, 3, 'In Progress', 'Company J', 'Fullstack Developer', '125k', 'Full-Time', 'Boston', 'https://example.com/job10', 'Job description 10', 'Second round of interviews', '2024-10-01', '2024-10-15 11:30:00');
 
--- Insert into docs table
-INSERT INTO docs (user_id, title, filepath)
-VALUES 
-(1, 'Resume', '/files/testuser_resume.pdf'),
-(1, 'Cover Letter', '/files/testuser_cover_letter.pdf'),
-(1, 'Portfolio', '/files/testuser_portfolio.pdf'),
-(1, 'Reference Letter', '/files/testuser_reference_letter.pdf'),
-(1, 'Recommendation Letter', '/files/testuser_recommendation_letter.pdf'),
-(1, 'Technical Assessment', '/files/testuser_assessment.pdf'),
-(1, 'Certification', '/files/testuser_certification.pdf'),
-(1, 'Diploma', '/files/testuser_diploma.pdf'),
-(1, 'Job Offer', '/files/testuser_job_offer.pdf'),
-(1, 'Contract', '/files/testuser_contract.pdf');
 
--- Insert into doc_jobs table
-INSERT INTO doc_jobs (doc_id, job_id)
-VALUES 
-(1, 1), (2, 1), (3, 2), (4, 3), (5, 4), 
-(6, 5), (7, 6), (8, 7), (9, 8), (10, 9);
+-- Insert into column_cards table with LexoRank values for position
+INSERT INTO column_cards (user_id, job_id, column_id, position)
+VALUES
+(1, 1, 1, '0|hzzzzz:'),   -- Company A in "Interested" column
+(1, 2, 2, '0|hzzzzz:'),   -- Company B in "Pending" column
+(1, 3, 3, '0|hzzzzz:'),   -- Company C in "In Progress" column
+(1, 4, 4, '0|hzzzzz:'),   -- Company D in "Offer" column
+(1, 5, 5, '0|hzzzzz:'),   -- Company E in "Declined" column
+(1, 6, 6, '0|hzzzzz:'),   -- Company F in "Ghosted" column
+(1, 7, 7, '0|hzzzzz:'),   -- Company G in "Follow Up" column
+(1, 8, 1, '0|0i0000:'),   -- Company H in "Interested" column (second position)
+(1, 9, 2, '0|0i0000:'),   -- Company I in "Pending" column (second position)
+(1, 10, 3, '0|0i0000:');  -- Company J in "In Progress" column (second position)
 
 -- Insert into contacts table
 INSERT INTO contacts (user_id, name, position, company, email, phone_num, user_note)
@@ -70,20 +67,6 @@ VALUES
 (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), 
 (6, 6), (7, 7), (8, 8), (9, 9), (10, 10);
 
--- Insert into ai_resume table
-INSERT INTO ai_resume (user_id, doc_id, personal_information, relevant_skills, education, experience, projects)
-VALUES 
-(1, 1, 'Test User - San Jose, CA', 'JavaScript, React, Node.js', 'B.S. Computer Science', 'Software Engineer at XYZ', 'Built Kanban board app'),
-(1, 2, 'Test User - San Jose, CA', 'Python, Data Science', 'M.S. Data Science', 'Data Analyst at ABC Corp', 'Developed data analysis tool'),
-(1, 3, 'Test User - San Jose, CA', 'DevOps, AWS, Docker', 'B.S. Information Technology', 'DevOps Engineer at DEF Ltd.', 'Automated deployment pipelines'),
-(1, 4, 'Test User - San Jose, CA', 'Fullstack, HTML, CSS', 'B.S. Software Engineering', 'Frontend Developer at GHI Inc.', 'Redesigned frontend UI'),
-(1, 5, 'Test User - San Jose, CA', 'Cloud Computing, Kubernetes', 'M.S. Cloud Computing', 'Cloud Engineer at JKL Tech', 'Managed cloud infrastructure'),
-(1, 6, 'Test User - San Jose, CA', 'Project Management, Agile', 'MBA', 'Product Manager at MNO Inc.', 'Led cross-functional team'),
-(1, 7, 'Test User - San Jose, CA', 'Mobile Development, Swift', 'B.S. Mobile Computing', 'iOS Developer at PQR Mobile', 'Built mobile application'),
-(1, 8, 'Test User - San Jose, CA', 'Cybersecurity, Penetration Testing', 'M.S. Cybersecurity', 'Security Engineer at STU Security', 'Secured enterprise systems'),
-(1, 9, 'Test User - San Jose, CA', 'AI, Machine Learning', 'Ph.D. in AI', 'ML Engineer at VWX AI', 'Developed AI models'),
-(1, 10, 'Test User - San Jose, CA', 'Blockchain, Cryptography', 'B.S. Cryptography', 'Blockchain Developer at YZ Crypto', 'Created blockchain solutions');
-
 -- Insert into ai_interview_prep table
 INSERT INTO ai_interview_prep (user_id, company, job_position, job_description, ai_response)
 VALUES 
@@ -97,5 +80,74 @@ VALUES
 (1, 'Company H', 'DevOps Engineer', 'Automate deployment pipelines.', 'Describe your experience with CI/CD pipelines.'),
 (1, 'Company I', 'Cloud Architect', 'Design cloud infrastructure solutions.', 'What cloud services have you worked with, and how did you optimize costs?'),
 (1, 'Company J', 'Fullstack Developer', 'Develop both frontend and backend applications.', 'How do you ensure efficient communication between frontend and backend systems?');
+
+-- Insert into ai_resume table
+INSERT INTO "ai_resume" (
+  "user_id",
+  "user_token",
+  "fullname",
+  "phone_num",
+  "email",
+  "linkedin",
+  "website",
+  "location",
+  "relevant_skills",
+  "education",
+  "experience",
+  "projects",
+  "ai_skills",
+  "ai_edu",
+  "ai_exp",
+  "ai_proj"
+) VALUES (
+  1,
+  'abc123xyz456',
+  'Jane Doe',
+  '(123) 456-7890',
+  'email@mail.com',
+  'https://www.linkedin.com/',
+  'https://website.com',
+  'San Francisco, CA',
+  'Jane is proficient in various programming languages, 
+including Golang, Java, C, C++, JavaScript, and TypeScript. 
+She has experience with frameworks such as Spring Boot, Express, Gin, and React. 
+Additionally, she is skilled in using tools like AWS, Docker, microservices, Git, npm, Vite, ESBuild, Postman, PostgreSQL, MongoDB, and MySQL.',
+
+  'Jane Doe completed her Bachelor of Science in Computer Science at Stanford University in Stanford, CA, 
+with a GPA of 3.8 in June 2020. Later, 
+she pursued her Master of Science in Artificial Intelligence at Massachusetts Institute of Technology (MIT) in Cambridge, MA, 
+and graduated with a GPA of 3.6 in May 2023.',
+
+
+  'Jane Doe worked as a Software Engineer at Tech Solutions Inc. in San Francisco, CA, from January 2020 to August 2023. 
+During her time there, she was responsible for developing and maintaining web applications, collaborating with cross-functional teams, and optimizing application performance.
+Jane also implemented new features using JavaScript, React, and Node.js, and worked with AWS for cloud services.
+
+Before that, she was an Intern at Innovative Labs in New York, NY, from June 2019 to August 2019. 
+In this role, she assisted with frontend development, fixed bugs in the codebase, and contributed to the team’s efforts to improve website accessibility. 
+Jane also gained experience with HTML, CSS, and JavaScript.',
+
+  'Jane created a real-time chat application as a personal project. 
+The project involved using React for the frontend, Node.js with Express for the backend, and WebSocket for real-time messaging. 
+She designed an intuitive UI with Material UI and added CSS animations to enhance user engagement. 
+The app supports up to 10,000 concurrent users and has secure authentication using JWT. 
+The source code is available on GitHub at https://example.com.
+
+She also built an e-commerce platform as a side project. 
+The platform uses Next.js for server-side rendering, MongoDB as the database,
+ and Stripe for payment processing. The project includes features like product management, shopping cart functionality, 
+ and order tracking. 
+ The e-commerce platform is optimized for SEO and has a responsive design for mobile and desktop users. 
+ You can find it on GitHub at https://example.com.',
+  '<p>placeholder
+    </p>',
+  '<p>placeholder
+    </p>',
+  '<p>placeholder
+    </p>',
+  '<p>placeholder
+    </p>'
+);
+
 
 -- Down Migration

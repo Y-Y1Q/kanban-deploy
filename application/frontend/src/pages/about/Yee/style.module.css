@@ -1,0 +1,173 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Poppins", sans-serif;
+}
+.yaboutWrapper {
+  height: 100vh;
+}
+.yaboutP {
+  font-size: 1.5rem;
+}
+.yaboutLeft {
+  background-color: #21d4fd;
+  background-image: linear-gradient(19deg, #21d4fd 0%, #ffb300 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: #fff;
+}
+.yaboutLeftContent > div {
+  background: #12192c;
+  padding: 4rem 4rem 2.5rem 5rem;
+  text-align: center;
+  border-radius: 12px 12px 0 0;
+}
+.yaboutLeftContent {
+  box-shadow: 0px 0px 18px -1px rgba(0, 0, 0, 0.39);
+  border-radius: 12px;
+  width: 80%;
+}
+.yaboutImg img {
+  display: block;
+  width: 200px;
+}
+.yaboutImg {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 50%;
+  transition: all 0.5s ease-in-out;
+}
+.yshadow {
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+}
+
+.yaboutLeftContent h2 {
+  font-size: 2rem;
+  margin: 2.2rem 0 0.6rem 0;
+  line-height: 1.2;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #ffb300;
+}
+.yaboutLeftContent h3 {
+  text-transform: uppercase;
+  font-weight: 300;
+  letter-spacing: 5px;
+  margin-top: 1.2rem;
+}
+.yicons {
+  background: #12192c;
+  display: flex;
+  justify-content: center;
+  padding: 0.8rem 0;
+  border-radius: 0 0 12px 12px;
+}
+.yicons li {
+  list-style-type: none;
+  background: #ffb300;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  margin: 0 0.5rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+.yicons li:hover {
+  background: #edffec;
+  color: #000;
+}
+.yaboutRight {
+  background: #12192c;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5rem;
+  text-align: center;
+  color: #fff;
+}
+.yaboutRight h1 {
+  font-size: 5rem;
+  text-transform: uppercase;
+}
+.yaboutRight h1 span {
+  color: #ffb300;
+}
+.yaboutRight h2 {
+  font-weight: 600;
+}
+.yaboutBtns {
+  display: flex;
+  margin: 2rem 0;
+}
+.ybtn {
+  border: none;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  border: 2px solid #fff;
+  border-radius: 20px;
+  padding: 0.55rem 0;
+  width: 130px;
+  font-weight: 600;
+  background: transparent;
+  margin: 0 0.5rem;
+  cursor: pointer;
+  color: #fff;
+}
+.ybtnPink {
+  background: #ffb300;
+  color: #fff;
+  border-color: #ffb300;
+  transition: all 0.5s ease-in-out;
+}
+.ybtnPink:hover {
+  background: transparent;
+  border-color: #fff;
+  color: #fff;
+}
+.ybtnWhite {
+  transition: all 0.5s ease-in-out;
+}
+.ybtnWhite:hover {
+  background: #ffb300;
+  border-color: #ffb300;
+  color: #fff;
+}
+.yaboutPara p {
+  font-weight: 300;
+  padding: 0.5rem;
+  opacity: 0.8;
+}
+
+@media screen and (min-width: 992px) {
+  .yaboutWrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 2fr);
+  }
+
+  .yaboutLeft {
+    position: relative;
+  }
+  .yaboutLeftContent {
+    position: absolute;
+    width: 80%;
+  }
+}

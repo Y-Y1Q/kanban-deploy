@@ -2,10 +2,14 @@
 
 ## Pre-Requisites
 
-> Node.js 20.17.0
+> Node.js 20.18.0 (LTS)
 > https://nodejs.org/en/download/prebuilt-installer
 
-> Postgres 16.4
+Node version for this project is updated on 10/23/2024
+
+ <br>
+
+> Postgres 16
 > https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
 
 <br>
@@ -34,7 +38,15 @@ For OPEN_AI_KEY, check https://help.openai.com/en/articles/4936850-where-do-i-fi
 
 <br>
 
-## Database Management
+## Testing & Database Management
+
+run unit test and check coverage report
+
+```
+npm run test
+```
+
+<br>
 
 reset database, add tables, and insert mock data
 
